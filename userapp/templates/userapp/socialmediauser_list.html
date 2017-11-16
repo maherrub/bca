@@ -1,0 +1,110 @@
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<!--Permissions control-->
+<div class="container">
+    <!--dynamic search with javascript-->
+    <div class="col-sm-6 offset-sm-3">
+        <input type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Search for names.." title="Type in a name">
+    </div>
+    <!--dynamic search with javascript-->
+                                        
+    <!--Body-->
+    <div class="container">
+    <div class="row">
+    <div class="col-md-3"></div>
+    <!--Active middle layer-->
+    <div class="col-md-6">
+        <!--dynamic search id-->
+        <ul class="list-group" id="myUL2">
+        
+        
+        
+        {% for up in object_list %}
+            {% if user.username|slugify == up.user|slugify %}
+                <a href="#" style="background: #1a6398;" class="list-group-item active"><img src="{{ up.usercover.url }}" class="avatar rounded-circle list-img-md img-responsive img-fluid" alt="profile image">&nbsp;Friends List</a>
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+
+
+
+        {% for up in object_list %}
+            {% if user.username|slugify != up.user|slugify %}
+        <div class="container">
+            <div class="row">
+                
+                <li class="list-group-item">
+            
+                    <div class="col-md-2">
+                        <img src="{{ up.usercover.url }}" class="avatar rounded-circle list-img-md img-responsive img-fluid" alt="profile image">
+                    </div>
+
+                    <div class="col-md-5 pull-left">
+                        <span><a>{{ up.firstname }} {{ up.lastname }}</a></span><br>
+                        <small>{{ up.expertise }}<br>{{ up.sunday_service|lower }} service</small>
+                    </div>
+                    
+                    <div class="col-md-5">
+                        <a href="#" class="btn btn-success btn-sm btn-rounded pull-left disabled"><i class="fa fa-plus"></i></a>
+                        <a href="#" class="btn btn-danger btn-sm btn-rounded pull-left disabled"><i class="fa fa-minus"></i></a>
+                    </div>
+                    
+                </li>
+                           
+                
+            </div>
+        </div>
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="col-md-3"></div>
+    </div>
+
+
+    <!--pagination starts here-->
+    <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    <div class="pull-right">
+        
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+    </div>
+    <div class="col-md-3"></div>
+    </div>
+    <!--/pagination ends here-->
+</div>
+</div>
+<!--/container-->
+<div class="divider"></div>
+
+
+{% endblock %}
+
+{% comment %}
+search button hide : style="height: 0px; width: 0px; border: none; padding: 0px;"
+{% endcomment %}

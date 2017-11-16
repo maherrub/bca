@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+{% block content %}
+<!--Check login-->
+{% if user.is_authenticated %}
+<head>
+<style>
+
+body {
+        font-family: "Lato", sans-serif;
+        background: #E9EAED;
+    }
+
+@media screen and (orientation: landscape) {
+        .avatarp {
+           height: 75px !important;
+           width: auto;
+       }    
+}
+
+
+@media screen and (orientation: portrait) {
+       .avatarp {
+           height: 50px !important;
+           width: auto;
+       }
+
+       .small {
+           color: #2196f3 !important;
+           
+       }
+}
+
+
+@media (min-width: 275px) {
+
+    .container-fluid {
+        padding-right: 0px;
+        padding-left: 0px;
+        overflow: hidden !important;
+    }
+}
+
+</style>
+</head>
+
+<div class="divider"></div>
+<div class="divider"></div>
+
+<!--Attaching and loading resource definitions-->
+
+<!--Resource layout 1-->
+    <!--main container-->
+    <div class="container-fluid" style="padding:0% 2% 0% 2%; overflow:hidden;">
+        <!--row-->
+        <div class="row">
+            <!--center column-->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 mb-r">
+                <!--card-->
+                <div class="card">
+                    {% if object.cover %}
+                    <!--image-->
+                    <div class="overlay hm-white-slight">
+                        <img src="{{ object.cover.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                            <a>
+                                <div class="mask waves-effect waves-light"></div>
+                            </a>
+                    </div>
+                    <!--/image-->
+                    {% endif %}
+                    
+                    {% if not object.cover %}
+                    <div class="overlay hm-white-slight">
+                        <img src="/static/images/bubble600.png" class="img-responsive text-center img-fluid" alt="speaker image">
+                            <a>
+                                <div class="mask waves-effect waves-light"></div>
+                            </a>
+                    </div>
+
+                    {% endif %}
+                    <!--body-->
+                    <div class="bluegrey-text" style="padding:0% 2% 0% 2%;">
+                        {% if object.author %}
+                            <small><span id="mobile-label">Author</span>:<strong> {{ object.author }}</strong></small><br>
+                        {% endif %}
+
+                        {% if not object.author %}
+                            {% if object.author_locale %}
+                            <small><span id="mobile-label">Author</span>:<strong> {{ object.author_locale|print_file_withlines:0 }}</strong></small><br>
+                            {% else %}
+                            <small><span id="mobile-label">Author</span>:<strong> Multiple Authors</strong></small><br>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if object.functional_group == "All" %}
+                            <small><span id="mobile-label">Producer</span>:<strong> BC Resource Team</strong></small><br>
+                        {% elif object.functional_group != "All" %}
+                            <small><span id="mobile-label">Producer</span>:<strong> {{ object.functional_group }} Ministry </strong></small><br>
+                        {% endif %}
+
+                        {% if object.language %}
+                            <small><span id="mobile-label">Language</span>:<strong> {{ object.language }}</strong></small><br>
+                        {% endif %}
+
+                        {% if object.genre %}
+                            <small><span id="mobile-label">Genre</span>:<strong> {{ object.genre }}</strong></small><br>
+                        {% endif %}
+
+                        {% if object.created %}
+                            <small><span id="mobile-label">Released</span>:<strong> {{ object.created|get_due_date_string }}</strong></small><br>
+                        {% endif %}
+
+                        {% if object.updated %}
+                            <small><span id="mobile-label">Updated</span>:<strong> {{ object.updated|date:"Y-d-m" }}</strong></small><br>
+                        {% endif %}
+                    </div>
+                    <!--/body-->
+                    <a>
+                        {% if object.title %}
+                            <h6 class="white-text card-data">{{ object.title|upper }}</h6>
+                        {% elif object.title_locale %}
+                            <h6 class="white-text card-data">{{ object.title_locale|print_file_withlines:0 }}</h6>
+                        {% elif not object.title and not object.title_locale %}
+                            <h6 class="white-text card-data">{{ object.genre|upper }}</h6>
+                        {% endif %}
+                    </a>
+                </div>
+                <!--/card-->
+
+            </div>
+            <!--/center column-->
+
+            <!--right column -->
+            <div class="col-sm-8">
+                
+                {% if object.description %}
+                <!--description content-->
+                <span>{{ object.description|print_file_withlines:0 }}</span><br>
+                <span>{{ object.description|print_file_withlines:1 }}</span><br>
+                <!--/description content-->
+                {% endif %}
+
+                <div class="divider"></div>
+                <div class="list-group">
+                {% for object in item_objects %}
+                    
+                    <li class="list-group-item justify-content-between">
+                        
+                        {% if object.item_name %}
+                            <span class="grey-text">{{ object.item_name }}</span><br>
+                        {% endif %}
+
+                        {% if object.item_name_locale %}
+                            <span class="grey-text">{{ object.item_name_locale|print_file_withlines:0 }}</span><br>
+                        {% endif %}
+
+                        
+
+                        <span class="">
+                            
+                            {% if not object.resource_item %}
+                                <span class="red-text"><i class="fa fa-frown-o" aria-hidden="true"></i> nothing to download</span><br>
+                                <span>resource item : {{ object.pk }}</span>
+                                <a href="/helpdesk/userticket_create"><i class="fa fa-ticket"></i><span>&nbsp;report this item</span></a><br>
+                            {% elif object.resource_item %}
+
+                            <a href="{{ object.resource_item.url }}" download>
+                                {% if object.file_type|slugify == "ppt"|slugify %}
+                                    <i class="red-text fa fa-file-powerpoint-o fa-2x" aria-hidden="true"></i><br>
+                                {% endif %}
+
+                                {% if object.file_type|slugify == "pptx"|slugify %}
+                                    <i class="red-text fa fa-file-powerpoint-o fa-2x" aria-hidden="true"></i><br>
+                                {% endif %}
+
+                                {% if object.file_type|slugify == "pdf"|slugify %}
+                                    <i class="red-text fa fa-file-pdf-o fa-2x" aria-hidden="true"></i><br>
+                                {% endif %}
+
+                                {% if object.file_type|slugify == "mp3"|slugify %}
+                                    <i class="red-text fa fa-file-audio-o fa-2x" aria-hidden="true"></i><br>
+                                {% endif %}
+
+                                {% if object.file_type|slugify == "mp4"|slugify %}
+                                    <i class="red-text fa fa-file-video-o fa-2x" aria-hidden="true"></i><br>
+                                {% endif %}
+                                <i class="green-text fa fa-download fa-2x" aria-hidden="true"></i>
+                        </a>
+                        {% endif %}
+                        
+                        </span>
+                    </li>
+                    {% empty %}
+                        <small>nothing to download</small>
+                    {% endfor %}
+                
+                </div>
+
+
+            </div>
+            <!--/right column -->
+
+        </div>
+        <!--/row-->
+    </div>
+    <!--/main container-->
+<!--/resource layout 1-->
+
+
+<!--container4-->
+<div class="container" style="overflow:hidden;">
+<div class="row">
+    <div class="col-md-10 col-sm-10 ">
+    </div>
+    
+    <div class="col-md-2 col-sm-2">
+        <a onclick="history.go(-1);" class="btn btn-primary btn-sm pull-right">Back</a>
+    </div>
+</div>
+<!--/container4-->
+
+{% endif %}
+{% endblock %}
+

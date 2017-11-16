@@ -1,0 +1,87 @@
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+<!--Jumbotran-->
+<!--
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h6 class="text-center">My Profile</h6>
+        </div>
+    </div>  
+</div>
+-->
+
+{% for up in object_list %}
+    {% if up.user|slugify = user.username|slugify  %}
+<!--card1 only one of the button required as per business logic users are allowed to create their profile only once-->
+<div class="container">
+  <div class="row">
+     <div class="col-md-6 offset-md-3"> 
+      <!--User profile update url format /up/2/update-->
+         <a href="/up/{{ up.id }}/update" class="btn-floating btn-small primary pull-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+      </div>
+  </div>
+</div>
+    {% endif %}
+    {% empty %}
+<!--User profile create-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3"> 
+              <h6 class="font-pompiere-sm text-center">You have not created your profile yet. Create one now!</h6>
+        </div>
+
+        <div class="col-md-6 offset-md-3">
+              <a href="/up/up_create" class="btn-floating btn-small primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</div>
+     
+{% endfor %}
+<!--/card1-->
+
+{% for up in object_list %}
+    {% if up.user|slugify = user.username|slugify  %}
+<!--Container2-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="text-right">
+                    <a href="/messages/inbox/">You have received {{ messages_inbox_count }} private message(s)<i class="fa fa-comments-o fa-2x animated rubberBand"></i></a>
+            </div>
+            
+            <!--Card1-->
+            <div class="card testimonial-card mb-r wow slideInLeft" data-wow-delay="0.1s">
+                <!--Bacground color-->
+                <div class="card-up #01579b light-blue darken-4 text-right">
+                    
+                </div>
+                
+                <!--Avatar-->
+                <div class="avatar">
+                  <img src="{{ up.usercover.url }}" class="rounded-circle img-responsive img-fluid" alt="">
+                </div>
+
+                <div class="card-block">
+                <!--Name-->
+                <h4 class="card-title black-text">{{ up.firstname }} {{ up.lastname}}</h4><br>
+                  <small>
+                    <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{ up.usermobile }}</i>
+                    <i class="fa fa-envelope" aria-hidden="true">&nbsp;{{ user.email }}</i>
+                  </small>
+                <br>
+                <hr>
+                <!--Quotation-->
+                <i class="fa fa-address-card-o" aria-hidden="true">&nbsp;{{ up.address_line1 }},&nbsp; {{ up.address_line2 }},&nbsp; {{ up.city_or_town }}, &nbsp; {{ up.country }}&nbsp;-&nbsp;{{ up.zip_or_postal_code }}</i>        
+              </div>
+            </div>
+            <!--/.Card1-->
+        </div>
+    </div> 
+    <!--/row-->   
+</div>
+<!--/container2-->
+    {% endif %}
+{% endfor %}

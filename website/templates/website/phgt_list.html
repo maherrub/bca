@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "Producer Home Group List View" %}{% endblock %}
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+ 
+<!--Permissions control-->
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        <h5 class="text-muted">{{ object_list.functional_group }} Ministry Topic List</h5>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/phgtopic_create/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    </div>
+
+
+
+    <!--Body-->
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">    
+        <ul class="list-group">
+        {% for hgt in object_list %}
+        <a href="/{{ hgt.id }}/hgtcpdetail">
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-1 col-xs-1">
+                <img src="{{ hgt.speaker_image.url }}" class="list-img-md img-responsive img-fluid" alt="speaker image">
+            </div>
+
+            <div class="col-md-9 pull-left">
+                <h5 class="strong">{{ hgt.main_title }}</h5>
+                <small>{{ hgt.secondary_title }}</small>
+                <small>{{ hgt.edited_on }} | {{ hgt.display_position }}</small>
+            </div>
+        </div>
+        </div>
+        </li>
+        </a>
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+    </div>
+    
+    <div class="divider"></div>
+
+    <div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}

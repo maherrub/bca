@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load website_filters %}
+
+{% block title %}Producer Community Contents{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<br>
+    <!--Body-->
+    <div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            
+        <a href="/producercommunity/" class="list-group-item active">
+            <i class="fa fa-users fa-1x" aria-hidden="true"></i>
+            &nbsp;Producer Community Parallaxes
+        </a>
+        <!--Search form -->
+        <form method='GET' action='' class="form-inline waves-effect waves-light">
+            <input type='text' name='q' class="text-center blue-text" placeholder='Search a parallax record' value='{{ request.GET.q }}'/>
+	        <input type='submit' value='Search' style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
+        </form>
+        <!--/Search form -->
+        <span class="counter" style="margin-left:80%; margin-top:15px;">{{ object_list|length }}</span>
+        
+        {% for pclapx in object_list %}
+        
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            
+            <div class="col-md-3 pull-left white-text danger-color-dark">
+                
+                <small><strong>Producer:</strong> {{ pclapx.hgpi_owner }}</small><br>
+                <small><strong>Topic id:</strong> {{ pclapx.id }}</small><br>
+                <small><strong>Created:</strong> {{ pclapx.edited_on|get_due_date_string }}</small><br>
+                <small><strong>Updated:</strong> {{ pclapx.updated }}</small><br>
+                <small><strong>Fun.Group:</strong> {{ pclapx.functional_group }}</small><br>
+                <small><strong>Position:</strong>{{ pclapx.display_position }}</small><br>
+                {% if pclapx.is_published = 0 %}
+                    <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ pclapx.is_published }}</span></small><br>
+                {% else %}
+                    <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ pclapx.is_published }}</span></small><br>
+                {% endif %}
+                {% if pclapx.is_verified = 0 %}
+                    <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ pclapx.is_verified }}</span></small><br>
+                {% else %}
+                    <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ pclapx.is_verified }}</span></small><br>
+                {% endif %}
+            </div>
+
+            <div class="col-md-2 col-xs-2 danger-color">
+                {% if pclapx.portrait_background %}
+                <img src="{{ pclapx.portrait_background.url }}" class="img-thumbnail list-img-md img-responsive img-fluid" alt="speaker_image">
+                <small><strong>Portrait</strong></small><br>
+                {% endif %}
+                {% if pclapx.landscape_background %}
+                <img src="{{ pclapx.landscape_background.url }}" class="img-thumbnail list-img-md img-responsive img-fluid" alt="cover_image">
+                <small><strong>Landscape</strong></small>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-7 pull-left red lighten-5 hoverable">
+                <small><strong>Title:</strong> {{ pclapx.hgpi_image_main_text }}</small><br>
+                <small><strong>Sec. Title:</strong> {{ pclapx.hgpi_image_secondary_text }}</small><br>
+                <small><strong>BG. Color:</strong> {{ pclapx.html_bgcolorcodes }}</small><br>
+                <small><strong>Btn. Name:</strong> {{ pclapx.hgpi_link_button_name }}</small><br>
+                <small><strong>Btn Link:</strong> {{ pclapx.hgpi_link }}</small><br>
+            </div>
+                        
+        </div>
+        </div>
+        </li>
+        
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+    </div>
+    <!--/Body-->
+
+    <div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+
+<div class="divider"></div>
+
+
+
+<div class="divider"></div>
+
+{% endblock %}

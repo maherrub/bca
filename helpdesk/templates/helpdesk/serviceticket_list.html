@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}Service Desk Ticket List{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<!--master container-->
+<div class="container-fluid">
+
+<!--all link buttons here-->
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="text-center col-sm-4 mb-r wow slideInUp" data-wow-delay="0.1s">
+            <a href="#" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/apps_list/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    </div>
+<!--all link buttons here-->
+
+<!--tabs definition-->
+
+
+<!-- Nav tabs -->
+<div class="tabs-wrapper"> 
+    <ul class="nav classic-tabs red" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link waves-light active" data-toggle="tab" href="#new_tickets" role="tab">New Tickets</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link waves-light" data-toggle="tab" href="#instructions" role="tab">Instructions</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Tab panels -->
+<div class="tab-content">
+
+    <!--Panel 1-->
+    <div class="tab-pane fade in show active" id="new_tickets" role="tabpanel">
+
+        <!--Body-->
+        <div class="container-fluid">
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <!--
+                        <a href="#" class="list-group-item danger-color white-text"><i class="fa fa-thumbs-up"></i>&nbsp;Service Desk Support Ticket List</a>
+                        -->
+            {% for sdt in object_list %}
+
+                {% if sdt.assigned_manager|slugify = 'Servicedesk-Servicedesk-Servicedesk'|slugify %}
+                
+                <li class="list-group-item justify-content-between">
+                <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-xs-2">
+                    {% for pr in profiles %}
+                        {% if sdt.ticket_owner|slugify = pr.user|slugify %}
+                        <img src="{{ pr.usercover.url }}" class="list-img-md img-responsive img-fluid rounded-circle" alt="ticket_owner"><br>
+                        <small><strong>Name: </strong>{{ pr.firstname }} {{ pr.firstname }} </small>
+                        {% endif %}
+                    {% endfor %}
+                        
+                    </div>
+
+                    <div class="col-md-5 pull-left">
+                        <small><strong>Issue:</strong> {{ sdt.ticket_issue }}</small><br>
+                        <small><strong>Priority:</strong> {{ sdt.ticket_priority }}</small><br>
+                        <small><strong>Ticket Number:</strong> {{ sdt.ticket_category }}-{{ sdt.ticket_number }}</small>
+                    </div>
+                    
+                    <div class="col-md-3 pull-left">
+                        <small><strong>Status:</strong> {{ sdt.ticket_status }}</small><br>
+                        <small><strong>Create Date:</strong> {{ sdt.first_create_date }}</small>
+                    </div>
+
+                    <div class="col-md-1 pull-left">
+                        <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/{{ sdt.pk }}/serviceticket_detail">detail</a></h6>
+                    </div>
+
+                    <div class="col-md-1 pull-left">
+                        <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/{{ sdt.pk }}/serviceticket_update">Assign</a></h6>
+                    </div>
+                </div>
+                </div>
+                </li>
+                {% endif %}
+
+            {% empty %}
+                
+                <h6>No more tickets to assign.</h6>
+                
+            {% endfor %}
+                </ul>
+            </div>
+            </div>
+        </div>
+
+        <!--pagination starts here-->
+
+        <div class="pull-right">
+                
+                {% if is_paginated %}
+                <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li>
+                        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                    </li>
+                {% endif %}
+                    <li class="">
+                        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                    </li>
+                {% if page_obj.has_next %}
+                    <li>
+                        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                    </li>
+                {% endif %}
+                </ul>
+                {% else %}
+                    <p class="deep-orange-text text-center">end of list</p>
+                {% endif %}
+        </div>
+        <!--/pagination starts here-->
+
+    </div>
+    <!--/.Panel 1-->
+
+
+    <!--Panel 2-->
+    <div class="tab-pane fade" id="instructions" role="tabpanel">
+            <p>Please assign the tickets to the right support group as soon as you receive the tickets. You will be notified via email: service-desk@bc.org.sg</p>
+    </div>
+    <!--/.Panel 2-->
+        
+
+</div>
+<!--/tabs definition-->
+
+</div>
+<!--/master container-->
+
+{% endblock %}

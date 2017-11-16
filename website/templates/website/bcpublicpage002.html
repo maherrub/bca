@@ -1,0 +1,71 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<head>
+    <style>
+
+        #team-title {
+            margin-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        {% if request|is_mobile %}
+             @media screen and (orientation: landscape) {
+                    #team-title {
+                    margin-top: 4em;
+                    padding-bottom: 1em;
+                }
+             }
+        {% endif %}
+
+
+            @media screen and (orientation: portrait) {
+                #team-title {
+                    margin-top: 3em;
+                    padding-bottom: 1em;
+                }
+            }    
+    
+    </style>
+</head>
+<!--Producer page team name -->
+        {% for tn in teamname_objects %}
+        {% if tn.team_pageid|slugify = object.id|slugify %}
+        <div class="container" style="overflow: hidden;">
+            <div class="row">
+                <div class="col-md-12"><br>
+                    <!--Section heading-->
+                    <h2 id="team-title" class="section-heading wow fadeIn" data-wow-delay="0.2s">{{ tn.team_name }}</h2>
+                    <!--/Section heading-->
+
+                        <!--Section description-->
+                        {% if tn.team_description %}
+                        <p class="section-description text-center wow fadeIn" data-wow-delay="0.4s">{{ tn.team_description }}</p>
+                        {% endif %}
+                        <!--/Section description-->
+                        
+                        <!--Translated file2-->
+                        {% if tn.translatedtxtfile2 %}
+                        <p class="noselect pad5">{{ tn.translatedtxtfile2|print_file_content }}</p>
+                        {% endif %}
+                        <!--Translated file2-->
+                </div>
+            </div>
+        </div>
+
+            <!--load teammember001  standard-->
+            {% include 'website/teammember001.html' %}
+            <!--load teammember001  standard-->
+
+            <!--load teammember001b  locale-->
+            {% include 'website/teammember001b.html' %}
+            <!--load teammember001b  locale-->
+
+
+<!--/Producer page team name -->
+        {% endif %}
+        {% empty %}
+        {% endfor %}

@@ -1,0 +1,789 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="divider"></div>
+
+<h6 class="text-left"><span class="badge red">Producer Console</span>
+<a href="/apps_list/" class="btn-floating btn-small red"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+</h6>
+
+{% for phgm in phgms %}
+{% if user.username == phgm.hgp_manager_name and phgm.hgp_functional_group == 'English' %}
+
+<!--English Ministry-->
+<div class="container">
+    <div class="row">        
+        <!--Panel 1.1-->
+        <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header primary-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Topic</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">English</h4>
+                </div>
+                <div class="btn-group primary-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtl/English/" class="dropdown-item"><small>English</small></a>
+                        <a href="/phgtl/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Panel 1.1-->
+            
+        <!--Panel 1.2-->
+        <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header primary-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Text</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">English</h4>
+                </div>
+                <div class="btn-group primary-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtext_list/English/" class="dropdown-item"><small>English</small></a>
+                        <a href="/phgtext_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Panel 1.2-->
+
+        <!--Panel 1.3-->
+        <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header primary-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Parallax</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">English</h4>
+                </div>
+                <div class="btn-group primary-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgpi_list/English/" class="dropdown-item"><small>English</small></a>
+                        <a href="/phgpi_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Panel 1.3-->
+
+        <!--Panel 1.4-->
+        <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header primary-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Page</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">English</h4>
+                </div>
+                <div class="btn-group primary-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/producerpage_list/English/" class="dropdown-item"><small>English</small></a>
+                        <a href="/producerpage_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Panel 1.4-->
+
+        <!--Panel 1.5-->
+        <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header primary-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Resource</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">English</h4>
+                </div>
+                <div class="btn-group primary-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/resource_list/English/" class="dropdown-item"><small>English</small></a>
+                        <a href="/resource_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/Panel 1.5-->
+
+
+    </div>
+</div>
+<!--/English Ministry-->    
+<div class="divider"></div>
+
+
+{% elif user.username == phgm.hgp_manager_name and phgm.hgp_functional_group == 'Chinese' %}
+
+<!--Chinese Ministry-->
+    <div class="container">
+        <div class="row">
+
+            <!--Panel 2.1-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header danger-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Topic</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Chinese</h4>
+                </div>
+                <div class="btn-group danger-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtl/Chinese/" class="dropdown-item"><small>Chinese</small></a>
+                        <a href="/phgtl/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 2.1-->
+
+            <!--Panel 2.2-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header danger-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Text</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Chinese</h4>
+                    
+                </div>
+                <div class="btn-group danger-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtext_list/Chinese/" class="dropdown-item"><small>Chinese</small></a>
+                        <a href="/phgtext_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 2.2-->
+
+            <!--Panel 2.3-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header danger-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Parallax</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Chinese</h4>
+                    
+                </div>
+                <div class="btn-group danger-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgpi_list/Chinese/" class="dropdown-item"><small>Chinese</small></a>
+                        <a href="/phgpi_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 2.3-->
+            
+            <!--.Panel 2.4-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header danger-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Page</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Chinese</h4>
+                    
+                </div>
+                <div class="btn-group danger-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/producerpage_list/Chinese/" class="dropdown-item"><small>Chinese</small></a>
+                        <a href="/producerpage_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 2.4-->
+
+            <!--Panel 2.5-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header danger-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Resource</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Chinese</h4>
+                    
+                </div>
+                <div class="btn-group danger-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/resource_list/Chinese/" class="dropdown-item"><small>Chinese</small></a>
+                        <a href="/resource_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/Panel 2.5-->
+
+    </div>
+</div>
+<div class="divider"></div>
+
+{% elif user.username == phgm.hgp_manager_name and phgm.hgp_functional_group == 'Hokkien' %}
+
+<!--Hokkien Ministry-->
+<div class="container">
+    <div class="row">
+
+            <!--Panel 3.1-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header warning-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Topic</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Hokkien</h4>
+                </div>
+                <div class="btn-group warning-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtl/Hokkien/" class="dropdown-item"><small>Hokkien</small></a>
+                        <a href="/phgtl/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 3.1-->
+
+            <!--Panel 3.2-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header warning-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Text</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Hokkien</h4>
+                    
+                </div>
+                <div class="btn-group warning-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtext_list/Hokkien/" class="dropdown-item"><small>Hokkien</small></a>
+                        <a href="/phgtext_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 3.2-->
+
+            <!--Panel 3.3-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header warning-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Parallax</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Hokkien</h4>
+                </div>
+                <div class="btn-group warning-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgpi_list/Hokkien/" class="dropdown-item"><small>Hokkien</small></a>
+                        <a href="/phgpi_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+            <!--/.Panel 3.3-->
+
+            <!--Panel 3.4-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header warning-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Page</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Hokkien</h4>
+                </div>
+                <div class="btn-group warning-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/producerpage_list/Hokkien/" class="dropdown-item"><small>Hokkien</small></a>
+                        <a href="/producerpage_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--./Panel 3.4-->
+
+            <!--Panel 3.5-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header warning-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Resource</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Hokkien</h4>
+                </div>
+                <div class="btn-group warning-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/resource_list/Hokkien/" class="dropdown-item"><small>Hokkien</small></a>
+                        <a href="/resource_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            <!--/Panel 3.5-->
+
+
+        </div>
+    </div>
+<div class="divider"></div>
+
+{% elif user.username == phgm.hgp_manager_name and phgm.hgp_functional_group == 'Cantonese' %}
+
+<!--Cantonese Ministry-->
+    <div class="container">
+        <div class="row">
+
+            <!--Panel 4.1-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header info-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Topic</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Cantonese</h4>
+                </div>
+                <div class="btn-group info-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtl/Cantonese/" class="dropdown-item"><small>Cantonese</small></a>
+                        <a href="/phgtl/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 4.1-->
+
+            <!--Panel 4.2-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header info-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Text</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Cantonese</h4>
+                    
+                </div>
+                <div class="btn-group info-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtext_list/Cantonese/" class="dropdown-item"><small>Cantonese</small></a>
+                        <a href="/phgtext_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 4.2-->
+
+            <!--Panel 4.3-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header info-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Parallax</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Cantonese</h4>
+                    
+                </div>
+                <div class="btn-group info-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgpi_list/Cantonese/" class="dropdown-item"><small>Cantonese</small></a>
+                        <a href="/phgpi_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 4.3-->
+
+            <!--Panel 4.4-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header info-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Page</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Cantonese</h4>
+                    
+                </div>
+                <div class="btn-group info-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/producerpage_list/Cantonese/" class="dropdown-item"><small>Cantonese</small></a>
+                        <a href="/producerpage_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 4.4-->
+
+            <!--Panel 4.5-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header info-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Resource</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Cantonese</h4>
+                    
+                </div>
+                <div class="btn-group info-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/resource_list/Cantonese/" class="dropdown-item"><small>Cantonese</small></a>
+                        <a href="/resource_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/Panel 4.5-->
+
+        </div>
+    </div>
+<div class="divider"></div>
+
+{% elif user.username == phgm.hgp_manager_name and phgm.hgp_functional_group == 'Indian' %}
+
+<!--Indian Ministry-->
+    <div class="container">
+        <div class="row">
+
+            <!--Panel 5.1-->
+           <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header success-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Topic</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Indian</h4>
+                    
+                </div>
+                <div class="btn-group success-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtl/Indian/" class="dropdown-item"><small>Indian</small></a>
+                        <a href="/phgtl/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 5.1-->
+
+            <!--Panel 5.2-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header success-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Text</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Indian</h4>
+                    
+                </div>
+                <div class="btn-group success-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtext_list/Indian/" class="dropdown-item"><small>Indian</small></a>
+                        <a href="/phgtext_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 5.2-->
+
+            <!--Panel 5.3-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header success-color-dark white-text">
+                    <h6 class="h6-responsive text-center">Parallax</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Indian</h4>
+                </div>
+                <div class="btn-group success-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgpi_list/Indian/" class="dropdown-item"><small>Indian</small></a>
+                        <a href="/phgpi_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 5.3-->
+
+            <!--Panel 5.4-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header success-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Page</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Indian</h4>
+                </div>
+                <div class="btn-group success-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/producerpage_list/Indian/" class="dropdown-item"><small>Indian</small></a>
+                        <a href="/producerpage_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 5.4-->
+
+            <!--Panel 5.5-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header success-color-dark text-center white-text">
+                    <h6 class="h6-responsive">Resource</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Indian</h4>
+                </div>
+                <div class="btn-group success-color-dark">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/resource_list/Indian/" class="dropdown-item"><small>Indian</small></a>
+                        <a href="/resource_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/Panel 5.5-->
+
+        </div>
+    </div>
+<div class="divider"></div>
+
+{% elif user.username == phgm.hgp_manager_name and phgm.hgp_functional_group == 'Filipino' %}
+
+<!--Filipino Ministry-->
+    <div class="container">
+        <div class="row">
+
+            <!--Panel 6.1-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header unique-color white-text">
+                    <h6 class="h6-responsive text-center">Topic</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Filipino</h4>
+                </div>
+                <div class="btn-group unique-color">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtl/Filipino/" class="dropdown-item"><small>Filipino</small></a>
+                        <a href="/phgtl/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 6.1-->
+
+            <!--Panel 6.2-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header unique-color white-text">
+                    <h6 class="h6-responsive text-center">Text</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Filipino</h4>
+                </div>
+                <div class="btn-group unique-color">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgtext_list/Filipino/" class="dropdown-item"><small>Filipino</small></a>
+                        <a href="/phgtext_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 6.2-->
+
+            <!--Panel 6.3-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header unique-color white-text">
+                    <h6 class="h6-responsive text-center">Parallax</h6>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Filipino</h4>
+                </div>
+                <div class="btn-group unique-color">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/phgpi_list/Filipino/" class="dropdown-item"><small>Filipino</small></a>
+                        <a href="/phgpi_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 6.3-->
+
+            <!--Panel 6.4-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header unique-color text-center white-text">
+                    <h6 class="h6-responsive">Page</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Filipino</h4>
+                </div>
+                <div class="btn-group unique-color">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/producerpage_list/Filipino/" class="dropdown-item"><small>Filipino</small></a>
+                        <a href="/producerpage_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 6.4-->
+
+            <!--Panel 6.5-->
+            <div class="col-md mb-r wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header unique-color text-center white-text">
+                    <h6 class="h6-responsive">Resource</h6>
+                </div>
+                <div class="card-content text-center">
+                    <h4 class="text-center text-muted">Filipino</h4>
+                </div>
+                <div class="btn-group unique-color">
+                    <button class="transparent btn btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GO
+                    </button>
+                            
+                    <div class="dropdown-menu">
+                        <a href="/resource_list/Filipino/" class="dropdown-item"><small>Filipino</small></a>
+                        <a href="/resource_list/All/" class="dropdown-item"><small>All</small></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 6.5-->
+
+
+        </div>
+        </div>
+    </div>
+<div class="divider"></div>
+
+
+
+
+
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}

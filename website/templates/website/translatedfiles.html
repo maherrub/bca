@@ -1,0 +1,142 @@
+{% load static %}
+{% load user_agents %}
+{% load website_filters %}
+
+{% if object.layout_text == 'PARA' %}
+    <!--attach and text file1 and 2 if layout is a paragraph-->
+    {% include 'website/translatedfiles001.html' %}
+    <!--/attach and text file1 and 2 if layout is a paragraph-->
+
+{% elif object.layout_text == 'PARAi' %}
+    <!--attach and text file1 and 2 if layout is a paragraph italic-->
+    {% include 'website/translatedfiles0001.html' %}
+    <!--/attach and text file1 and 2 if layout is a paragraph italic-->
+
+{% elif object.layout_text == 'TLST' %}
+    <!--attach and text file1 and 2 if layout is a firstline header rest list-->
+    {% include 'website/translatedfiles002.html' %}
+    <!--/attach and text file1 and 2 if layout is a firstline header rest list-->
+
+{% elif object.layout_text == 'TLSTv' %}
+    <!--attach and text file1 and 2 if layout is a firstline header rest variant list-->
+    {% include 'website/translatedfiles0002.html' %}
+    <!--/attach and text file1 and 2 if layout is a firstline header rest variant list-->
+
+{% elif object.layout_text == 'SLST' %}
+    <!--attach and text file1 and 2 if layout is a simple list-->
+    {% include 'website/translatedfiles003.html' %}
+    <!--/attach and text file1 and 2 if layout is a simple list-->
+
+{% elif object.layout_text == 'SLSTv' %}
+    <!--attach and text file1 and 2 if layout is a simple list variant-->
+    {% include 'website/translatedfiles0003.html' %}
+    <!--/attach and text file1 and 2 if layout is a simple list variant-->
+
+{% elif object.layout_text == 'SLSTc' %}
+    <!--attach and text file1 and 2 if layout is a simple list contained-->
+    {% include 'website/translatedfiles004.html' %}
+    <!--/attach and text file1 and 2 if layout is a simple list contained-->
+
+{% endif %}
+
+
+
+
+{% comment %}
+<!--Translated file 1-->
+{% if object.translatedtxtfile1 %}
+<div class="container-fluid">
+
+    <div class="col-md-10 offset-md-1">
+        {%  if object.translatedtxtfile1|print_file_withlines:0 %}
+        <div class="row">
+            <h5 class="badge red noselect pad5" style:"text-align: right;">{{ object.translatedtxtfile1|print_file_withlines:0 }}</h5><br>
+        </div>
+        <br>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:1 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:1 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:2 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:2 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:3 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:3 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:4 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:4 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:5 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:5 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:6 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:6 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:7 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:7 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:8 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:8 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:9 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:9 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:10 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:10 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:11 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:11 }}</p><br>
+        </div>
+        {% endif %}
+
+        <div class="divider"></div>
+    </div>
+</div>
+{% endif %}
+
+<!--Translated file 2-->
+
+{% if object.translatedtxtfile2 %}
+<div class="container-fluid">
+    <div class="col-md-10 offset-md-1">
+        <div class="row">
+            <div class="noselect pad5">{{ object.translatedtxtfile2|print_file_content }}</div>
+        </div>
+    </div>    
+</div>
+<div class="divider"></div>
+{% endif %}
+
+{% endcomment %}

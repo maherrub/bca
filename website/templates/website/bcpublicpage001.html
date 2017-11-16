@@ -1,0 +1,90 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+{% if object.layout = 'SBAN' %}
+    <!--load stretched banner-->
+        {% include 'website/banner001.html' %}
+    <!--/load stretched banner-->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'SBANi' %}
+    <!--load stretched banner-->
+        {% include 'website/banner0001.html' %}
+    <!--/load stretched banner-->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'ABAN' %}
+    <!--load as is banner-->
+        {% include 'website/banner002.html' %}
+    <!--/load as is banner-->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'ABANi' %}
+    <!--load as is banner-->
+        {% include 'website/banner0002.html' %}
+    <!--/load as is banner-->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'RBAN' %}
+    <!--load as is raised banner-->
+        {% include 'website/banner003.html' %}
+    <!--/load as is raised banner-->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'RBANi' %}
+    <!--load as is raised banner-->
+        {% include 'website/banner0003.html' %}
+    <!--/load as is raised banner-->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'CBAN' %}
+    <!--load bg inverse colored banner-->
+        {% include 'website/banner004.html' %}
+    <!--/load bg inverse colored banner-->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'CBANi' %}
+    <!--load bg inverse colored banner-->
+        {% include 'website/banner0004.html' %}
+    <!--/load bg inverse colored banner-->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'BGVI' %}
+    <!--load video page -->
+        {% include 'website/youtubevideo.html' %}
+    <!--/load video page -->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% elif object.layout = 'BGPF' %}
+    <!--load page -->
+        {% include 'website/page.html' %}
+    <!--/load page -->
+    <!--load translated files -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/load translated files -->
+
+{% endif %}
+
+
+

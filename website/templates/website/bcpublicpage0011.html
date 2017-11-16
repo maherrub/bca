@@ -1,0 +1,61 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--Attaching and loading ROW1 parallax image background for IMAGE1-->
+
+<!--header-->
+{% for object in parallaxes|dictsort:"display_position" %}
+    
+        {% if object.display_position == 'IMAGE1' %}
+            
+            <!--1.load landscape image only available-->
+            {% include 'website/parallax001.html' %}
+            <!--/1.load landscape image only available-->
+
+            <!--1.load landscape and portrait images available-->
+            {% include 'website/parallax002.html' %}
+            <!--/1.load landscape and portrait images available-->
+
+            <!--1.load no landscape and no portrait images available-->
+            {% include 'website/parallax003.html' %}
+            <!--/1.load no landscape and no portrait images available-->
+
+        {% endif %}
+
+        {% if object.display_position == 'IMAGE2' %}
+            
+            <!--2.load landscape image only available-->
+            {% include 'website/parallax001.html' %}
+            <!--/2.load landscape image only available-->
+
+            <!--2.load landscape and portrait images available-->
+            {% include 'website/parallax002.html' %}
+            <!--/2.load landscape and portrait images available-->
+
+            <!--2.load no landscape and no portrait images available-->
+            {% include 'website/parallax003.html' %}
+            <!--/2.load no landscape and no portrait images available-->
+
+        {% endif %}
+
+        {% if object.display_position == 'IMAGE3' %}
+            
+            <!--3.load landscape image only available-->
+            {% include 'website/parallax001.html' %}
+            <!--/3.load landscape image only available-->
+
+            <!--3.load landscape and portrait images available-->
+            {% include 'website/parallax002.html' %}
+            <!--/3.load landscape and portrait images available-->
+
+            <!--3.load no landscape and no portrait images available-->
+            {% include 'website/parallax003.html' %}
+            <!--/3.load no landscape and no portrait images available-->
+
+        {% endif %}
+    
+{% empty %}
+{% endfor %}

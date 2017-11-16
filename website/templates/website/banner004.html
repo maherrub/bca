@@ -1,0 +1,104 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<head>
+    <style>
+        #banner-container{
+            margin-top:-0.60em;
+        }
+
+        #banner-height {
+            height: 10vh !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #banner-center{
+            background-size: contain;
+            display: block;
+            margin-left: -15px;
+            margin-right: -15px;
+            width: 110%;
+            z-index: 0;
+        }
+
+        #banner-text-center {
+                    margin-top: -5% !important;
+                    background-size: contain;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    z-index: 1;
+                    position: relative;
+                    font-size: 35px;
+                }
+
+       
+        
+        body {
+                font-family: 'Roboto', sans-serif;
+                
+            }
+
+            {% if request|is_mobile %}
+             @media screen and (orientation: landscape) {
+                #banner-text-center {
+                    margin-top: -5% !important;
+                    background-size: contain;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-size: 30px;
+                }
+
+                #banner-container{
+                    margin-top:-10px;
+                }
+            {% endif %}
+
+             }
+
+            @media screen and (orientation: portrait) {
+                #mobile-pt{
+                        width: 54%;
+                        margin-left: -10px;
+                        margin-right: -10px;
+                }
+
+                 #mobile-label {
+                    font-size: 8px;
+                }
+
+                #mbadge { margin-top: -10px;}
+
+                #banner-text-center {
+                    margin-top: -15% !important;
+                    background-size: contain;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-size: 35px;
+                }
+                #banner-container{
+                    margin-top:-10px;
+                }
+}
+
+    </style>
+</head>
+
+
+<div class="divider"></div>
+<div id="banner-container" class="container-fluid" style="overflow: hidden; margin-bottom:0.5%;">
+    <div class="row">
+        <div id="banner-height" class="col-12 text-center">
+            <img id="banner-center" src="{% static 'images\inversebanner.png' %}" style="filter: invert(25%); background:{{ object.html_bgcolorcode }};" alt="banner image"><br>
+        </div>
+    </div>
+    <div class="col-12 text-center">
+        <h2 id="banner-text-center" class="{{ object.high_title_color }} noselect" style="font-weight: 100 !important; z-index: 1; text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);">{{ object.main_title }}</h2>
+    </div>
+</div>

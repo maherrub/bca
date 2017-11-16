@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}User Support Ticket List{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<!--master container-->
+<div class="container-fluid">
+
+<!--all link buttons here-->
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="text-center col-sm-4 mb-r wow slideInUp" data-wow-delay="0.1s">
+            <a href="/helpdesk/userticket_create" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/apps_list/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    </div>
+<!--all link buttons here-->
+
+<!--Body-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-md-12">
+            <ul class="list-group">
+                <a href="#" class="list-group-item default-color-dark white-text"><i class="fa fa-thumbs-up"></i>&nbsp;My Support Ticket List <span class="counter pull-right">{{ object_list|length }}</span></a>
+        
+        {% for utl in object_list %}
+        
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-xs-2">
+                <h6>Ticket Number: {{ utl.ticket_category }}-{{ utl.ticket_number }}</h6>
+            </div>
+
+            <div class="col-md-5 pull-left">
+                <h6>Issue: {{ utl.ticket_issue }}</h6>
+                <h6>Priority: {{ utl.ticket_priority }}</h6>
+                
+            </div>
+            
+            <div class="col-md-3 pull-left">
+                <h6>Current Status: {{ utl.ticket_status }}</h6>
+            </div>
+
+            <div class="col-md-1 pull-left">
+                <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/{{ utl.pk }}/userticket_detail">detail</a></h6>
+            </div>
+
+            <div class="col-md-1 pull-left">
+                <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/{{ utl.pk }}/userticket_update">update</a></h6>
+            </div>
+        </div>
+        </div>
+        </li>
+        {% empty %}
+        <small>Nothing to display now, please proceed to create a new support ticket by pressing + button above.</small>
+        
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+    </div>
+
+<!--pagination starts here-->
+
+    <div class="pull-right">
+        
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+</div>
+<!--/container-->
+<div class="divider"></div>
+<!--/pagination starts here-->
+
+</div>
+<!--/master container-->
+{% endblock %}

@@ -1,0 +1,840 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+{% block content %}
+
+<head>
+<style>
+
+@media screen and (orientation: landscape) {
+        .avatarp {
+           height: 75px !important;
+           width: auto;
+       }    
+}
+
+
+@media screen and (orientation: portrait) {
+       .avatarp {
+           height: 50px !important;
+           width: auto;
+       }
+
+       .small {
+           color: #2196f3 !important;
+           
+       }
+}
+
+
+@media (min-width: 275px) {
+
+    .container-fluid {
+        padding-right: 0px;
+        padding-left: 0px;
+        overflow: hidden !important;
+    }
+}
+
+</style>
+</head>
+
+{% if object.youtubeid and not object.cover_image or object.cover_image %}
+    <!--load video page -->
+        {% include 'website/youtubevideo.html' %}
+    <!--/load video page -->
+{% endif %}
+
+{% if object.cover_image and not object.youtubeid  %}
+<!--cover image-->
+<div class="view overlay hm-white-slight">
+    <img src="{{ object.cover_image.url }}" class="img-responsive text-center img-fluid" width="100%" height="100%" alt="speaker image">
+    <a><div class="mask waves-effect waves-light"></div></a>
+</div>
+<!--/cover image-->
+{% endif %}
+
+
+<!--Attaching and loading topic definitions-->
+
+<!--topic layout 1-->
+    <!--main container-->
+    <div class="container" style="overflow:hidden; margin-top:50px; margin-bottom:-100px;">
+        <!--row-->
+        <div class="row">
+            <!--column1-->
+            <div class="col-lg-4 col-md-3 col-sm-1">
+            </div>
+            <!--/column1-->
+            
+            {% if object.card_type = "Topic" and object.layout = "1"  %}
+            <!--column2-->
+            <div class="col-lg-4 col-md-6 col-sm-10">
+                <!--card-->
+            <div class="card {{ object.card_style }} {{ object.card_color }} {{ object.text_color }}">
+                <!--image-->
+                <div class="view overlay hm-white-slight">
+                    <img src="{{ object.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                </div>
+                <!--/image-->
+                        
+                <!--body-->
+                <div class="black-text">
+                    <a href="/{{ object.id }}/">
+                        <h6 class="white-text card-data">{{ object.main_title|upper }}</h6>
+
+                        {% if not object.venue %}
+                            <h6 class="text-center black-text"><br></h6>
+                        {% else %}
+                            <h6 class="text-center black-text">[ {{ object.venue }} ]</h6>
+                        {% endif %}
+                        
+                        {% if not object.short_description %}
+                            <small style="color:transparent;"><br><br><br></small>
+                        {% else %}    
+                            <!--content-->
+                            <div style="height:65px; padding-left:2px; padding-right:2px;">
+                                <small class="card-text black-text card-pad">{{ object.short_description|ellipses:150 }}</small>
+                            </div>
+                            <!--/content-->
+                        {% endif %}
+                    
+                    </a>
+                </div>
+                <!--/body-->
+                
+                <!--footer-->
+                <div class="card-data">
+                    <ul>
+                        <li><i class="fa fa-clock-o"></i>{{ object.day }} {{ object.date }} {{ object.time }}</li>
+                    </ul>
+                </div>
+                <!--/footer-->
+            </div>
+            <!--/card-->
+            </div>
+            <!--/column2-->
+                {% endif %}
+            <!--column3-->
+            <div class="col-lg-4 col-md-3 col-sm-1">
+            </div>
+            <!--/column3-->
+    </div>
+    <!--/row-->
+    </div>
+    <!--/main container-->
+<!--/topic layout 1-->
+
+
+<!--/topic layout 2-->
+<!--main container-->
+<div class="container-fluid" style="overflow:hidden; margin-top:100px; margin-bottom:-250px;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-3 col-md-2 col-sm-1">
+        </div>
+        <!--/column1-->
+
+        {% if object.card_type = "Topic" and object.layout = "2" %}
+
+        <!--column2-->
+        <div class="col-lg-3 col-md-4 col-sm-5">
+            <!--card-->
+            <div class="card {{ object.card_style }} {{ object.card_color }} {{ object.text_color }}">
+                <!--image-->
+                <div class="view overlay hm-white-slight">
+                    <img src="{{ object.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                </div>
+                <!--/image-->
+                        
+                <!--body-->
+                <div class="black-text">
+                    <a href="/{{ object.id }}/">
+                        <h6 class="white-text card-data">{{ object.main_title|upper }}</h6>
+
+                        {% if not object.venue %}
+                            <h6 class="text-center black-text"><br></h6>
+                        {% else %}
+                            <h6 class="text-center black-text">[ {{ object.venue }} ]</h6>
+                        {% endif %}
+                        
+                        {% if not object.short_description %}
+                            <small style="color:transparent;"><br><br><br></small>
+                        {% else %}    
+                            <!--content-->
+                            <div style="height:65px; padding-left:2px; padding-right:2px;">
+                                <small class="card-text black-text card-pad">{{ object.short_description|ellipses:150 }}</small>
+                            </div>
+                            <!--/content-->
+                        {% endif %}
+                    
+                    </a>
+                </div>
+                <!--/body-->
+                
+                <!--footer-->
+                <div class="card-data">
+                    <ul>
+                        <li><i class="fa fa-clock-o"></i>{{ object.day }} {{ object.date }} {{ object.time }}</li>
+                    </ul>
+                </div>
+                <!--/footer-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+        {% endif %}
+        
+        <!--column3-->
+        <div class="col-lg-3 col-md-2 col-sm-1">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+</div>
+<!--/main container-->
+<!--/topic layout 2-->
+
+
+<!--topic layout 3-->
+<!--main container-->
+<div class="container-fluid" style="overflow:hidden; margin-top:250px; margin-bottom:-250px;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column1-->
+
+        {% if object.card_type = "Topic" and object.layout = "4" %}
+
+        <!--column2-->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <!--card-->
+            <div class="card {{ object.card_style }} {{ object.card_color }} {{ object.text_color }}">
+                <!--image-->
+                <div class="view overlay hm-white-slight">
+                    <img src="{{ object.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                </div>
+                <!--/image-->
+                        
+                <!--body-->
+                <div class="black-text">
+                    <a href="/{{ object.id }}/">
+                        <h6 class="white-text card-data">{{ object.main_title|upper }}</h6>
+
+                        {% if not object.venue %}
+                            <h6 class="text-center black-text"><br></h6>
+                        {% else %}
+                            <h6 class="text-center black-text">[ {{ object.venue }} ]</h6>
+                        {% endif %}
+                        
+                        {% if not object.short_description %}
+                            <small style="color:transparent;"><br><br><br></small>
+                        {% else %}    
+                            <!--content-->
+                            <div style="height:65px; padding-left:2px; padding-right:2px;">
+                                <small class="card-text black-text card-pad">{{ object.short_description|ellipses:150 }}</small>
+                            </div>
+                            <!--/content-->
+                        {% endif %}
+                    
+                    </a>
+                </div>
+                <!--/body-->
+                
+                <!--footer-->
+                <div class="card-data">
+                    <ul>
+                        <li><i class="fa fa-clock-o"></i>{{ object.day }} {{ object.date }} {{ object.time }}</li>
+                    </ul>
+                </div>
+                <!--/footer-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+        {% endif %}
+        
+        <!--column3-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+</div>
+<!--/main container-->
+<!--/topic layout 3-->
+
+<!--/Attaching and loading topic definitions-->
+
+
+
+<!--Attaching and loading topic as text definitions-->
+    <!--topic as text layout 1-->
+    <div class="divider"></div>
+    <div class="divider"></div>
+    <div class="divider"></div>
+    <div class="divider"></div>
+
+    {% if object.card_type = "Text" and object.layout = "1"  %}
+
+    <div class="divider"></div>
+    <!--main container-->
+    <div class="container" style=" margin-bottom:-100px; overflow:hidden;">
+        <!--row-->
+        <div class="row">
+            <!--column1-->
+            <div class="col-lg-3 col-md-3 col-sm-1">
+            </div>
+            <!--/column1-->
+            <!--column2-->
+            <div class="col-lg-6 col-md-6 col-sm-10 mb-r">
+                
+                <!--Card-->
+                <div class="card-overlay" style="background-color:transparent;">
+                    <!-- Card Content-->
+                    <div class="white-text text-center">
+        
+                    <!-- Card Header-->
+                    <div class="card-data" style="background-color:#eceff1">
+                        <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                        <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                        <h6 class="black-text">{{ object.venue }}</h6>
+                        <i class="fa fa-chevron-down" style="color:#000000"></i> 	
+                    </div>
+                    <!--/. Card Header -->
+                        
+                    <!-- Card Text-->
+                    <div class="card-block">
+                        <h5 class="grey-text">Speaker:</h5>
+                        <h4 class="black-text">{{ object.speaker_name }}</h4>
+                        <p class="grey-text" style="background-color: transparent">{{ object.short_description }}</p>
+                    </div>
+                    <!--/. Card Text-->
+            
+                    <!-- Card footer -->
+                    <div class="card-data" style="background-color:#263238 ">
+                        <h6 align="center"></h6>
+                    </div>
+                    <!-- Card footer -->   
+                </div>
+                <!--/content-->
+                </div>
+                <!--/card-->
+            </div>
+            <!--/column2-->
+            <!--column3-->
+            <div class="col-lg-3 col-md-3 col-sm-1">
+            </div>
+            <!--/column3-->
+    </div>
+        <!--/row-->
+    </div>
+    <!--/main container-->
+
+    {% endif %}
+
+<!--/topic as text layout 1-->
+
+
+<!--/topic as text layout 2-->
+<div class="divider"></div>
+<!--main container-->
+<div class="container-fluid" style=" margin-bottom:-200px; overflow:hidden;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-2 col-md-1 col-sm-0">
+        </div>
+        <!--/column1-->
+
+
+        {% if object.card_type = "Text" and object.layout = "2" %}
+
+        <!--column2-->
+        <div class="col-lg-4 col-md-5 col-sm-6">
+            <!--Card-->
+            <div class="card-overlay" style="background-color:transparent">
+                <!--wrap-->
+                <div class="white-text text-center">
+        
+                    <!--header-->
+                    <div class="card-data" style="background-color:#eceff1">
+                        <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                        <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                        <h6 class="black-text">{{ object.venue }}</h6>
+                        <i class="fa fa-chevron-down" style="color:#000000"></i> 	
+                    </div>
+                    <!--/header-->
+                        
+                    <!--content text-->
+                    <div class="card-block">
+                        <h5 class="grey-text">Speaker:</h5>
+                        <h4 class="black-text">{{ object.speaker_name }}</h4>
+                        <p class="grey-text" style="background-color: transparent">{{ object.short_description }}</p>
+                    </div>
+                    <!--/content text-->
+            
+                    <!--footer -->
+                    <div class="card-data" style="background-color:#263238 ">
+                        <h6 align="center"></h6>
+                    </div>
+                    <!--/footer -->
+                </div>
+                <!--/wrap-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+        {% endif %}
+        
+
+        <!--column3-->
+        <div class="col-lg-2 col-md-1 col-sm-0">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+    <div class="divider"></div>
+</div>
+<!--/main container-->
+<!--/topic as text layout 2-->
+
+
+<!--topic as text layout 3-->
+
+<!--main container-->
+<div class="container-fluid" style="overflow:hidden;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column1-->
+
+        
+        {% if object.card_type = "Text" and object.layout = "4" %}
+
+        <!--column2-->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            
+            <!--Card-->
+            <div class="card-overlay" style="background-color:transparent">
+                
+                <!--wrap-->
+                <div class="white-text text-center">
+                    
+                    <!--header-->
+                    <div class="card-data" style="background-color:#eceff1">
+                        <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                        <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                        <h6 class="black-text">{{ object.venue }}</h6>
+                        <i class="fa fa-chevron-down" style="color:#000000"></i> 	
+                    </div>
+                    <!--/header-->
+                        
+                    <!--content text-->
+                    <div class="card-block">
+                        <h5 class="grey-text">Speaker:</h5>
+                        <h4 class="black-text">{{ object.speaker_name }}</h4>
+                        <p class="grey-text" style="background-color: transparent">{{ object.short_description }}</p>
+                    </div>
+                    <!--/content text-->
+            
+                    <!--footer -->
+                    <div class="card-data" style="background-color:#263238 ">
+                        <h6 align="center"></h6>
+                    </div>
+                    <!--/footer -->
+                </div>
+                <!--/wrap-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+        {% endif %}
+        
+
+        <!--column3-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+    <div class="divider"></div>
+    <div class="divider"></div>
+</div>
+<!--/main container-->
+<!--/topic as text layout 3-->
+
+<!--/Attaching and loading topic as text definitions-->
+
+
+
+<!--Attaching and loading topic as link definitions-->
+    <!--topic as a link style is list-->
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="divider"></div>
+
+<div class="container-fluid" style="margin-top:-170px; margin-bottom:-50px; overflow:hidden;">
+    <div class="divider-new">
+        <span class="h2-responsive"><i class="fa fa-angle-down wow fadeInDown" data-wow-delay="0.4s"></i></span>
+    </div>
+
+        
+<div class="container-fluid" style="margin-top:-50px; margin-left:5px; margin-right:5px; overflow:hidden;">
+  <div class="row">
+    <!--col1-->
+    
+        {% if object.card_type == "Link" and object.layout == "1" %} 
+        <!--column 1-->
+        <div class="col-md-6 col-sm-6">
+            
+            <!--First review-->
+            <div class="media mb-1">
+                <a class="media-left waves-light avatarp">
+                    <img class="avatarp rounded" src="{{ object.speaker_image.url }}">
+                </a>
+                
+                <div class="media-body">
+                    <span>{{ object.main_title }}</span><br>
+                    <small>{{ object.secondary_title|ellipses:75 }}</small>
+                </div>
+
+                <div>
+                    <a href="{{ object.link_url }}">
+                        <i class="fa fa-angle-right" style="padding-top: 25px;"></i>
+                    </a>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <!--/column 1-->
+    
+        {% endif %}
+    
+    <!--col1-->
+
+    <!--col2-->
+    
+        {% if object.card_type == "Link" and object.layout == "1" %}   
+     
+        <!--column 2-->
+        <div class="col-md-6 col-sm-6">
+            
+            <!--First review-->
+            <div class="media mb-1">
+                <a class="media-left waves-light avatarp">
+                    <img class="avatarp rounded" src="{{ object.speaker_image.url }}">
+                </a>
+                
+                <div class="media-body">
+                    <span>{{ object.main_title }}</span><br>
+                    <small>{{ object.secondary_title|ellipses:75 }}</small>
+                </div>
+
+                <div>
+                    <a href="{{ object.link_url }}">
+                        <i class="fa fa-angle-right" style="padding-top: 25px;"></i>
+                    </a>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <!--/column 2-->
+    
+        {% endif %}
+    
+    <!--/col2-->
+
+    <!--col3-->
+    
+        {% if object.card_type == "Link" and object.layout == "1" %}   
+     
+        <!--column 3-->
+        <div class="col-md-6 col-sm-6">
+            
+            <!--First review-->
+            <div class="media mb-1">
+                <a class="media-left waves-light avatarp">
+                    <img class="avatarp rounded" src="{{ object.speaker_image.url }}">
+                </a>
+                
+                <div class="media-body">
+                    <span>{{ object.main_title }}</span><br>
+                    <small>{{ object.secondary_title|ellipses:75 }}</small>
+                </div>
+
+                <div>
+                    <a href="{{ object.link_url }}">
+                        <i class="fa fa-angle-right" style="padding-top: 25px;"></i>
+                    </a>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <!--/column 3-->
+    
+        {% endif %}
+    
+    <!--/col3-->
+
+    <!--col4-->
+    
+        {% if object.card_type == "Link" and object.layout == "1"  %}   
+        <!--column 4-->
+        <div class="col-md-6 col-sm-6">
+            
+            <!--First review-->
+            <div class="media mb-1">
+                <a class="media-left waves-light avatarp">
+                    <img class="avatarp rounded" src="{{ object.speaker_image.url }}">
+                </a>
+                
+                <div class="media-body">
+                    <span>{{ object.main_title }}</span><br>
+                    <small>{{ object.secondary_title|ellipses:75 }}</small>
+                </div>
+
+                <div>
+                    <a href="{{ object.link_url }}">
+                        <i class="fa fa-angle-right" style="padding-top: 25px;"></i>
+                    </a>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <!--/column 4-->
+    
+        {% endif %}
+    
+    <!--/col4-->
+  </div>
+  <!--/row-->
+</div>
+<!--container-->
+
+</div>
+<!--Top Container-->
+<!--/topic as a link style is list-->
+
+
+<!--Topic as link style 2 is image gallery large-->
+<div class="container-fluid" style="margin-top:50px; margin-bottom:-35px; overflow:hidden;">
+  <div class="row no-gutters">
+   
+    
+        {% if object.card_type == "Link" and object.layout == "2"  %}   
+            <div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    
+
+    
+        {% if object.card_type == "Link" and object.layout == "2" %}   
+            <div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    
+
+    
+        {% if object.card_type == "Link" and object.layout == "2" %}   
+            <div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    
+    
+        {% if object.card_type == "Link" and object.layout == "2" %}   
+            <div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+      
+    
+  </div>
+</div>
+<!--/Topic as link style 2 is image gallery large-->
+
+
+<!--Topic as link style 3 is image gallery small-->
+<div class="container-fluid" style="margin-top:30px; margin-bottom:10px; overflow:hidden;">
+  <div class="row no-gutters">
+        <!--spacing adjustments do not remove-->
+        <div class="col-md-2 wow fadeIn" data-wow-delay="0.3s">
+        </div>
+   
+    
+        {% if object.card_type == "Link" and object.layout == "4" %}   
+            <div class="col-md-2 col-sm-3 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+
+
+        {% if object.card_type == "Link" and object.layout == "4" %}   
+            <div class="col-md-2 col-sm-3 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    
+
+        {% if object.card_type == "Link" and object.layout == "4" %}   
+            <div class="col-md-2 col-sm-3 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    
+
+    
+        {% if object.card_type == "Link" and object.layout == "4" %}   
+            <div class="col-md-2 col-sm-3 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    
+        
+        <!--spacing adjustments do not remove-->
+        <div class="col-md-2 wow fadeIn" data-wow-delay="0.3s">
+        </div>
+      
+  </div>
+</div>
+<!--/Topic as link style 3 is image gallery small-->
+
+<!--/Attaching and loading topic as link definitions-->
+
+
+
+
+
+
+{% comment %}
+{% if object.card_type == "Topic" %}
+<!--container1-->
+<div class="container" style="overflow:hidden;">
+<div class="row">
+    <div class="padt15 col-md-2">
+        <div class="view overlay hm-white-slight">
+            <img src="{{ object.speaker_image.url }}" class="list-img-md img-responsive img-fluid" alt="speaker image">
+            <a onclick="history.go(-1);" href"">
+                <div class="mask waves-effect waves-light"></div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="padt15 col-md-10">
+        <span class="badge blue">{{ object.main_title }}</span><br>
+        <span class="badge blue">{{ object.day }} {{ object.date }} {{ object.time }} {{ object.venue }} </span>
+        <hr>
+    </div>
+</div>
+<!--/row1-->
+</div>
+<!--/container1-->
+
+<!--container2-->
+<div class="container" style="overflow:hidden;">
+<div class="row">
+    <div class="col-md-8 offset-md-2">            
+        <p>{{ object.short_description }}</p><br>
+        <p>{{ object.long_description }}</p><br>
+    </div>
+
+    <div class="col-md-10 offset-md-1">
+        {% if object.translatedtxtfile1 or object.translatedtxtfile2 %}
+            <!--load translated files -->
+                {% include 'website/translatedfiles.html' %}
+            <!--/load translated files -->
+        {% endif %}
+    </div>
+</div>
+</div>
+<!--/container2-->
+
+{% elif object.card_type == "Link" %}
+
+<!--container3-->
+<div class="container" style="overflow:hidden;">
+    <div class="divider"></div>
+    <div class="divider"></div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <a href="{{ object.link_url }}">
+            <img src="{{ object.speaker_image.url }}" class="img-responsive img-fluid view overlay hm-black-slight hoverable" alt="speaker image"><br>
+            </a>
+        </div>
+        <div class="col-md-4 offset-md-4">
+            <span class="badge teal center-text noselect">Linked to: {{ object.link_url }}</span>
+        </div>
+    </div>
+</div>
+<!--container3-->
+{% else %}
+{% endif %}
+
+{% endcomment %}
+
+
+<!--container4-->
+<div class="container" style="overflow:hidden;">
+<div class="row">
+    <div class="col-md-10 col-sm-10 ">
+    </div>
+    
+    <div class="col-md-2 col-sm-2">
+        <a href="/producer/" class="btn btn-primary pull-right">Topic</a>
+    </div>
+</div>
+<!--/container4-->
+
+
+
+
+
+{% endblock %}
+

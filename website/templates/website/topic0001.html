@@ -1,0 +1,237 @@
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--topic layout 1-->
+    <!--main container-->
+    <div class="container" style="overflow:hidden; margin-top:0px; margin-bottom:210px;">
+        <!--row-->
+        <div class="row">
+            <!--column1-->
+            <div class="col-lg-4 col-md-3 col-sm-1">
+            </div>
+            <!--/column1-->
+            {% for object in hgtopics|dictsort:"display_position" %}
+                {% if object.card_type = "Topic" and object.layout = "1" and object.display_position >= 'ROW2-COL1/4' and  object.display_position < 'ROW2-COL2/4' %}
+            <!--column2-->
+            <div class="col-lg-4 col-md-6 col-sm-10">
+                <!--card-->
+            <div class="card {{ object.card_style }} {{ object.card_color }} {{ object.text_color }}">
+                <!--image-->
+                <div class="view overlay hm-white-slight">
+                    <img src="{{ object.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                </div>
+                <!--/image-->
+                        
+                <!--body-->
+                <div class="black-text">
+                    <a href="/{{ object.id }}/">
+                        <h6 class="white-text card-data">{{ object.main_title|upper }}</h6>
+
+                        {% if not object.venue %}
+                            <h6 class="text-center black-text"><br></h6>
+                        {% else %}
+                            <h6 class="text-center black-text">[ {{ object.venue }} ]</h6>
+                        {% endif %}
+                        
+                        {% if not object.short_description %}
+                            <small style="color:transparent;"><br><br><br></small>
+                        {% else %}    
+                            <!--content-->
+                            <div style="height:65px; padding-left:2px; padding-right:2px;">
+                                <small class="card-text black-text card-pad">{{ object.short_description|ellipses:150 }}</small>
+                            </div>
+                            <!--/content-->
+                        {% endif %}
+                    
+                    </a>
+                </div>
+                <!--/body-->
+                
+                <!--footer-->
+                <div class="card-data">
+                    <ul>
+                        <li><i class="fa fa-clock-o"></i>{{ object.day }} {{ object.date }} {{ object.time }}</li>
+                    </ul>
+                </div>
+                <!--/footer-->
+            </div>
+            <!--/card-->
+            </div>
+            <!--/column2-->
+                {% endif %}
+            {% empty %}
+            {% endfor %}
+            <!--column3-->
+            <div class="col-lg-4 col-md-3 col-sm-1">
+            </div>
+            <!--/column3-->
+    </div>
+        <!--/row-->
+    </div>
+    <!--/main container-->
+<!--/topic layout 1-->
+
+
+<!--/topic layout 2-->
+<!--main container-->
+<div class="container-fluid" style="overflow:hidden; margin-top:-200px; margin-bottom:55px;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-3 col-md-2 col-sm-1">
+        </div>
+        <!--/column1-->
+
+        {% for object in hgtopics|dictsort:"display_position" %}
+            {% if object.card_type = "Topic" and object.layout = "2" and object.display_position >= 'ROW2-COL1/4' and object.display_position <= 'ROW2-COL2/4' %}
+
+        <!--column2-->
+        <div class="col-lg-3 col-md-4 col-sm-5 mb-r">
+            <!--card-->
+            <div class="card {{ object.card_style }} {{ object.card_color }} {{ object.text_color }}">
+                <!--image-->
+                <div class="view overlay hm-white-slight">
+                    <img src="{{ object.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                </div>
+                <!--/image-->
+                        
+                <!--body-->
+                <div class="black-text">
+                    <a href="/{{ object.id }}/">
+                        <h6 class="white-text card-data">{{ object.main_title|upper }}</h6>
+
+                        {% if not object.venue %}
+                            <h6 class="text-center black-text"><br></h6>
+                        {% else %}
+                            <h6 class="text-center black-text">[ {{ object.venue }} ]</h6>
+                        {% endif %}
+                        
+                        {% if not object.short_description %}
+                            <small style="color:transparent;"><br><br><br></small>
+                        {% else %}    
+                            <!--content-->
+                            <div style="height:65px; padding-left:2px; padding-right:2px;">
+                                <small class="card-text black-text card-pad">{{ object.short_description|ellipses:150 }}</small>
+                            </div>
+                            <!--/content-->
+                        {% endif %}
+                    
+                    </a>
+                </div>
+                <!--/body-->
+                
+                <!--footer-->
+                <div class="card-data">
+                    <ul>
+                        <li><i class="fa fa-clock-o"></i>{{ object.day }} {{ object.date }} {{ object.time }}</li>
+                    </ul>
+                </div>
+                <!--/footer-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+
+        <!--column3-->
+        <div class="col-lg-3 col-md-2 col-sm-1">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+</div>
+<!--/main container-->
+<div class="divider"></div>
+<div class="divider"></div>
+<!--/topic layout 2-->
+
+
+<!--topic layout 3-->
+<!--main container-->
+<div class="container-fluid" style="overflow:hidden; margin-top:-150px; margin-bottom:25px;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column1-->
+
+        {% for object in hgtopics|dictsort:"display_position" %}
+            {% if object.card_type = "Topic" and object.layout = "4" and object.display_position >= 'ROW2-COL1/4' and object.display_position <= 'ROW2-COL4/4' %}
+
+        <!--column2-->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-r">
+            <!--card-->
+            <div class="card {{ object.card_style }} {{ object.card_color }} {{ object.text_color }}">
+                <!--image-->
+                <div class="view overlay hm-white-slight">
+                    <img src="{{ object.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                </div>
+                <!--/image-->
+                        
+                <!--body-->
+                <div class="black-text">
+                    <a href="/{{ object.id }}/">
+                        <h6 class="white-text card-data">{{ object.main_title|upper }}</h6>
+
+                        {% if not object.venue %}
+                            <h6 class="text-center black-text"><br></h6>
+                        {% else %}
+                            <h6 class="text-center black-text">[ {{ object.venue }} ]</h6>
+                        {% endif %}
+                        
+                        {% if not object.short_description %}
+                            <small style="color:transparent;"><br><br><br></small>
+                        {% else %}    
+                            <!--content-->
+                            <div style="height:65px; padding-left:2px; padding-right:2px;">
+                                <small class="card-text black-text card-pad">{{ object.short_description|ellipses:150 }}</small>
+                            </div>
+                            <!--/content-->
+                        {% endif %}
+                    
+                    </a>
+                </div>
+                <!--/body-->
+                
+                <!--footer-->
+                <div class="card-data">
+                    <ul>
+                        <li><i class="fa fa-clock-o"></i>{{ object.day }} {{ object.date }} {{ object.time }}</li>
+                    </ul>
+                </div>
+                <!--/footer-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+
+        <!--column3-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+</div>
+<!--/main container-->
+
+<!--/topic layout 3-->

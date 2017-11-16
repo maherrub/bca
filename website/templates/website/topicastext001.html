@@ -1,0 +1,265 @@
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load user_agents %}
+{% load website_filters %}
+
+<head>
+    <style>
+        
+        #topic-text-layout1 {
+            margin-top: -8.5em;
+            margin-bottom: 8em;
+        }
+
+        #topic-text-layout2 {
+            margin-top: -8.5em;
+            margin-bottom: 8em;
+        }
+        
+        #topic-text-layout4 {
+            margin-top: -12em;
+            margin-bottom: 1.5em;
+        }
+
+        {% if request|is_mobile %}
+            @media screen and (orientation: landscape) {
+                #topic-text-layout1 {
+                    margin-top: -8.5em;
+                    margin-bottom: 7em;
+                }
+                
+                
+                #topic-text-layout4 {
+                    margin-top: -12em;
+                }
+            }
+        {% endif %}
+
+        @media screen and (orientation: portrait) {
+            
+            #topic-text-layout1 {
+                margin-top: -8.5em;
+                margin-bottom: 9.5em;
+            }
+            
+            
+            #topic-text-layout2 {
+                margin-top: -10em;
+                margin-bottom: 9em;
+            }
+            
+            
+            #topic-text-layout4 {
+                margin-top: -13em;
+                margin-bottom: 1em;
+            }
+        }
+
+    </style>
+</head>
+
+
+<!--topic text001 layout 1-->
+{% for object in hgtopics|dictsort:"display_position" %}
+    {% if object.card_type = "Text" and object.layout = "1"  %}
+    <!--main container-->
+    <div id="topic-text-layout1" class="container" style="overflow:hidden;">
+        <!--row-->
+        <div class="row">
+            <!--column1-->
+            <div class="col-lg-3 col-md-3 col-sm-1">
+            </div>
+            <!--/column1-->
+            <!--column2-->
+            <div class="col-lg-6 col-md-6 col-sm-10 mb-r">
+                
+                <!--Card-->
+                <div class="card-overlay" style="background-color:transparent">
+                    <!-- Card Content-->
+                    <div class="white-text text-center">
+        
+                    <!-- Card Header-->
+                    <div class="card-data" style="background-color:#eceff1">
+                        <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                        <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                        <h6 class="black-text">{{ object.venue }}</h6>
+                        <i class="fa fa-chevron-down" style="color:#000000"></i> 	
+                    </div>
+                    <!--/. Card Header -->
+                        
+                    <!-- Card Text-->
+                    <div class="card-block">
+                        <h5 class="grey-text">Speaker:</h5>
+                        <h4 class="black-text">{{ object.speaker_name }}</h4>
+                        <p class="grey-text" style="background-color: transparent">{{ object.short_description }}</p>
+                    </div>
+                    <!--/. Card Text-->
+            
+                    <!-- Card footer -->
+                    <div class="card-data" style="background-color:#263238 ">
+                        <h6 align="center"></h6>
+                    </div>
+                    <!-- Card footer -->   
+                </div>
+                <!--/content-->
+                </div>
+                <!--/card-->
+            </div>
+            <!--/column2-->
+            <!--column3-->
+            <div class="col-lg-3 col-md-3 col-sm-1">
+            </div>
+            <!--/column3-->
+    </div>
+        <!--/row-->
+    </div>
+    <!--/main container-->
+
+    {% endif %}
+{% empty %}
+{% endfor %}
+<!--/topic text001 layout 1-->
+
+
+<!--/topic text001 layout 2-->
+{% comment %}
+<div class="divider"></div>
+{% endcomment %}
+<!--main container-->
+<div id="topic-text-layout2" class="container-fluid" style="overflow:hidden;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-2 col-md-1 col-sm-0">
+        </div>
+        <!--/column1-->
+
+        {% for object in hgtopics|dictsort:"display_position" %}
+            {% if object.card_type = "Text" and object.layout = "2" %}
+
+        <!--column2-->
+        <div class="col-lg-4 col-md-5 col-sm-6 mb-r">
+            <!--Card-->
+            <div class="card-overlay" style="background-color:transparent">
+                <!--wrap-->
+                <div class="white-text text-center">
+        
+                    <!--header-->
+                    <div class="card-data" style="background-color:#eceff1">
+                        <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                        <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                        <h6 class="black-text">{{ object.venue }}</h6>
+                        <i class="fa fa-chevron-down" style="color:#000000"></i> 	
+                    </div>
+                    <!--/header-->
+                        
+                    <!--content text-->
+                    <div class="card-block">
+                        <h5 class="grey-text">Speaker:</h5>
+                        <h4 class="black-text">{{ object.speaker_name }}</h4>
+                        <p class="grey-text" style="background-color: transparent">{{ object.short_description }}</p>
+                    </div>
+                    <!--/content text-->
+            
+                    <!--footer -->
+                    <div class="card-data" style="background-color:#263238 ">
+                        <h6 align="center"></h6>
+                    </div>
+                    <!--/footer -->
+                </div>
+                <!--/wrap-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+
+        <!--column3-->
+        <div class="col-lg-2 col-md-1 col-sm-0">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+    <div class="divider"></div>
+</div>
+<!--/main container-->
+<!--/topic text001 layout 2-->
+
+
+<!--topic text001 layout 4-->
+<!--main container-->
+<div id="topic-text-layout4" class="container-fluid" style="overflow:hidden;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column1-->
+
+        {% for object in hgtopics|dictsort:"display_position" %}
+            {% if object.card_type = "Text" and object.layout = "4" %}
+
+        <!--column2-->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-r">
+            
+            <!--Card-->
+            <div class="card-overlay {{ object.card_color }} {{ object.text_color }}">
+                
+                <!--wrap-->
+                <div class="white-text text-center">
+                    
+                    <!--header-->
+                    <div class="card-data" style="background-color:#eceff1">
+                        <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                        <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                        <h6 class="black-text">{{ object.venue }}</h6>
+                        <i class="fa fa-bell-o" style="color:#000000"></i> 	
+                    </div>
+                    <!--/header-->
+                        
+                    <!--content text-->
+                    <div class="card-block">
+                        {% comment %}
+                        <h5 class="grey-text">Speaker:</h5>
+                        {% endcomment %}
+                        <h4 class="black-text">{{ object.speaker_name }}</h4>
+                        <p class="grey-text" style="background-color: transparent">{{ object.short_description|ellipses:210 }}</p>
+                    </div>
+                    <!--/content text-->
+            
+                    <!--footer -->
+                    <div class="card-data" style="background-color:#263238 ">
+                        {% if object.link_url %}
+                            <a href="{{ object.link_url }}" align="center"><i class="fa fa-play"></i></a>
+                        {% else %}
+                        <a href="#" align="center"><i class="fa fa-play disabled"></i></a>
+                        {% endif %}
+                    </div>
+                    <!--/footer -->
+                </div>
+                <!--/wrap-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+
+        <!--column3-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+    <div class="divider"></div>
+    <div class="divider"></div>
+</div>
+<!--/main container-->
+<!--/topic text001 layout 4-->
+

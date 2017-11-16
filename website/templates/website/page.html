@@ -1,0 +1,201 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<style>
+    section {
+        height: 70vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+        
+    @media screen and (orientation: landscape) {
+        #section0 {
+    {% if object.covermedia %}
+        background-image: url("{{ object.covermedia.url }}");
+    {% endif %}
+        transition: all 0.3s ease;
+        background-position: {{ object.focus }};
+    {% if object.html_bgcolorcode %}
+        background-color: {{ object.html_bgcolorcode }};
+    {% endif %}
+        height: 100vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-top:3.1em;
+        margin-bottom:-4.45em;
+
+        }
+
+        #page-title1 {
+            font-size: 1rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            margin-top: -10em;
+            display:block;
+            padding: 10px 0px 10px 0px;
+        }
+
+        #page-title2 {
+            margin-top: -10px;
+            padding: 13px 64px 11px 17px;
+            font-size: 14px;
+            font-size: .875rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+        }
+
+        #page-content {
+            font-size: .75rem;
+            text-align: justify;
+            margin-top: -10px;
+            color: rgba(0,0,0,.5);
+            padding: 0px 5px 0px 5px;
+            background-color: rgba(242, 242, 242, 0.5);
+            border-radius: 1px;
+        }        
+
+        
+    
+    }
+
+    {% if request|is_mobile %}
+    @media screen and (orientation: landscape) {
+            #section0 {
+    {% if object.covermedia %}
+        background-image: url("{{ object.covermedia.url }}");
+    {% endif %}
+        transition: all 0.3s ease;
+        background-position: {{ object.focus }};
+    {% if object.html_bgcolorcode %}
+        background-color: {{ object.html_bgcolorcode }};
+    {% endif %}
+        height: 100vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-top: 3em;
+        margin-bottom: 0.9em;
+
+        }
+    }
+    {% endif %}
+
+
+    
+    @media screen and (orientation: portrait) {
+        #section0 {
+    {% if object.covermedia %}
+        background-image: url("{{ object.covermedia.url }}");
+    {% endif %}
+        transition: all 0.3s ease;
+        background-size: cover;
+        background-position: {{ object.focus }};
+    {% if object.html_bgcolorcode %}
+        background-color: {{ object.html_bgcolorcode }};
+    {% endif %}
+        height: 45vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-top: 3em;
+        margin-bottom: -4.5em;
+        
+        }
+
+        #page-title1 {
+            font-size: 1rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            margin-top: -20em;
+            display:block;
+            padding: 10px 0px 10px 0px;
+        }
+
+        #page-title2 {
+            margin-top: -10px;
+            padding: 13px 64px 11px 17px;
+            font-size: 14px;
+            font-size: .875rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+        }
+
+        #page-content {
+            font-size: .60rem;
+            text-align: justify;
+            margin-top: -10px;
+            color: rgba(0,0,0,.5);
+            padding: 0px 5px 0px 5px;
+            background-color: rgba(242, 242, 242, 0.5);
+            border-radius: 1px;
+        }
+
+    
+               
+        
+        {% if object.main_title and object.content and not object.high_title %}
+            #page-style-1mp{
+                margin-top: 15% !important;
+            }
+        {% else %}
+            #page-style-1mp{
+                margin-top: -35% !important;
+            }
+        {% endif %}
+    
+    }
+    
+</style>
+
+
+<section class="gap" id="section0">
+
+    <!--Texts and buttons on image1 -->
+    <div class="containerBox">
+        <div class="text-box">
+        <div class="mask flex-center"></div>
+        {% if request|is_pc %}
+        <ul style="margin-top: -2% !important;">
+            <li>
+                <h1 style="line-height: 1.6em;" class="h1-responsive {{ object.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ object.main_title }}</h1>
+            </li>
+                    
+            <li>
+                <lead style="line-height: 1.6em;" class="h5-responsive {{ object.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ object.high_title }}</lead>
+            </li>
+        </ul>
+        
+        <div class="col-md-10 offset-md-1 {{ object.high_title_color }} noselect excerpt wow fadeIn" data-wow-delay="0.4s">
+            <p><strong class="text-left">{{ object.content }}</strong></p>
+        </div>
+        
+        {% elif request|is_mobile %}
+            
+                <ul id="page-style-1mp">
+                    
+                    <li>
+                        <h4 id="page-title1" style="line-height: 1.2em;" class="h4-responsive noselect wow fadeIn noselect" data-wow-delay="0.1s">{{ object.main_title }}</h4>
+                    </li>
+                    {% if object.high_title %}   
+                    <li>
+                        <h5 id="page-title2" style="line-height: 1em;" class="h5-responsive {{ object.high_title_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.high_title }}</h5>
+                    </li>
+                    {% endif %}
+                    
+                    <li>
+                        <p id="page-content">{{ object.content }}</p>
+                    </li>
+                </ul>
+        
+        
+        {% endif %}
+        </div>
+    </div>
+    <!--Texts and buttons on image1 -->
+</section>

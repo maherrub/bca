@@ -1,0 +1,132 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+
+<!--Producer page team name -->
+        {% for tn in teamname_objects %}
+        {% if tn.team_pageid|slugify = object.id|slugify %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><br>
+                    <!--Section heading-->
+                    <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">{{ tn.team_name }}</h1>
+                        <!--Section description-->
+                        {% if tn.team_description %}
+                        <p class="section-description text-center wow fadeIn" data-wow-delay="0.4s">{{ tn.team_description }}</p>
+                        {% endif %}
+                        <!--/Section heading-->
+
+                        <!--Translated file2-->
+                        {% if tn.translatedtxtfile2 %}
+                        <p class="noselect pad5">{{ tn.translatedtxtfile2|print_file_content }}</p>
+                        {% endif %}
+                        <!--Translated file2-->
+                </div>
+            </div>
+        </div>
+
+        <!--Team Leader-->
+        <!--Section: Page>Team Name>Team Member-->
+            {% for tl in teammembers_objects %}
+            {% if not tl.hierarchy = '2' and tl.teamname_id|slugify = tn.team_name|slugify %}
+                <!--Team head section-->
+                <div class="container">
+                        <!--First row-->
+                        <div class="row text-center">
+
+                            <!--Dummy First column-->
+                            <div class="col-md-4 mb-r wow fadeIn" data-wow-delay="0.1s">
+                                <!--do not remove left space adjustment-->                        
+                            </div>
+                            <!--/Dummy First column-->
+
+                            <!--Second column-->
+                            <div class="col-md-4 mb-r wow fadeIn" data-wow-delay="0.2s">
+                                <div class="testimonial">
+                                    <!--Avatar-->
+                                    {% if tl.hierarchy = '1' %}
+                                    <div class="avatar middle middle mb-r wow animated zoomIn" data-wow-delay="0.1s">
+                                        <img src="{{ tl.member_picture.url }}" class="rounded-circle team-leader img-fluid">
+                                    <a href="/{{ tl.pk }}/producerpageteammember_update" class="red-text">edit</a>
+                                    </div>
+
+                                    <!--Content-->
+                                    <h4 class="black-text">{{ tl.member_name }}</h4>
+                                    <h6>{{ tl.member_title }}</h6>
+                                        {% if tl.member_crux %}
+                                            <small>{{ tl.member_crux }}</small><br>
+                                        {% endif %}
+                                        
+                                        {% if tl.translatedtxtfile2 %}
+                                            <small>{{ tl.translatedtxtfile2|print_file_content }}</small>
+                                        {% endif %}
+
+                                        {% if tl.more_link %}
+                                            <small><a href="{{ tl.more_link }}">...more</a></small>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!--/Second column-->
+
+                            <!--Dummy Third column-->
+                            <div class="col-md-4 mb-r wow fadeInDown" data-wow-delay="0.5s">
+                                <!--do not remove left space adjustment-->                        
+                            </div>
+                            <!--/Dummy Third column-->
+
+                        </div>
+                        <!--/First row-->
+                </div>
+                <!--/Team head section-->
+                {% endif %}
+            {% empty %}
+            {% endfor %}
+        <!--Team Leader-->
+
+        <!--Team members container-->
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            {% for tm in teammembers_objects %}
+                {% if tm.hierarchy = '2' and tm.teamname_id|slugify = tn.team_name|slugify %}
+                <!--Column 1-->
+                <div class="col-md-6 mb-r pull-left wow fadeIn" data-wow-delay="0.1s">
+                    <div class="media">
+                        <a href="/{{ tm.pk }}/producerpageteammember_update" class="red-text">edit</a>
+                        <a class="media-left">
+                            <img class="rounded-circle team-member img-fluid middle mb-r wow animated zoomIn" data-wow-delay="0.1s" src="{{ tm.member_picture.url }}">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="black-text media-heading">{{ tm.member_name }}</h5>
+                            <h6>{{ tm.member_title }}</h6>
+                            {% if tm.member_crux %}
+                                <small>{{ tm.member_crux }}</small><br>
+                            {% endif %}
+                                        
+                            {% if tm.translatedtxtfile2 %}
+                                <small>{{ tm.translatedtxtfile2|print_file_content }}</small>
+                            {% endif %}
+
+                            {% if tm.more_link %}
+                                <small><a href="{{ tm.more_link }}">...more</a></small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <!--/Column 1-->
+            {% empty %}
+            {% endfor %}
+            </div>
+        </div>
+        <!--/Row-->
+        </div>
+        <!--/Team members container-->
+<!--/Producer page team name -->
+        {% endif %}
+        {% empty %}
+        {% endfor %}

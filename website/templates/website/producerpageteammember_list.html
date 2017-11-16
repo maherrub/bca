@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+
+    
+<!--Permissions control-->
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        <h6><span class="badge red">List of team members</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a onclick="history.go(-1);" class="btn-floating btn-small red"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    </div>
+
+    <!--Body-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">    
+                <ul class="list-group">
+                <a href="#" class="list-group-item mdb-color darken-3 white-text"><i class="fa fa-file-text-o"></i>&nbsp;Teams this page&nbsp;<i class="fa fa-sort-alpha-asc"></i><span class="counter" style="margin-left:78%;">{{ object_list|length }}</span></a>
+                {% for mem in object_list %}
+                <li class="list-group-item justify-content-between">
+                    <div class="container">
+                        <div class="row">
+                            
+                            <div class="col-md-1 col-xs-1">
+                                <img src="{{ mem.member_picture.url }}" class="list-img-md img-responsive img-fluid" alt="speaker image"><br>
+                                
+                                {% if mem.translatedtxtfile2 %}
+                                    <small><strong>Trans. File</strong></small><br>
+                                    <i class="blue-text fa fa-file-o fa-2x"></i><br>
+                                {% endif %}
+                                
+                                {% if mem.more_link %}
+                                <small><strong>more link</strong></small><i class="blue-text fa fa-link fa-2x"></i><br>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 pull-left">
+                                <small><strong>Name :</strong> {{ mem.member_name }}</small><br>
+                                <small><strong>Team id :</strong> {{ mem.teamname_id }}</small><br>
+                                <small><strong>Hierarchy :</strong> {{ mem.hierarchy }}</small><br>
+                                <small><strong>Position :</strong> {{ mem.member_displayposition }}</small><br>
+                            </div>
+
+                            <div class="col-md-4 pull-left">
+                                <small><strong>Created :</strong> {{ mem.edited_on|get_due_date_string }}</small><br>
+                                <small><strong>Updated :</strong> {{ mem.updated }}</small><br>
+                                <small><strong>Owner :</strong> {{ mem.owner }}</small><br>
+                            </div>
+
+
+                            <div class="col-md-1 pull-right">
+                                <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/{{ mem.pk }}/producerpageteammember_detail">detail</a></h6>
+                            </div>
+
+                            <div class="col-md-1 pull-right">
+                                <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/{{ mem.pk }}/producerpageteammember_update">update</a></h6>
+                            </div>
+                            <div class="col-md-1 pull-right">
+                                <h6 class="btn btn-danger btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/userticket_create">delete</a></h6>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Body-->
+             
+
+    <div class="divider"></div>
+
+    <div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}
+
+

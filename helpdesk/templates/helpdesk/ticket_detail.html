@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %} {{ object.ticket_issue }} {% endblock %}</h6>
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+
+<div class="container-fluid">
+    <div class="row">
+       <!--Col 1-->
+        <div class="col-md-2"></div>
+        
+        <div class="col-md-2"><h6 class="badge blue">Your request :</h6></div>
+        <div class="col-md-6">
+            &nbsp;<small>{{ object.ticket_issue }} is with a status : <strong>{{ object.ticket_status }}</strong></small>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!--/Col 1-->
+    <div class="divider"></div>
+    <!--Col 2-->
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <h6 class="badge blue">Contact Details :</h6>
+        </div>
+        <div class="col-md-6">
+            {% for contact in contacts %}
+                {% if object.ticket_owner|slugify == contact.username|slugify %}
+                    &nbsp; <small>Username - {{ contact.username }}, Email - {{ contact.email }}</small>
+                {% endif %}
+            {% endfor %}
+            
+            {% for profile in profiles %}
+                {% if object.ticket_owner|slugify == profile.user.username|slugify %}
+                    <small>Mobile - {{ profile.usermobile }}</small>
+                {% endif %}
+            {% endfor %}
+            <div class="divider"></div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!--/Col 2-->
+
+    <!--Column 3-->
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+        <h6 class="badge blue">Reply from support admin:</h6><hr>
+        {% for reply in ticketmanager_list %}
+            {% if object.ticket_number|slugify == reply.ticket_manager_ticket|slugify %}
+                <small class="text-left">{{ reply.ticket_manager_edited_on }}</small>
+                <small Class="orange-text">{{ reply.ticket_manager_reply }}</small>
+                <small>Served by :{{ reply.ticket_manager_fg }}</small>
+            {% endif %}
+            <hr>
+        {% endfor %}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!--/Column 3-->
+    <div class="divider"></div>
+    <!--Column 4-->
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <h6 class="badge blue">Support ticket details:</h6>
+        </div>
+        <div class="col-md-6">
+            <small>Create date: {{ object.ticket_edited_on }}</small>
+            <small>{{ object.ticket_owner }}, has raised ticket number {{ object.ticket_number }} 
+                to {{ object.ticket_category }} , with an issue "{{ object.ticket_issue }}." {{ object.ticket_description }}</small>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!--/Column 4-->
+    <div class="divider"></div>
+    <!--Column 5-->
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <h6 class="badge blue"> Error snapshot:</h6>
+        </div>
+        <div class="col-md-6">
+            
+            {% if object.ticket_screenshot %}
+                <img src="{{ object.ticket_screenshot.url }}" class="img-responsive img-fluid waves-effect waves-light pull-left hoverable" style="overflow:hidden" data-toggle="tooltip" title="Issue Image">
+            {% else %}
+            <small>System message:"Requester did not attach any snapshot"</small>
+            {% endif %}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="divider"></div>
+    <!--buttons-->
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"> 
+            <div><a class="pull-right btn btn-primary btn-small" href="/helpdesk/ticket_list">Back</a> </div>
+            <div><a class="pull-left btn btn-warning btn-small" href="/helpdesk/ticket_manager_create/{{ ticket.pk }}">Reply</a> </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--Loading ROW5 Text Area-->
+ {% for hgtext in hgtexts %}
+    {% if hgtext.display_position_text == 'ROW5' %}
+    <div class="" id="sec2" style="background-color: white !important;">
+        <div class="divider"></div>
+        <div class="divider"></div>
+        <!--Second Section Text Section one-->
+       
+            <div class="container">
+                <div class="text-center">
+                    {% if hgtext.main_title_text %}
+                    <span class="noselect font-vibes-md wow fadeIn" data-wow-delay="0.2s">{{ hgtext.main_title_text }}</span><br>      
+                    {% endif %}
+
+
+                    {% if hgtext.secondary_title_text %}
+                        <span class="noselect text-center wow fadeIn" data-wow-delay="0.2s">{{ hgtext.secondary_title_text }}</span><br><br>
+                    {% endif %}
+
+                    {% if hgtext.short_description_text %}
+                        <span class="noselect text-center wow fadeIn" data-wow-delay="0.2s">{{ hgtext.short_description_text }}</span><br><br>
+                    {% endif %}
+
+                    <!--load text section translated files -->
+                        {% include 'website/translatedfilestext.html' %}
+                    <!--/load text section translated files -->
+                    
+                    {% if hgtext.button_name and hgtext.link_url %}
+                        <a href="{{ hgtext.link_url }}" class="black-text btn btn-unique btn-sm btn-rounded wow fadeInUp" data-wow-delay="0.1s"><i class="fa fa-arrow-circle-o-down fa-2x left"></i>{{ hgtext.button_name }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            
+        <!--/Second Section Text Section one-->
+    <div class="divider"></div>
+    <div class="divider"></div>
+    {% endif %}
+{% empty %}
+{% endfor %}
+<!--/Loading ROW5 Text Area-->

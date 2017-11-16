@@ -1,0 +1,46 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+
+<!--mapsection-->
+<!--container-->
+        <div class="container">
+                <div class="row">
+                   <!--First column-->
+                    <div class="col-md-8" data-wow-delay="0.1s">
+                        <div class="view hm-zoom hm-white-light z-depth-1-half wow fadeInUp noselect">
+                            <img src="{% static 'images\map2.jpg' %}" class="img-fluid noselect"  alt="map">
+                            <div class="mask"></div>
+                        </div>
+                    </div>
+                    <!--/First column-->
+                    <!--Second column-->
+                    <div class="col-md-4" data-wow-delay="0.1s">
+                        <ul class="text-center">
+                            <li class="wow fadeInUp" data-wow-delay="0.2s"><i class="fa fa-map-marker"></i>
+                                <p>30 Chai Chee Street, Singapore, 468979.</p>
+                            </li>
+
+                            <li class="wow fadeInUp" data-wow-delay="0.3s"><i class="fa fa-phone"></i>
+                                <p>+65 6444 5891</p>
+                            </li>
+
+                            <li class="wow fadeInUp" data-wow-delay="0.4s"><i class="fa fa-envelope"></i>
+                                <p>admin@bc.org.sg</p>
+                            </li>
+                        </ul>
+                        <br>
+                        <ul style="padding:2%;">
+                            <li><small class="grey-text"><strong>HOW DO I GET THERE</strong></small><li><br>
+                            <li>
+                                <small class="grey-text">Via MRT: 1. Exit left from Bedok MRT 2. Take Bus 222 from bus stop outside Bedok MRT 3. Alight at the bus stop opposite the church after 3 bus stops. Via Bus: 1. Take SBS bus 60 or 87 from Bedok Bus Interchange 2. Alight along Bedok North Road behind the church Driving: Via PIE, exit at Bedok North Exit 8A. Car Parking: You can park your car at the public carpark at Blk 43-45 beside the church when our carpark is full. The Park & Ride operating hours are between 7.00 am to 9.00 pm on weekdays and between 7.00 am to 3.00 pm on Saturdays</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Second column-->
+                </div>
+                <!--/row-->
+        </div>
+<!--/container-->
+<div class="divider"></div>

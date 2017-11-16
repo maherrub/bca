@@ -1,0 +1,73 @@
+/* side bullet for scrolling navigation */
+
+.bullets-container {
+    display: block;
+    position: fixed;
+    right: 0;
+    z-index: 1049;
+    font-weight: normal;
+}
+
+
+.section-bullets {
+    transition-duration: .3s;
+    list-style: none;
+    margin: 0;
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+.section-bullets li {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    line-height: 1;
+    position: relative;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.section-bullets li.active span {
+    opacity: 1;
+    transition-duration: .3s;
+    transition-delay: 0.6s;
+}
+
+.section-bullets li span {
+    position: relative;
+    right: 10px;
+    transition-duration: 0.3s;
+    opacity: 0;
+    color: #fff;
+    padding: 7px;
+    background-color: #9E9E9E;
+}
+
+.section-bullets li a {
+    color: #000;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    transition-duration: .3s;
+    opacity: 0.5;
+    margin-left: 5px;
+    padding: 6px 20px 5px 10px;
+    text-decoration: none;
+    min-height: 11px;
+}
+
+
+/* Static Sidebars */
+
+.quick-links {
+    position: fixed;
+    top: 173px;
+    right: 0;
+    z-index: 4;
+}
+
+

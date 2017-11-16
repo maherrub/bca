@@ -1,0 +1,261 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--parallax002 top condition-->
+{% if object.landscape_background and object.portrait_background %}
+    {% if object.display_position %}
+
+<head>
+    <style>
+    section {
+        height: 90vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+
+    #par002-button {
+        color:{{ object.html_bgcolorcode }}!important;
+    }
+
+    /*pc landscape */
+    {% if object.landscape_background %}
+    @media screen and (orientation: landscape) {
+        #{{ object.display_position }} {
+            background-image: url("{{ object.landscape_background.url }}");
+            transition: all 0.3s ease;
+            background-position: {{ object.focus }};
+            height: 90vh !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-top:3em;
+            margin-bottom:0.1em;
+
+        }
+
+
+        #title1-002 {
+            
+            margin-top: 13em;
+            padding: 5px;
+            font-size: .875rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            
+        }
+                
+        #title2-002 {
+            
+            padding: 13px 64px 11px 17px;
+            font-size: .875rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+        }
+
+    }
+    {% endif %}
+    /*pc landscape */
+
+    /* mobile landscape */
+    {% if object.landscape_background and request|is_mobile %}
+    @media screen and (orientation: landscape) {
+         #{{ object.display_position }} {
+            background-image: url("{{ object.landscape_background.url }}");
+            transition: all 0.3s ease;
+            background-position: {{ object.focus }};
+            height: 100vh !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-top:2.85em;
+            margin-bottom:0.1em;
+        }
+
+        #title1-002 {
+            
+            padding: 5px;
+            font-size: .9rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            margin-top:2em;
+            
+        }
+                
+        #title2-002 {
+            
+            padding: 5px;
+            font-size: .7rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            margin-top:-.9em;
+        }
+
+    }
+    {% endif %}
+    /* mobile landscape */
+
+    /* mobile portrait */
+    {% if  object.portrait_background and request|is_mobile %}
+    @media screen and (orientation: portrait) {
+         #{{ object.display_position }} {
+            background-image: url("{{ object.portrait_background.url }}");
+            transition: all 0.3s ease;
+            background-size: contain;
+            background-position: center center;
+            height: 90vh !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-top: -1em;
+            margin-bottom: 1.3em;
+        }
+    
+        
+        #title1-002 {
+            
+            padding: 5px;
+            font-size: .9rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            margin-top: 10em;
+            
+        }
+                
+        #title2-002 {
+            
+            padding: 5px;
+            font-size: .7rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+        }
+    
+    }
+    {% endif %}
+    /* mobile portrait */
+    </style>
+</head>
+
+    
+<!--/header-->
+
+<!--body-->
+{% if object.display_position %}
+<section class="gap" id="{{ object.display_position }}" style="background-color:{{ object.html_bgcolorcode }} !important;">
+{% endif %}
+
+<!--display desktop-002-->
+{% if request|is_pc %}
+    <!--Texts and buttons on image1 -->
+    <div class="containerBox" style="margin-top:-12em;">
+        <div class="text-box">
+            <div class="mask flex-center"></div>
+            <ul>
+
+                {% if object.main_text %}
+                <li>
+                    <h3 id="title1-002" style="line-height: 1.6em; margin-top: -2% !important;" class="h3-responsive {{ object.font_style }}-md {{ object.font_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.main_text }}</h1>
+                </li>
+                {% endif %}
+
+
+                {% if object.secondary_text %}        
+                <li>
+                    <h6 id="title2-002" style="line-height: 1.6em;" class="h6-responsive {{ object.font_style }}-sm {{ object.font_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.secondary_text }}</h5>
+                </li>
+                {% endif %}
+
+
+                <!--Translated file1 only display 2 lines-->
+                {%  if object.translatedtxtfile1 %}
+                    <li>
+                        <h3 id="title1-002" style="line-height: 1.6em;" class="h3-responsive {{ object.font_style }}-md {{ object.font_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.translatedtxtfile1|print_file_withlines:0 }}</h3>
+                    </li>
+                {% endif %}
+
+                {%  if object.translatedtxtfile2 %}
+                    <li>
+                        <h6 id="title2-002" style="line-height: 1.6em;" class="h6-responsive {{ object.font_style }}-sm {{ object.font_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.translatedtxtfile2|print_file_withlines:0 }}</h6>
+                    </li>
+                {% endif %}
+                <!--/Translated file1 only display 2 lines-->
+                
+
+                {% if object.button_name and object.button_link %}
+                <li>
+                    <a id="par002-button" href="{{ object.button_link }}" class="btn btn-outline-home  waves-effect wow fadeInUp {{ object.font_color }}" data-wow-delay="0.1s">{{ object.button_name }}</a>
+                </li>
+                {% endif %}
+            </ul>
+               
+            
+        </div>
+     </div>
+    <!--Texts and buttons on image1 -->
+    {% endif %}
+    <!--/display desktop-002-->
+
+    <!--display mobile-002-->
+    {% if request|is_mobile %}
+    <!--Texts and buttons on image1 -->
+    <div class="containerBox" style="margin-top:-12em;">
+        <div class="text-box">
+            <div class="mask flex-center"></div>
+            <ul>
+
+                {% if object.main_text %}
+                <li>
+                    <h4 id="title1-002" style="line-height: 1.6em;" class="h4-responsive {{ object.font_style }}-sm {{ object.font_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.main_text }}</h4>
+                </li>
+                {% endif %}
+
+
+                {% if object.secondary_text %}        
+                    <li>
+                        <h6 id="title2-002" style="line-height: 1.6em;" class="h6-responsive {{ object.font_style }}-sm {{ object.font_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.secondary_text }}</h6>
+                    </li>
+                {% endif %}
+
+
+                <!--Translated file1 only display 2 lines-->
+                {%  if object.translatedtxtfile1 %}
+                    <li>
+                        <h3 id="title1-002" style="line-height: 1.6em;" class="h3-responsive {{ object.font_style }}-sm {{ object.font_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.translatedtxtfile1|print_file_withlines:0 }}</h3>
+                    </li>
+                {% endif %}
+
+                {%  if object.translatedtxtfile2 %}
+                    <li>
+                        <h6  id="title2-002" style="line-height: 1.6em;" class="h6-responsive {{ object.font_style }}-sm {{ object.font_color }} wow fadeIn noselect" data-wow-delay="0.1s">{{ object.translatedtxtfile2|print_file_withlines:0 }}</h6>
+                    </li>
+                {% endif %}
+                <!--/Translated file1 only display 2 lines-->
+                
+                {% if object.button_name and object.button_link %}
+                    <li>
+                        <a id="par002-button" href="{{ object.button_link }}" class="btn btn-outline-home waves-effect wow fadeInUp" data-wow-delay="0.1s">{{ object.button_name }}</a>
+                    </li>
+                {% endif %}
+            </ul>
+               
+            
+        </div>
+     </div>
+    <!--Texts and buttons on image1 -->
+    {% endif %}
+    <!--display mobile-002-->
+
+
+
+</section>
+<!--/body-->
+    
+    {% endif %}
+{% endif %}
+<!--/parallax002 top condition-->

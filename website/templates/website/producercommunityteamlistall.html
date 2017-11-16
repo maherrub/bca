@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Producer Community Teams{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<br>
+    <!--Body-->
+    <div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            
+        <a href="/producercommunity/" class="list-group-item active">
+            <i class="fa fa-users fa-1x" aria-hidden="true"></i>
+            &nbsp;Producer Teams On Pages
+        </a>
+        <!--Search form -->
+        <form method='GET' action='' class="form-inline waves-effect waves-light">
+            <input type='text' name='q' class="text-center blue-text" placeholder='Search a team' value='{{ request.GET.q }}'/>
+	        <input type='submit' value='Search' style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
+        </form>
+        <!--/Search form -->
+        <span class="counter" style="margin-left:80%; margin-top:15px;">{{ object_list|length }}</span>
+        
+        {% for pclatm in object_list %}
+        
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            
+            <div class="col-md-3 pull-left white-text light-green darken-4">
+                
+                <small><strong>Producer:</strong> {{ pclatm.owner }}</small><br>
+                <small><strong>This id:</strong> {{ pclatm.id }}</small><br>
+                <small><strong>Belongs to page id:</strong> {{ pclatm.team_pageid }}</small><br>
+                <small><strong>C.Date:</strong> {{ pclatm.edited_on }}</small><br>
+                
+                {% if pclatm.is_published = 0 %}
+                    <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ pclatm.is_published }}</span></small><br>
+                {% else %}
+                    <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ pclatm.is_published }}</span></small><br>
+                {% endif %}
+                {% if pclatm.is_verified = 0 %}
+                    <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ pclatm.is_verified }}</span></small><br>
+                {% else %}
+                    <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ pclatm.is_verified }}</span></small><br>
+                {% endif %}
+            </div>
+
+            <div class="col-md-2 col-xs-2  light-green darken-2">
+                <small><strong>Team Name:</strong>{{ pclatm.team_name }}</small><br>
+            </div>
+            
+            <div class="col-md-7 pull-left green lighten-5 hoverable">
+                <small><strong>Team description:</strong> {{ pclatm.team_description }}</small><br>
+            </div>
+                        
+        </div>
+        </div>
+        </li>
+        
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+    </div>
+    <!--/Body-->
+
+    <div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+
+<div class="divider"></div>
+
+
+
+<div class="divider"></div>
+
+{% endblock %}

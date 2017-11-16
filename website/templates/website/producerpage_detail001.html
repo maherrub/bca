@@ -1,0 +1,26 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--load video page -->
+{% include 'website/youtubevideo.html' %}
+<!--/load video page -->
+
+<!--load page -->
+{% include 'website/page.html' %}
+<!--/load page -->
+
+<!--update this page section link-->
+<div>
+    <a href="/{{ object.pk }}/producerpage_update" class="red-text">edit</a>
+</div>
+<!--/update this page section link-->
+
+
+<!--load translated files -->
+{% include 'website/translatedfiles.html' %}
+<!--/load translated files -->
+
+

@@ -1,0 +1,70 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+
+{% for eo in extend_objects %}
+    {% if eo.layout == 'parallax-style' %}
+
+        <!--load producer extend parallax-style layout -->
+        {% include 'website/extend001.html' %}
+        <!--/load producer extend parallax-style layout -->
+
+        <!--load extended translated files after parallax-->
+        {% include 'website/translatedfileseo.html' %}
+        <!--/load extended translated files after parallax -->
+
+    {% elif eo.layout == 'picture-left-text-right' %}
+
+        <!--load extended picture-left-text-right layout -->
+        {% include 'website/extend002.html' %}    
+        <!--/load extended picture-left-text-right layout -->
+
+        <!--load producer extended for picture left-text-right translated files -->
+        {% include 'website/translatedfileseo.html' %}
+        <!--/load producer extended for picture left-text-right translated files -->
+
+    {% elif eo.layout == 'text-left-picture-right' %}
+
+        <!--load extended text-left-picture-right layout -->
+        {% include 'website/extend003.html' %}    
+        <!--/load extended text-left-picture-right layout -->
+
+        <!--load translated files for text-left-picture-right layout -->
+        {% include 'website/translatedfileseo.html' %}
+        <!--load translated files for text-left-picture-right layout -->
+
+    {% elif eo.layout == 'plx-imgmap-link' %}
+
+        <!--load extend parallax image map with link layout-->
+        {% include 'website/extend001b.html' %}    
+        <!--/load extend parallax image map with link layout-->
+
+    {% elif eo.layout == 'plx-imgmap-tooltip' %}
+
+        <!--load extend parallax image map with tooltip layout-->
+        {% include 'website/extend001c.html' %}    
+        <!--/load extend parallax image map with tooltip layout-->
+
+    {% elif eo.layout == 'plx-imgmap-tooltip-link' %}
+
+        <!--load extend parallax image map with tooltip and link layout-->
+        {% include 'website/extend001d.html' %}    
+        <!--/load extend parallax image map with tooltip and link layout-->
+
+    {% elif eo.layout == 'plx-moveable-txtbox' %}
+
+        <!--load extend parallax image map moveable text box layout-->
+        {% include 'website/extend001e.html' %}    
+        <!--/load extend parallax image map moveable text box layout-->
+    
+    {% elif eo.layout == 'plx-moveable-txtbox-link' %}
+
+        <!--load extend parallax image map moveable text box with link layout-->
+        {% include 'website/extend001f.html' %}    
+        <!--/load extend parallax image map moveable text box with link layout-->
+
+    {% endif %}
+
+{% empty %}
+{% endfor %}

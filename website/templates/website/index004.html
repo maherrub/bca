@@ -1,0 +1,52 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+
+<!--Loading parallax image background for IMAGE2-->
+
+<!--header-->
+{% for object in hgpis %}
+    {% if object.display_position == 'IMAGE2' and object.layout == 'LAON' %}
+        <!--load landscape IMAGE2 only available-->
+        {% include 'website/parallax001b.html' %}
+        <!--/load landscape IMAGE2 only available-->
+
+    {% elif object.display_position == 'IMAGE2' and object.layout == 'LAPO' %}
+        <!--load landscape and portrait images2 available-->
+        {% include 'website/parallax002b.html' %}
+        <!--/load landscape and portrait images2 available-->
+
+    {% elif object.display_position == 'IMAGE2' and object.layout == 'NOIM' %}
+        <!--load no landscape and no portrait images2 available-->
+        {% include 'website/parallax003b.html' %}
+        <!--/load no landscape and no portrait images2 available-->
+
+    {% elif object.display_position == 'IMAGE2' and object.layout == 'LAONim' %}
+        <!--load landscape with IMAGE2 map004 link-->
+        {% include 'website/parallax004b.html' %}
+        <!--/load landscape with IMAGE2 map004 link-->
+
+    {% elif object.display_position == 'IMAGE2' and object.layout == 'LAONimt' %}
+        <!--load landscape with IMAGE2 map005 with tool tip-->
+        {% include 'website/parallax005b.html' %}
+        <!--/load landscape with IMAGE2 map005 with tool tip-->
+
+    {% elif object.display_position == 'IMAGE2' and object.layout == 'LAONimtl' %}
+        <!--load landscape with IMAGE2 map006 with tool tip and link-->
+        {% include 'website/parallax006b.html' %}
+        <!--/load landscape with IMAGE2 map006 with tool tip and link-->
+
+    {% elif object.display_position == 'IMAGE2' and object.layout == 'LAONmtb' %}
+        <!--load landscape with IMAGE2 map007 with moveable textbox-->
+        {% include 'website/parallax007b.html' %}
+        <!--/load landscape with IMAGE2 map007 with moveable textbox-->
+    
+    {% elif object.display_position == 'IMAGE2' and object.layout == 'LAONmtbl' %}
+        <!--load landscape with IMAGE2 map008 with moveable textbox with link-->
+        {% include 'website/parallax008b.html' %}
+        <!--/load landscape with IMAGE2 map008 with moveable textbox with link-->
+    {% endif %}
+
+{% empty %}
+{% endfor %}

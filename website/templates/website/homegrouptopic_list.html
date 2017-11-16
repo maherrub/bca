@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+<div class="divider"></div>
+<div class="container-fluid no-margin30">
+<div class="row">
+    <ul class="list-group">
+
+        {% for hgt in object_list %}
+        
+        <a href="/{{ hgt.id }}/">
+        <li class="list-group-item justify-content-between">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                <img src="{{ hgt.speaker_image.url }}" class="list-img-md img-responsive img-fluid" alt="speaker image">
+            </div>
+            <div class="no-margin-left col-lg-10 col-md-10 col-sm-10 col-xs-8">
+                <h5 class="strong">{{ hgt.main_title }}</h5>
+                <small>{{ hgt.secondary_title }}</small>
+                <small>{{ hgt.edited_on }} | {{ hgt.display_position }}</small>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                <span class="badge badge-primary badge-pill">edit</span>
+            </div>
+        </div>
+        </li>
+        </a>
+        
+        {% endfor %}
+        
+    </ul>
+</div>
+
+
+    <div class="pull-right ">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <h4>Your Home Group List</h4>
+            <p>list  not yet available</p>
+        {% endif %}
+        </div>
+</div>
+{% endblock %}

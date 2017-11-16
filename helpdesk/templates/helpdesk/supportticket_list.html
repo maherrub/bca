@@ -1,0 +1,371 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}Support Admin Ticket List{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<!--master container-->
+<div class="container-fluid">
+
+<!--all link buttons here-->
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="text-center col-sm-4 mb-r wow slideInUp" data-wow-delay="0.1s">
+            <a href="#" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/apps_list/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    </div>
+<!--all link buttons here-->
+
+<!--tabs definition-->
+
+
+<!-- Nav tabs -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="tabs-wrapper"> 
+            <ul class="nav classic-tabs red" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link waves-light active" data-toggle="tab" href="#new_tickets" role="tab"><small>New</small></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-light" data-toggle="tab" href="#inprogress_tickets" role="tab"><small>In progress</small></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-light" data-toggle="tab" href="#pending_tickets" role="tab"><small>Pending</small></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-light" data-toggle="tab" href="#completed_tickets" role="tab"><small>Completed</small></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tab panels -->
+<div class="tab-content">
+
+    <!--Panel 1-->
+    <div class="tab-pane fade in show active" id="new_tickets" role="tabpanel">
+
+        <!--Body-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                    {% for stl in object_list %}
+                        {% if user.username|slugify in stl.assigned_manager|slugify and stl.ticket_status|slugify = 'Started'|slugify %}
+                        
+                        <a href="/helpdesk/{{ stl.pk }}/supportticket_detail">
+                            <li class="list-group-item justify-content-between">
+                            
+                                <div class="col-md-2 pull-left">
+                                    <h6>Ticket Number: {{ stl.ticket_category }}-{{ stl.ticket_number }}</h6>
+                                </div>
+
+                                <div class="col-md-5 pull-left">
+                                    <h6>Issue: {{ stl.ticket_issue }}</h6>
+                                    <h6>Priority: {{ stl.ticket_priority }}</h6>
+                                </div>
+                    
+                                <div class="col-md-3 pull-left">
+                                    <h6>Current Status: {{ stl.ticket_status }}</h6>
+                                </div>
+
+                                <div class="col-md-1 pull-left">
+                                    <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/{{ stl.pk }}/supportticket_update">Update</a></h6>
+                                </div>
+
+                                <div class="col-md-1 pull-left">
+                                    <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/supportticketmanager_reply/{{ stl.pk }}">Reply</a></h6>
+                                </div>
+                            </li>
+                        </a>
+                        {% endif %}
+                    {% empty %}
+                
+                        <h6>No more tickets to assign.</h6>
+                
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+ 
+        <!--pagination pannel 1 starts here-->
+
+        <div class="pull-right">
+                
+                {% if is_paginated %}
+                <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li>
+                        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                    </li>
+                {% endif %}
+                    <li class="">
+                        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                    </li>
+                {% if page_obj.has_next %}
+                    <li>
+                        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                    </li>
+                {% endif %}
+                </ul>
+                {% else %}
+                    <p class="deep-orange-text text-center">end of list</p>
+                {% endif %}
+        </div>
+        <!--/pagination pannel 1 starts here-->
+
+    </div>
+    <!--/.Panel 1-->
+
+
+    <!--Panel 2-->
+    <div class="tab-pane fade" id="inprogress_tickets" role="tabpanel">
+       <!--Body2-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                    {% for stl in object_list %}
+                        {% if user.username|slugify in stl.assigned_manager|slugify and stl.ticket_status|slugify = 'In Progress'|slugify %}
+                        <a href="/helpdesk/{{ stl.pk }}/supportticket_detail">
+                            <li class="list-group-item justify-content-between">
+                            
+                                <div class="col-md-2 pull-left">
+                                    <h6>Ticket Number: {{ stl.ticket_category }}-{{ stl.ticket_number }}</h6>
+                                </div>
+
+                                <div class="col-md-5 pull-left">
+                                    <h6>Issue: {{ stl.ticket_issue }}</h6>
+                                    <h6>Priority: {{ stl.ticket_priority }}</h6>
+                                </div>
+                    
+                                <div class="col-md-3 pull-left">
+                                    <h6>Current Status: {{ stl.ticket_status }}</h6>
+                                </div>
+
+                                <div class="col-md-1 pull-left">
+                                    <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/{{ stl.pk }}/supportticket_update">Update</a></h6>
+                                </div>
+
+                                <div class="col-md-1 pull-left">
+                                    <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/supportticketmanager_reply/{{ stl.pk }}">Reply</a></h6>
+                                </div>
+                            </li>
+                        </a>
+                        {% endif %}
+                    {% empty %}
+                
+                         <h6>No in-progress tickets</h6>
+                
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Body2-->
+
+    <!--pagination pannel 2 starts here-->
+
+        <div class="pull-right">
+                
+                {% if is_paginated %}
+                <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li>
+                        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                    </li>
+                {% endif %}
+                    <li class="">
+                        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                    </li>
+                {% if page_obj.has_next %}
+                    <li>
+                        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                    </li>
+                {% endif %}
+                </ul>
+                {% else %}
+                    <p class="deep-orange-text text-center">end of list</p>
+                {% endif %}
+        </div>
+        <!--/pagination pannel 2 starts here-->
+
+    
+    </div>
+    <!--/.Panel 2-->
+
+    <!--Panel 3-->
+    <div class="tab-pane fade" id="pending_tickets" role="tabpanel">
+        <!--Body3-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                    {% for stl in object_list %}
+                        {% if user.username|slugify in stl.assigned_manager|slugify and stl.ticket_status|slugify = 'Pending'|slugify %}
+                        <a href="/helpdesk/{{ stl.pk }}/supportticket_detail">
+                            <li class="list-group-item justify-content-between">
+                            
+                                <div class="col-md-2 pull-left">
+                                    <h6>Ticket Number: {{ stl.ticket_category }}-{{ stl.ticket_number }}</h6>
+                                </div>
+
+                                <div class="col-md-5 pull-left">
+                                    <h6>Issue: {{ stl.ticket_issue }}</h6>
+                                    <h6>Priority: {{ stl.ticket_priority }}</h6>
+                                </div>
+                    
+                                <div class="col-md-3 pull-left">
+                                    <h6>Current Status: {{ stl.ticket_status }}</h6>
+                                </div>
+
+                                <div class="col-md-1 pull-left">
+                                    <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/{{ stl.pk }}/supportticket_update">Update</a></h6>
+                                </div>
+
+                                <div class="col-md-1 pull-left">
+                                    <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/supportticketmanager_reply/{{ stl.pk }}">Reply</a></h6>
+                                </div>
+                            </li>
+                        </a>
+                        {% endif %}
+                    {% empty %}
+                
+                        <h6>No more pending tickets.</h6>
+                
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Body3-->
+
+
+
+        <!--pagination pannel 3 starts here-->
+
+        <div class="pull-right">
+                
+                {% if is_paginated %}
+                <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li>
+                        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                    </li>
+                {% endif %}
+                    <li class="">
+                        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                    </li>
+                {% if page_obj.has_next %}
+                    <li>
+                        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                    </li>
+                {% endif %}
+                </ul>
+                {% else %}
+                    <p class="deep-orange-text text-center">end of list</p>
+                {% endif %}
+        </div>
+        <!--/pagination pannel 3 starts here-->
+
+    </div>
+    <!--/.Panel 3-->
+        
+    <!--Panel 4-->
+    <div class="tab-pane fade" id="completed_tickets" role="tabpanel">
+        <!--Body4-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                    {% for stl in object_list %}
+                        {% if user.username|slugify in stl.assigned_manager|slugify and stl.ticket_status|slugify = 'Completed'|slugify %}
+                        <a href="/helpdesk/{{ stl.pk }}/supportticket_detail">
+                            <li class="list-group-item justify-content-between">
+                            
+                                <div class="col-md-2 pull-left">
+                                    <h6>Ticket Number: {{ stl.ticket_category }}-{{ stl.ticket_number }}</h6>
+                                </div>
+
+                                <div class="col-md-5 pull-left">
+                                    <h6>Issue: {{ stl.ticket_issue }}</h6>
+                                    <h6>Priority: {{ stl.ticket_priority }}</h6>
+                                </div>
+                    
+                                <div class="col-md-3 pull-left">
+                                    <h6>Current Status: {{ stl.ticket_status }}</h6>
+                                </div>
+
+                                <div class="col-md-1 pull-left">
+                                    <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/{{ stl.pk }}/supportticket_update">Update</a></h6>
+                                </div>
+
+                                <div class="col-md-1 pull-left">
+                                    <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/helpdesk/supportticketmanager_reply/{{ stl.pk }}">Reply</a></h6>
+                                </div>
+                            </li>
+                        </a>
+                        {% endif %}
+                    {% empty %}
+                
+                        <h6>No more pending tickets.</h6>
+                
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Body4-->
+
+            <!--pagination pannel 4 starts here-->
+
+        <div class="pull-right">
+                
+                {% if is_paginated %}
+                <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li>
+                        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                    </li>
+                {% endif %}
+                    <li class="">
+                        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                    </li>
+                {% if page_obj.has_next %}
+                    <li>
+                        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                    </li>
+                {% endif %}
+                </ul>
+                {% else %}
+                    <p class="deep-orange-text text-center">end of list</p>
+                {% endif %}
+        </div>
+        <!--/pagination pannel 4 starts here-->
+    </div>
+    <!--/.Panel 4-->
+
+
+
+
+
+
+</div>
+<!--/tabs definition-->
+
+</div>
+<!--/master container-->
+
+{% endblock %}

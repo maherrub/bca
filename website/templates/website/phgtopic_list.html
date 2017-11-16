@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+ 
+<!--Permissions control-->
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+         {% for phgtopic in object_list|slice:"1" %}
+        <h6><span class="badge red"> {{ phgtopic.functional_group }}<br> Producer Home Group Topic List</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/phgtopic_create/{{ phgtopic.functional_group }}/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% empty %}
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/phgtopic_create/English/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+<!--Body-->
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+        <div class="col-md-12">    
+            <ul class="list-group">
+            <a href="#" class="list-group-item mdb-color darken-3 white-text"><i class="fa fa-th-large"></i>&nbsp;Topics<span class="counter" style="margin-left:65%;">{{ object_list|length }}</span></a>
+            {% for hgt in object_list %}
+            <li class="list-group-item justify-content-between">
+                <div class="container">
+                    <div class="row">
+            
+                        <div class="col-md-1 pull-left">
+                            <small><strong>Speaker</strong></small>
+                            {% if hgt.speaker_image %}
+                                <img src="{{ hgt.speaker_image.url }}" class="list-img-md img-responsive img-fluid img-thumbnail" alt="speaker image">
+                            {% endif %}
+                        
+                            <small><strong>Cover</strong></small><br>
+                            {% if hgt.cover_image %}
+                                <img src="{{ hgt.cover_image.url }}" class="list-img-md img-responsive img-fluid img-thumbnail" alt="speaker image">
+                            {% endif %}
+                        
+                        </div>
+
+                        <div class="col-md-1 pull-left">
+                            <small><strong>Youtube</strong></small><br>
+                            {% if hgt.youtubeid %}
+                                <iframe width="75" height="50"
+                                    src="https://www.youtube.com/embed/{{ hgt.youtubeid }}">
+                                </iframe><br>
+                            {% endif %}
+                            
+                            <small><strong>Trans. Files</strong></small>
+                            {% if hgt.translatedtxtfile1 %}
+                                <i class="blue-text fa fa-file-text-o fa-2x"></i>
+                            {% endif %}
+
+                            {% if hgt.translatedtxtfile2 %}
+                                <i class="blue-text fa fa-file-o fa-2x"></i>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-4 pull-left">
+                            <small><strong>Title:</strong> {{ hgt.main_title }}</small><br>
+                            <small><strong>Topic ID:</strong> {{ hgt.pk }}</small><br>
+
+                            {% if hgt.page_id %}
+                            <span class="warning-color-dark white-text"><small><strong>Page ID:</strong> {{ hgt.page_id }}</small></span><br>
+                            {% endif %}
+                            <small><strong>Card type:</strong> {{ hgt.card_type }}</small><br>
+                            <small><strong>Layout:</strong> {{ hgt.layout }}</small><br>
+                            <small><strong>Position:</strong> {{ hgt.display_position }}</small><br>
+                            <small><strong>Style:</strong> {{ hgt.card_style }}</small><br>
+                            <small><strong>Owner:</strong> {{ hgt.content_owner }}</small><br>
+                            
+                        </div>
+
+                        <div class="col-md-4 pull-left">
+                            <small><strong>Created:</strong> {{ hgt.edited_on|get_due_date_string }}</small><br>
+                            <small><strong>Updated:</strong> {{ hgt.updated }}</small><br>
+                            <small><strong>Color:</strong> {{ hgt.card_color }}</small><br>
+                            {% if hgt.is_verified = 0 %}
+                            <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ hgt.is_verified }}</span></small><br>
+                            {% else %}
+                            <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ hgt.is_verified }}</span></small><br>
+                            {% endif %}
+                            {% if hgt.is_published = 0 %}
+                            <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ hgt.is_published }}</span></small><br>
+                            <a href="/helpdesk/userticket_create"><i class="fa fa-ticket"></i><span>&nbsp;request to publish</span></a><br>
+                            {% else %}
+                            <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ hgt.is_published }}</span></small><br>
+                            {% endif %}
+                            <small><strong>Linked to: </strong></small><span class="badge teal center-text noselect"> {{ hgt.link_url }}</span><br>
+                        </div>
+
+                        <div class="col-md-1 pull-right">
+                            <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/{{ hgt.pk }}/hgtcpdetail">detail</a></h6>
+                        </div>
+
+                        <div class="col-md-1 pull-right">
+                            <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/{{ hgt.pk }}/producerhgt_update">update</a></h6>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </div>
+    <!--Body-->
+    <div class="divider"></div>
+
+    <div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}

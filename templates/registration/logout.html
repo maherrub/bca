@@ -1,0 +1,30 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Logged out" %}{% endblock %}
+
+{% block content %}
+<br><br><br><br><br>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card col-sx-12 col-sm-6 offset-sm-3 col-md-6 offset-md-3 col-lg-6 offset-lg-3 wow fadeInDown" data-wow-delay="0.2s">
+        <div class=" card-block wow fadeInDown" data-wow-delay="0.3s">
+             <!--Header-->
+            <div class="form-header blue-gradient z-depth-2 view overlay hm-white-slight">
+                <h5><i class="fa fa-unlock"></i> Logged out:</h5>
+                <div class="mask waves-effect waves-light"></div>
+            </div>
+            
+            <div class="">
+                <p class="text-center">{% trans "Successfully logged out" %}. Good Job! </p>
+                    <a href="/" class="btn btn-deep-purple pull-right">Close</a>
+                <div class="divider"></div>
+            </div>
+            </div>
+        </div>
+</div>
+</div>
+<div class="divider"></div>
+{% endblock %}

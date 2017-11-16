@@ -1,0 +1,215 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--producer extended001e page-->
+{% if eo.layout == 'plx-moveable-txtbox' %}
+    {% if eo.extendmedia and eo.display_section %}
+<head>
+    <style>
+        
+    /* pc */ 
+    @media screen and (orientation: landscape) {
+        #{{ eo.display_section }}-{{ eo.pk }} {
+            background-image: url("{{ eo.extendmedia.url }}");
+            transition: all 0.3s ease;
+            background-position: {{ eo.focus }};
+            background-color: #E9EAED;
+            height: 100vh !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-size: cover;
+            margin-top: 0em;
+            margin-bottom: 0em;
+        }
+
+
+        #imagemap1-pe001e-{{ eo.pk }} {
+            background: rgba(91, 93, 100, 0.79);
+            color: #2b0b00;
+            width: {{ eo.map1_box_size|slice:"0:3" }}; 
+            height: {{ eo.map1_box_size|slice:"4:7" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ eo.map1_coordinate|slice:"0:5" }}; 
+            left: {{ eo.map1_coordinate|slice:"6:11" }};
+            z-index: 1;
+            padding: 1px;
+            overflow: hidden;
+        }
+
+        #imagemap2-pe001e-{{ eo.pk }} {
+            background: rgba(91, 93, 100, 0.79);
+            color: #2b0b00;
+            width: {{ eo.map2_box_size|slice:"0:3" }}; 
+            height: {{ eo.map2_box_size|slice:"4:7" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ eo.map2_coordinate|slice:"0:5" }}; 
+            left: {{ eo.map2_coordinate|slice:"6:11" }};
+            z-index: 1;
+            padding: 1px;
+            overflow: hidden;
+        }
+                
+    }
+
+    /* mobile landscape */
+    {% if request|is_mobile %}
+    @media screen and (orientation: landscape) {
+        #{{ eo.display_section }}-{{ eo.pk }} {
+            background-image: url("{{ eo.extendmedia.url }}");
+            background-size: cover;
+            transition: all 0.3s ease;
+            background-position: {{ eo.focus }};
+            background-color: #E9EAED;
+            height: 100vh !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-top: 0em;
+            margin-bottom: 0em;
+        }
+
+        #imagemap1-pe001e-{{ eo.pk }} {
+            background: rgba(91, 93, 100, 0.79);
+            color: #2b0b00; 
+            width: {{ eo.map1_box_size|slice:"8:11" }}; 
+            height: {{ eo.map1_box_size|slice:"12:15" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ eo.map1_coordinate|slice:"13:17" }}; 
+            left: {{ eo.map1_coordinate|slice:"18:23" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #imagemap2-pe001e-{{ eo.pk }} {
+            background: rgba(91, 93, 100, 0.79);
+            color: #2b0b00; 
+            width: {{ eo.map2_box_size|slice:"8:11" }}; 
+            height: {{ eo.map2_box_size|slice:"12:15" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ eo.map2_coordinate|slice:"13:17" }}; 
+            left: {{ eo.map2_coordinate|slice:"18:23" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+    }
+    {% endif %}
+    
+    /* Mobile Portrait */
+    @media screen and (orientation: portrait) {
+        #{{ eo.display_section }}-{{ eo.pk }} {
+            background-image: url("{{ eo.extendmedia.url }}");
+            transition: all 0.3s ease-in-out;
+            background-size: cover;
+            background-position: {{ eo.focus }};
+            background-color: #E9EAED;
+            height: 45vh !important;
+            margin-top: 0em;
+            margin-bottom: 0em;
+            margin-left: 0em;
+            margin-right: 0em;
+        }
+
+        #imagemap1-pe001e-{{ eo.pk }} {
+            background: rgba(91, 93, 100, 0.79);
+            color: #2b0b00; 
+            width: {{ eo.map1_box_size|slice:"16:19" }}; 
+            height: {{ eo.map1_box_size|slice:"20:23" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ eo.map1_coordinate|slice:"24:29" }}; 
+            left: {{ eo.map1_coordinate|slice:"30:35" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #imagemap2-pe001e-{{ eo.pk }} {
+            background: rgba(91, 93, 100, 0.79);
+            color: #2b0b00; 
+            width: {{ eo.map2_box_size|slice:"16:19" }}; 
+            height: {{ eo.map2_box_size|slice:"20:23" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ eo.map2_coordinate|slice:"24:29" }}; 
+            left: {{ eo.map2_coordinate|slice:"30:35" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+  
+    }
+    /* generic */
+    #imagemap1-pe001e-{{ eo.pk }}:hover {
+        background-color: rgba(158, 158, 158, 0.85);
+        color:#130606;
+        transition: all 0.4s ease-in-out;
+        text-align: justify;
+        padding: 5px;
+        border-radius: 5px;
+        word-wrap: break-word;
+        overflow: hidden;
+    }
+
+    #imagemap2-pe001e-{{ eo.pk }}:hover {
+        background-color: rgba(158, 158, 158, 0.85);
+        color:#130606;
+        transition: all 0.4s ease-in-out;
+        text-align: justify;
+        padding: 5px;
+        border-radius: 5px;
+        word-wrap: break-word;
+        overflow: hidden;
+    }
+
+    a:link { text-decoration: none; }
+    
+    </style>
+</head>
+    {% endif %}
+
+<section class="gap" id="{{ eo.display_section }}-{{ eo.pk }}">
+    <div style="padding-left: 20px;">
+        <!--update this extended page section link-->
+        <a href="/{{ eo.pk }}/producerpageextend_update" class="red-text">&nbsp;edit</a>
+        <!--update this extended page section link-->
+    </div>
+
+     {% if eo.map1_tooltip or eo.map2_tooltip  %}
+            <!--image1-map1 withpe001e-->
+                <span id="imagemap1-pe001e-{{ eo.pk }}">
+                    <span class="noselect">{{ eo.map1_tooltip }}</span>
+                </span>
+            <!--/image1-map1 withpe001e-->
+        
+            <!--image1-map2 withpe001e-->
+                <span id="imagemap2-pe001e-{{ eo.pk }}">
+                    <span class="noselect">{{ eo.map2_tooltip }}</span>
+                </span>
+            <!--/image1-map2 withpe001e-->
+        {% endif %}
+
+        {% if eo.translatedtxtfile1 and not eo.map1_tooltip %}
+            <!--image1-map1 withpe001e translated file1-->
+                <span id="imagemap1-pe001e-{{ eo.pk }}">
+                    <span class="noselect">{{ eo.translatedtxtfile1|print_file_withlines:0 }}</span>
+                </span>
+            <!--/image1-map1 withpe001e translated file1-->
+        {% endif %}
+
+        {% if eo.translatedtxtfile2 and not eo.map2_tooltip %}
+            <!--image1-map1 withpe001e translated file2-->
+                <span id="imagemap2-pe001e-{{ eo.pk }}">
+                    <span class="noselect">{{ eo.translatedtxtfile2|print_file_withlines:0 }}</span>
+                </span>
+            <!--/image1-map1 withpe001e translated file2-->
+        {% endif %}
+    
+</section>
+
+{% endif %}
+<!--/producer extended001e page-->

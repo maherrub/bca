@@ -1,0 +1,183 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+<!--public extended001 page-->
+
+{% if eo.layout == 'parallax-style' %}
+    {% if eo.extendmedia and eo.display_section %}
+    <style>
+    section {
+        height: 75vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    
+    @media screen and (orientation: landscape) {
+        #{{ eo.display_section }} {
+        background-image: url("{{ eo.extendmedia.url }}");
+        transition: all 0.3s ease;
+        background-position: {{ eo.focus }};
+        background-color: #E9EAED;
+        height: 100vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background-size: cover;
+        margin-top: 0em;
+        margin-bottom: 0em;
+
+
+        }
+
+        #pextend-title1 {
+            font-size: 1rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            margin-top: -10em;
+            display:block;
+            padding: 10px 0px 10px 0px;
+        }
+
+        #pextend-title2 {
+            margin-top: -10px;
+            padding: 13px 64px 11px 17px;
+            font-size: 14px;
+            font-size: .875rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+        }
+
+        #pextend-content {
+            font-size: .75rem;
+            text-align: justify;
+            margin-top: -10px;
+            color: rgba(0,0,0,.5);
+            padding: 0px 5px 0px 5px;
+            background-color: rgba(242, 242, 242, 0.88);
+            border-radius: 1px;
+        }        
+    }
+
+    {% if request|is_mobile %}
+    @media screen and (orientation: landscape) {
+        #{{ eo.display_section }} {
+        background-image: url("{{ eo.extendmedia.url }}");
+        background-size: cover;
+        transition: all 0.3s ease;
+        background-position: {{ eo.focus }};
+        background-color: #E9EAED;
+        height: 100vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-top: 0em;
+        margin-bottom: 0em;
+
+        }
+    }
+    {% endif %}
+    
+    @media screen and (orientation: portrait) {
+        #{{ eo.display_section }} {
+            background-image: url("{{ eo.extendmedia.url }}");
+            transition: all 0.3s ease-in-out;
+            background-size: cover;
+            background-position: {{ eo.focus }};
+            background-color: #E9EAED;
+            height: 45vh !important;
+            margin-top: 0em;
+            margin-bottom: 0em;
+            margin-left: 0em;
+            margin-right: 0em;
+        }
+
+        #pextend-title1 {
+            font-size: 1rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            margin-top: -15px;
+            display:block;
+            padding: 10px 0px 10px 0px;
+        }
+
+        #pextend-title2 {
+            margin-top: -10px;
+            padding: 13px 64px 11px 17px;
+            font-size: 14px;
+            font-size: .875rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+        }
+
+        #pextend-content {
+            font-size: .75rem;
+            text-align: justify;
+            margin-top: -10px;
+            color: rgba(0,0,0,.5);
+            padding: 0px 5px 0px 5px;
+            background-color: rgb(242, 242, 242);
+            border-radius: 1px;
+        }
+
+    }
+    
+    </style>
+    {% endif %}
+
+<section class="gap" id="{{ eo.display_section }}">
+    
+    <!--Texts and buttons on image1 -->
+    <div class="containerBox">
+        <div class="text-box">
+        <div class="mask flex-center"></div>
+        {% if request|is_pc %}
+        <ul style="margin-top: -2% !important;">
+            <li>
+                <h1 style="line-height: 1.6em;" class="h1-responsive {{ eo.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ eo.main_title }}</h1>
+            </li>
+                    
+            <li>
+                <lead style="line-height: 1.6em;" class="h5-responsive {{ eo.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ eo.high_title }}</lead>
+            </li>
+        </ul>
+        
+        <div class="col-md-10 offset-md-1 {{ eo.high_title_color }} noselect excerpt wow fadeIn" data-wow-delay="0.4s">
+            <p><strong class="text-left">{{ eo.content }}</strong></p>
+        </div>
+        
+        {% elif request|is_mobile %}
+        <ul style="margin-top: -10% !important;">
+
+
+            {% if eo.main_title %}
+            <li>
+                <h1 id="pextend-title1" style="line-height: 1.2em;" class="h1-responsive {{ eo.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ eo.main_title }}</h1>
+            </li>
+            {% endif %}
+
+
+            {% if eo.high_title %}        
+            <li>
+                <h5 id="pextend-title2" style="line-height: 1em;" class="h5-responsive {{ eo.high_title_color }} wow fadeInUp noselect" data-wow-delay="0.1s">{{ eo.high_title }}</h5>
+            </li>
+            {% endif %}
+        
+            {% if eo.content %}
+            <li>
+                <p id="pextend-content">{{ eo.content }}</h5>
+            </li>
+            {% endif %}
+
+        </ul>
+        {% endif %}
+        </div>
+    </div>
+    <!--Texts and buttons on image1 -->
+</section>
+
+{% endif %}

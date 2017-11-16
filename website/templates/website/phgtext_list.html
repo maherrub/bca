@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+{% block content %}
+
+<div class="divider"></div>
+<div class="divider"></div>
+
+<!--Permissions control-->
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        {% for phgtext in object_list|slice:"1" %}
+        <h6><span class="badge red">{{ phgtext.functional_group }}<br> Home Group Text List</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/phgtext_create/{{ phgtext.functional_group }}/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% empty %}
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/phgtext_create/English/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+    <!--Body-->
+    <div class="container-fluid" style="overflow: hidden;">
+        <div class="row">
+            <div class="col-md-12">    
+                <ul class="list-group">
+                <a href="#" class="list-group-item mdb-color darken-3 white-text"><i class="fa fa-file-text-o"></i>&nbsp;Texts<span class="counter" style="margin-left:70%;">{{ object_list|length }}</span></a>
+                {% for hgtext in object_list %}
+                <li class="list-group-item justify-content-between">
+                    <div class="container">
+                        <div class="row">
+                            
+                            <div class="col-md-1 pull-left">
+                                <h5>{{ hgtext.display_position_text }}</h5>
+                                {% if hgtext.display_position_text == 'ROW7' %}
+                                <small class="green-text"><strong>Testimony</strong></small>
+                                {% endif %}
+                                <br>
+                                <small><strong>Trans. Files</strong></small>
+                                {% if hgtext.translatedtxtfile1 %}
+                                    <i class="blue-text fa fa-file-text-o fa-2x"></i>
+                                {% endif %}
+
+                                {% if hgtext.translatedtxtfile2 %}
+                                    <i class="blue-text fa fa-file-o fa-2x"></i>
+                                {% endif %}
+                                
+                            </div>
+
+                            <div class="col-md-5 pull-left">
+                                <small><strong>Title1:</strong> {{ hgtext.main_title_text }}</small><br>
+                                <small><strong>Title2:</strong> {{ hgtext.secondary_title_text }}</small><br>
+                                <small><strong>Text ID:</strong> {{ hgtext.pk }}</small><br>
+                                
+                                {% if hgtext.button_name %}
+                                <small><strong>Link Name:</strong> {{ hgtext.button_name }}</small><br>
+                                {% endif %}
+                                
+                                <small><strong>Owner:</strong> {{ hgtext.content_owner }}</small><br>
+
+                                {% if hgtext.functional_group = 'All' and hgtext.display_position_text != 'ROW7' %}
+                                <small><span class="red-text"><em>Pages only recognize ROW7, kindly update to ROW7.</em></span></small>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 pull-left">
+                                <small><strong>Created:</strong> {{ hgtext.edited_on|get_due_date_string }}</small><br>
+                                <small><strong>Updated:</strong> {{ hgtext.updated }}</small><br>
+
+                                {% if hgtext.is_verified = 0 %}
+                                <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;"> {{ hgtext.is_verified }}</span></small><br>
+                                {% else %}
+                                <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;"> {{ hgtext.is_verified }}</span></small><br>
+                                {% endif %}
+
+                                {% if hgtext.is_published = 0 %}
+                                <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;"> {{ hgtext.is_published }}</span></small><br>
+                                <a href="/helpdesk/userticket_create"><i class="fa fa-ticket"></i><span>&nbsp;request to publish</span></a><br>
+                                {% else %}
+                                <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;"> {{ hgtext.is_published }}</span></small><br>
+                                {% endif %}
+                                
+                                
+                            </div>
+
+                            <div class="col-md-1 pull-right">
+                                <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/{{ hgtext.pk }}/phgtext_detail">detail</a></h6>
+                            </div>
+
+                            <div class="col-md-1 pull-right">
+                                <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/{{ hgtext.pk }}/phgtext_update">update</a></h6>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </li>
+                
+                {% endfor %}
+                
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Body-->
+    
+    <div class="divider"></div>
+
+    <div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="divider"></div>
+
+<h1>IOT Test Page</h1>
+
+
+{% for item in distance|slugify %}
+
+    <h5>Distance: {{ item }}</h5>
+    <br>
+{% endfor %}
+
+
+
+{% endblock %}

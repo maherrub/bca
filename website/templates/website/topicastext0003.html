@@ -1,0 +1,269 @@
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--topic text layout 1-->
+{% for object in hgtopics|dictsort:"display_position" %}
+    {% if object.card_type = "Text" and object.layout = "1" and object.display_position >= 'ROW6-COL1/4' and  object.display_position < 'ROW6-COL2/4' %}
+    <div class="divider"></div>
+    <!--main container-->
+    <div class="container" style="overflow:hidden; margin-top:0px; margin-bottom:25px;">
+        <!--row-->
+        <div class="row">
+            <!--column1-->
+            <div class="col-lg-3 col-md-3 col-sm-1">
+            </div>
+            <!--/column1-->
+            <!--column2-->
+            <div class="col-lg-6 col-md-6 col-sm-10 mb-r">
+                <!--Card-->
+                <div class="card-overlay" style="background-color:transparent">
+                    <!--content-->
+                    <div class="white-text text-center">
+                        <!--header-->
+                        <div class="card-data" style="background-color:#eceff1">
+                            {% if not object.main_title %}
+                                <h4 class="black-text"><strong><br></strong></h4>
+                            {% else %}
+                                <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                            {% endif %}
+
+                            {% if not object.day and not object.date and not object.time %}
+                                <h6 class="black-text"><br></h6>
+                            {% else %}
+                                <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                            {% endif %}
+
+                            {% if not object.venue %}
+                                <h6 class="black-text"><br></h6>
+                            {% else %}
+                                <h6 class="black-text">{{ object.venue }}</h6>
+                            {% endif %}
+                            <i class="fa fa-chevron-down" style="color:#000000"></i> 	
+                        </div>
+                        <!--/header-->
+                            
+                        <!--body-->
+                        <div class="card-block">
+                            <h5 class="grey-text">Speaker:</h5>
+                            {% if not object.speaker_name %}
+                                <h4 class="black-text"><br></h4>
+                            {% else %}
+                                <h4 class="black-text">{{ object.speaker_name }}</h4>
+                            {% endif %}
+
+                            {% if not object.short_description %}
+                                <p class="grey-text" style="background-color: transparent"><br><br><br></p>
+                            {% else %}    
+                                <!--content-->
+                                <div style="height:65px; padding-left:2px; padding-right:2px;">
+                                    <p class="grey-text" style="background-color: transparent">{{ object.short_description|ellipses:150 }}</p>
+                                </div>
+                                <!--/content-->
+                            {% endif %}
+                            <!--/body-->
+                        </div>
+                        <!--footer -->
+                        <div class="card-data" style="background-color:#263238 ">
+                            <h6 align="center"></h6>
+                        </div>
+                        <!--/footer -->
+                    </div>
+                    <!--/content-->
+                </div>
+                <!--/card-->
+            </div>
+            <!--/column2-->
+            <!--column3-->
+            <div class="col-lg-3 col-md-3 col-sm-1">
+            </div>
+            <!--/column3-->
+        </div>
+        <!--/row-->
+    </div>
+    <!--/main container-->
+    {% endif %}
+{% empty %}
+{% endfor %}
+<!--/topic text layout 1-->
+
+
+<!--/topic layout 2-->
+<!--main container-->
+<div class="container-fluid" style="overflow:hidden; margin-top:0px; margin-bottom:55px;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-1 col-md-1 col-sm-0">
+        </div>
+        <!--/column1-->
+
+        {% for object in hgtopics|dictsort:"display_position" %}
+            {% if object.card_type = "Text" and object.layout = "2" and object.display_position >= 'ROW6-COL1/4' and object.display_position <= 'ROW6-COL2/4' %}
+
+        <!--column2-->
+        <div class="col-lg-5 col-md-5 col-sm-6 mb-r">
+            <!--Card-->
+                <div class="card-overlay" style="background-color:transparent">
+                    <!--content-->
+                    <div class="white-text text-center">
+                        <!--header-->
+                        <div class="card-data" style="background-color:#eceff1">
+                            {% if not object.main_title %}
+                                <h4 class="black-text"><strong><br></strong></h4>
+                            {% else %}
+                                <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                            {% endif %}
+
+                            {% if not object.day and not object.date and not object.time %}
+                                <h6 class="black-text"><br></h6>
+                            {% else %}
+                                <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                            {% endif %}
+
+                            {% if not object.venue %}
+                                <h6 class="black-text"><br></h6>
+                            {% else %}
+                                <h6 class="black-text">{{ object.venue }}</h6>
+                            {% endif %}
+                            <i class="fa fa-chevron-down" style="color:#000000"></i> 	
+                        </div>
+                        <!--/header-->
+                            
+                        <!--body-->
+                        <div class="card-block">
+                            <h5 class="grey-text">Speaker:</h5>
+                            {% if not object.speaker_name %}
+                                <h4 class="black-text"><br></h4>
+                            {% else %}
+                                <h4 class="black-text">{{ object.speaker_name }}</h4>
+                            {% endif %}
+
+                            {% if not object.short_description %}
+                                <p class="grey-text" style="background-color: transparent"><br><br><br></p>
+                            {% else %}    
+                                <!--content-->
+                                <div style="height:75px; padding-left:2px; padding-right:2px;">
+                                    <p class="grey-text" style="background-color: transparent">{{ object.short_description|ellipses:150 }}</p>
+                                </div>
+                                <!--/content-->
+                            {% endif %}
+                            <!--/body-->
+                        </div>
+                        <!--footer -->
+                        <div class="card-data" style="background-color:#263238 ">
+                            <h6 align="center"></h6>
+                        </div>
+                        <!--/footer -->
+                    </div>
+                    <!--/content-->
+                </div>
+                <!--/card-->
+        </div>
+        <!--/column2-->
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+
+        <!--column3-->
+        <div class="col-lg-1 col-md-1 col-sm-0">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+</div>
+<!--/main container-->
+<!--/topic layout 2-->
+
+
+<!--topic layout 3-->
+<!--main container-->
+<div class="container-fluid" style="overflow:hidden; margin-top:0px; margin-bottom:25px;">
+    <!--row-->
+    <div class="row">
+    
+        <!--column1-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column1-->
+
+        {% for object in hgtopics|dictsort:"display_position" %}
+            {% if object.card_type = "Text" and object.layout = "4" and object.display_position >= 'ROW6-COL1/4' and object.display_position <= 'ROW6-COL4/4' %}
+
+        <!--column2-->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-r">
+            <!--card-->
+            <div class="card-overlay" style="background-color:transparent">
+                    <!--content-->
+                    <div class="white-text text-center">
+                        <!--header-->
+                        <div class="card-data" style="background-color:#eceff1">
+                            {% if not object.main_title %}
+                                <h4 class="black-text"><strong><br></strong></h4>
+                            {% else %}
+                                <h4 class="black-text"><strong>{{ object.main_title|upper }}</strong></h4>
+                            {% endif %}
+
+                            {% if not object.day and not object.date and not object.time %}
+                                <h6 class="black-text"><br></h6>
+                            {% else %}
+                                <h6 class="black-text">{{ object.day }} {{ object.date }} {{ object.time }}</h6> 
+                            {% endif %}
+
+                            {% if not object.venue %}
+                                <h6 class="black-text"><br></h6>
+                            {% else %}
+                                <h6 class="black-text">{{ object.venue }}</h6>
+                            {% endif %}
+                            <i class="fa fa-chevron-down" style="color:#000000"></i> 	
+                        </div>
+                        <!--/header-->
+                            
+                        <!--body-->
+                        <div class="card-block">
+                            <h5 class="grey-text">Speaker:</h5>
+                            {% if not object.speaker_name %}
+                                <h4 class="black-text"><br></h4>
+                            {% else %}
+                                <h4 class="black-text">{{ object.speaker_name }}</h4>
+                            {% endif %}
+
+                            {% if not object.short_description %}
+                                <p class="grey-text" style="background-color: transparent">&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</p>
+                            {% else %}    
+                                <!--content-->
+                                <div style="height:95px; padding-left:2px; padding-right:2px;">
+                                    <p class="grey-text" style="background-color: transparent">{{ object.short_description|ellipses:150 }}</p>
+                                </div>
+                                <!--/content-->
+                            {% endif %}
+                            <!--/body-->
+                        </div>
+                        <!--footer -->
+                        <div class="card-data" style="background-color:#263238 ">
+                            <h6 align="center"></h6>
+                        </div>
+                        <!--/footer -->
+                    </div>
+                    <!--/content-->
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column2-->
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+
+        <!--column3-->
+        <div class="col-lg-0 col-md-0 col-sm-0">
+        </div>
+        <!--/column3-->
+    </div>
+    <!--/row-->
+</div>
+<!--/main container-->
+
+<!--/topic layout 3-->

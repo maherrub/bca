@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %} Support admin reply {% endblock %}</h6>
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="container-fluid">
+<div class="row">
+    <!--Offsets-->
+<div class="col-md-6 offset-md-3">
+        
+    
+    <div class="">
+        
+    <!--Form with header-->
+        <div class="">
+        <!--Header-->
+        <div class="">
+            <h3 class="light-blue-text text-right"><i class="fa fa-thumbs-up"></i> Support admin reply </h3>
+            
+        </div>
+            <!--Body-->
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                {{form|crispy}}
+                </table>
+                <button type="submit" class="btn btn-success col-md-5 pull-left">Save</button>
+                <button onclick="history.go(-1);" class="btn btn-primary col-md-5 pull-right">Back</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

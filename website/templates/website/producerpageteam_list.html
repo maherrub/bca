@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+
+    
+<!--Permissions control-->
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        {% for p in page_objects %}
+        <h6><span class="badge red">List of teams in Page ID: {{ p.pk }}</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/producerpage_list/{{ p.functional_group }}" class="btn-floating btn-small red"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% empty %}
+        {% endfor %}
+    </div>
+    </div>
+
+    <!--Body-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">    
+                <ul class="list-group">
+                <a href="#" class="list-group-item mdb-color darken-3 white-text"><i class="fa fa-users"></i>&nbsp;Teams this page<span class="counter" style="margin-left:78%;">{{ object_list|length }}</span></a>
+                {% for ppt in object_list %}
+                <li class="list-group-item justify-content-between">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 pull-left">
+                                <small><strong>TeamName:</strong>&nbsp;{{ ppt.team_name }}</small><br>
+                                {% for p in page_objects %}
+                                <small><strong>Page ID:</strong>&nbsp;{{ p.pk }}</small><br>
+                                {% endfor %}
+                                <small><strong>Team ID:</strong> {{ ppt.pk }}</small><br>
+                                <small><strong>Owner:</strong> {{ ppt.owner }}</small><br>
+                                {% if ppt.translatedtxtfile2 %}
+                                    <small><strong>Trans. File</strong></small><br>
+                                    <i class="blue-text fa fa-file-o fa-2x"></i>
+                                {% endif %}
+                            
+                            </div>
+
+                            <div class="col-md-3 pull-left">
+                                <small><strong>Created:</strong> {{ ppt.edited_on|get_due_date_string }}</small><br>
+                                <small><strong>Updated:</strong> {{ ppt.updated }}</small><br>
+                                {% if ppt.is_verified = 0 %}
+                                    <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ ppt.is_verified }}</span></small><br>
+                                {% else %}
+                                    <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ ppt.is_verified }}</span></small><br>
+                                {% endif %}
+
+                                {% if ppt.is_published = 0 %}
+                                    <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ ppt.is_published }}</span></small><br>
+                                    <a href="/helpdesk/userticket_create"><i class="fa fa-ticket"></i><span>&nbsp;request to publish</span></a><br>
+                                {% else %}
+                                    <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ ppt.is_published }}</span></small>
+                                {% endif %}
+
+                            </div>
+
+                            
+                            <div class="col-md-1 pull-right">
+                                <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/{{ ppt.pk }}/producerpageteam_detail">detail</a></h6>
+                            </div>
+
+                            <div class="col-md-1 pull-right">
+                                <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/{{ ppt.pk }}/producerpageteam_update">update</a></h6>
+                            </div>
+
+                            <div class="col-md-1 pull-left">
+                                
+                            </div>
+
+                            <div class="col-md-1 pull-right">
+                                <h6 class="btn btn-success btn-sm btn-rounded" style="float:right;"><a href="/producerpageteammember_create/{{ ppt.pk }}/">+member</a></h6>
+                            </div>
+                            
+                            <div class="col-md-2 pull-left">
+                                <h6 class="btn btn-success btn-sm btn-rounded" style="float:right;"><a href="/{{ ppt.pk }}/producerpageteammember_list">#member</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Body-->
+             
+
+    <div class="divider"></div>
+
+    <div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}
+
+

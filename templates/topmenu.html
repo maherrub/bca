@@ -1,0 +1,112 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load website_filters %}
+
+<head>
+    <link href="{% static 'css/socialmedia.css' %}" rel="stylesheet">
+</head>
+<!-- Button trigger modal -->
+<div class="container">
+    <div class="row">
+        <div style="margin-left: 49%;">
+            <a data-toggle="modal" data-target="#fullHeightModalTop">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade top" id="fullHeightModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-top" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title w-100" id="myModalLabel">BCA 2.0</h5>
+                
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="panel-body">
+                                <div class="row" style="overflow-x: hidden; overflow-y: scroll; height: 75px;">
+                                <!--my friends list-->
+                                <div class="container">
+                                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                                        <ul id="myUL">
+                                            {% comment %}
+                                            <li>
+                                                <!--Avatar-->
+                                                <span class="avatar">
+                                                    <img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="rounded-circle z-depth-0">
+                                                </span>
+                                                <!--Avatar-->
+
+                                                <span><a>Agnes Raj</a><br>
+                                                    <small>Manager</small> |
+                                                    <small>Singapore</small>
+                                                </span>
+                                                
+                                                <span class="btn btn-primary btn-sm btn-rounded" style="float:right; margin-top: -6px;">
+                                                    <a href="#">friend request</a>
+                                                </span>
+                                                <hr>
+                                            </li>
+
+                                            <li>
+                                                <!--Avatar-->
+                                                <span class="avatar">
+                                                    <img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="rounded-circle z-depth-0">
+                                                </span>
+                                                <!--Avatar-->
+                                                
+                                                <span><a>Billy Bob</a><br>
+                                                    <small>Administrator</small> |
+                                                    <small>Australia</small>
+                                                </span>
+                                                
+                                                <span class="btn btn-success btn-sm btn-rounded" style="float:right; margin-top: -6px;">
+                                                    <a href="#">accept friend request</a>
+                                                </span>
+                                                <hr>
+                                            </li>
+
+                                            <li>
+                                                <!--Avatar-->
+                                                <span class="avatar">
+                                                    <img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="rounded-circle z-depth-0">
+                                                </span>
+                                                <!--Avatar-->
+                                                
+                                                <span><a>calvin Bob</a><br>
+                                                    <small>Administrator</small> |
+                                                    <small>Australia</small>
+                                                </span>
+                                                
+                                                <span class="btn btn-warning btn-sm btn-rounded" style="float:right; margin-top: -6px;">
+                                                    <a href="#">unfriend</a>
+                                                </span>
+                                                <hr>
+                                            </li>
+                                            {% endcomment %}
+                                        </ul>
+                                    </div>
+                                    <!--/my friends list-->
+                                </div>
+                                <!--row height definitions-->
+                            </div>
+                            <!--/panel6 body-->
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <a type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</a>
+                <small class="grey-text">BCA 2.0</small>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- Modal -->

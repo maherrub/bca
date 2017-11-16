@@ -1,0 +1,351 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "Apps List" %}{% endblock %}
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+ 
+<!--Permissions control-->
+<div class="container">
+{% for up in ups %}
+    
+    {% if user.is_authenticated and user = up.user %}
+
+              
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <h3><span class="push-right badge red">App Stash</span></h3>
+                </div>
+            </div>
+        </div>
+
+    <!--App Icons-->
+            <!--row-1-->
+                <div class="row">
+
+                    <!--First column-->
+                    <div class="col-lg-4 col-md-6 mb-r wow fadeIn">
+                        <!--Card-->
+                        <div class="card appicon-h400 primary-color z-depth-2" style="border-radius: 25px !important;">
+
+                            <!--Content-->
+                            <div class="text-center white-text">
+                                <div class="card-block">
+                                    <h5>Website Manager</h5>
+                                    <div class="flex-center">
+                                        <div class="card-circle">
+                                            <i class="fa fa-adjust white-text"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Text-->
+                                    <h6 class="red">restricted by access control</h6>
+                                    <p>create, modify and publish</p>
+                                    <p>BC website contents</p>
+                            {% for hgm in hgmall|slice:"1" %}
+                                {% if user.username in hgm.hgp_manager_name %}
+                                    <a href="/producer/" class="btn btn-outline-white btn-rounded">Go</a>
+                                {% endif %}
+                            {% empty %}
+                            {% endfor %}
+
+                            {% for hgm in hgmall|slice:"1" %}
+                                {% if user.username not in hgm.hgp_manager_name %}
+                                {% endif %}
+                            {% empty %}
+                                <a class="btn btn-outline-white btn-rounded disabled">Go</a>
+                            {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--/First column-->
+
+                    <!--Second column-->
+                    <div class="col-lg-4 col-md-6 mb-r wow fadeIn">
+                        {% for ut in ups_today %}
+                            <span class="counter" style="margin-left: 88%;">{{ ut|length }}</span>
+                        {% endfor %}
+                        <!--Card-->
+                        
+                        <!--Card-->
+                        <div class="card appicon-h400 teal z-depth-2" style="border-radius: 25px !important;">
+
+                            <!--Content-->
+                            <div class="text-center white-text">
+                                <div class="card-block">
+                                    <h5>Profile Manager</h5>
+                                    <div class="flex-center">
+                                        <div class="card-circle">
+                                            <i class="fa fa-group white-text"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Text-->
+                                    <h6 class="red">restricted by access control</h6>
+                                    <p>query, update and manage</p>
+                                    <p>BC user profiles</p>
+                            {% for pm in pms|slice:"1" %}
+                                {% if user.username in pm.pm_manager_name %}
+                                    <a href="/up/pm_console" class="btn btn-outline-white btn-rounded">Go</a>
+                                {% elif user.username not in pm.pm_manager_name %}
+                                {% endif %}
+                            {% empty %}
+                                <a class="btn btn-outline-white btn-rounded disabled">Go</a>
+                            {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--/Second column-->
+
+                    <!--Third column-->
+                    <div class="col-lg-4 col-md-6 mb-r wow fadeIn">
+                        <!--Card-->
+                        <div class="card appicon-h400 deep-orange-gradient z-depth-2" style="border-radius: 25px !important;">
+
+                            <!--Content-->
+                            <div class="text-center white-text">
+                                <div class="card-block">
+                                    <h5>Support Ticket Admin</h5>
+                                    <div class="flex-center">
+                                        <div class="card-circle">
+                                            <i class="fa fa-comments white-text"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Text-->
+                                    <h6 class="red">restricted by access control</h6>
+                                    <p>resolve helpdesk tickets</p>
+                                    <p>BC user request handler</p>
+                            {% for sta in stas|slice:"1" %}
+                                {% if user.username in sta.hdmgr_ticket_manager_name %}
+                                    <a href="/helpdesk/supportticket_list/" class="btn btn-outline-white btn-rounded">Go</a>
+                                {% elif user.username not in sta.hdmgr_ticket_manager_name %}
+                                {% endif %}
+                            {% empty %}
+                                <a class="btn btn-outline-white btn-rounded disabled">Go</a>
+                            {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--/Third column-->
+
+                </div>
+            <!--/row-1-->
+
+            <!--row-2-->
+                <div class="row">
+
+                    <!--First column-->
+                    <div class="col-lg-4 col-md-6 mb-r wow fadeIn">
+                        {% for reply in reply24 %}
+                            <span class="counter" style="margin-left: 88%;">{{ usertickets_change|length }}</span>
+                        {% endfor %}
+                        <!--Card-->
+                        <div class="card appicon-h400 unique-color z-depth-2" style="border-radius: 25px !important;">
+
+                            <!--Content-->
+                            <div class="text-center white-text">
+                                <div class="card-block">
+                                    <h5>Service Desk</h5>
+                                    <div class="flex-center">
+                                        <div class="card-circle">
+                                            <i class="fa fa-code-fork white-text"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Text-->
+                                    <h6 class="red">restricted by access control</h6>
+                                    <p>central request tickets assignment</p>
+                                    <p>BC Service Desk</p>
+                                {% if user.username = 'Servicedesk' %}
+                                    <a href="/helpdesk/serviceticket_list/" class="btn btn-outline-white btn-rounded">Go</a>
+                                {% elif user.username != 'Servicedesk'%}
+                                    <a class="btn btn-outline-white btn-rounded disabled">Go</a>
+                                {% endif %}
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--/First column-->
+
+                    <!--Second column-->
+                  
+                    <div class="col-lg-4 col-md-6 mb-r wow fadeIn">
+                        {% for reply in reply24 %}
+                            {% if user.username|slugify = reply.ticket_owner|slugify %}
+                        <span class="counter" style="margin-left: 88%;">{{ usertickets_last1day|length }}</span>
+                            {% endif %}
+                        {% endfor %}
+                        <!--Card-->
+                        <div class="card appicon-h400 success-color z-depth-2" style="border-radius: 25px !important;">
+                            
+                            <!--Content-->
+                            <div class="text-center white-text">
+                                
+                                <div class="card-block">
+                                    <h5>Help Desk</h5>
+                                    
+                                    <div class="flex-center">
+                                        <div class="card-circle">
+                                            <i class="fa fa-bolt white-text"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <!--Text-->
+                                    <h6 class="green">unrestricted</h6>
+                                
+                                    <p>create request tickets</p>
+                                    <p> get ticket status notification here</p>
+                                    
+                                    <a href="/helpdesk/userticket_list/" class="btn btn-outline-white btn-rounded">Go</a>
+                            
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--/Second column-->
+
+                    <!--Third column-->
+                    <div class="col-lg-4 col-md-6 mb-r wow fadeIn">
+                        <!--Card-->
+                        <div class="card appicon-h400  lime darken-4 z-depth-2" style="border-radius: 25px !important;">
+
+                            <!--Content-->
+                            <div class="text-center white-text">
+                                <div class="card-block">
+                                    <h5>Help Desk Manager</h5>
+                                    <div class="flex-center">
+                                        <div class="card-circle">
+                                            <i class="fa fa-balance-scale white-text"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Text-->
+                                    <h6 class="green">unrestricted</h6>
+                                    <p>approve or reject ticket requests</p>
+                                    <p>BC ticket manager</p>
+                            
+                                    <a href="/helpdesk/managerticket_list/" class="btn btn-outline-white btn-rounded">Go</a>
+                                
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--/Third column-->
+
+                </div>
+            <!--/row-2-->
+
+             <!--row-3-->
+                <div class="row">
+                    <!--First Column-->
+                    <div class="col-lg-4 col-md-6 mb-r wow fadeIn">
+                        <!--Card-->
+                        <div class="card appicon-h400 producervaultgradient z-depth-2" style="border-radius: 25px !important;">
+
+                            <!--Content-->
+                            <div class="text-center white-text">
+                                <div class="card-block">
+                                    <h5>Producer Vault</h5>
+                                    <div class="flex-center">
+                                        <div class="card-circle">
+                                            <i class="fa fa-newspaper-o white-text"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Text-->
+                                    <h6 class="green">unrestricted</h6>
+                                    <p>view published/unpublished releases</p>
+                                    <p>by Producer Community</p>
+                                
+                                    <a href="/producercommunity/" class="btn btn-outline-white btn-rounded">Go</a>
+                                
+                                
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--/First Column-->
+
+                    <!--Second Column-->
+                    <div class="col-lg-4 col-md-6 mb-r wow fadeIn">
+                        <!--Card-->
+                        <div class="card appicon-h400 recourcegradient z-depth-2" style="border-radius: 25px !important;">
+
+                            <!--Content-->
+                            <div class="text-center white-text">
+                                <div class="card-block">
+                                    <h5>Resources</h5>
+                                    <div class="flex-center">
+                                        <div class="card-circle">
+                                            <i class="fa fa-cloud-download white-text"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Text-->
+                                    <h6 class="green">members only</h6>
+                                    <p>downlaod latest sermon, music...</p>
+                                    <p>by BC Resources </p>
+                                
+                                    <a href="/downloadresource/" class="btn btn-outline-white btn-rounded">Go</a>
+                                
+                                
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--/Second Column-->
+
+                </div>
+            <!--/row-3-->
+
+
+
+
+<!--App Icons-->
+
+    {% endif %}
+    {% empty %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 red-text"><small>system message:</small></div><br>
+            <div class="col-md-10">
+                
+                <p>Thanks for your registration. Kindly proceed to <a href="/up/up_create" class="btn btn-info btn-small btn-rounded">create</a> your profile now, so that we could assign your BC apps.</p>
+            </div>
+            
+        </div>
+        <hr>
+        
+    </div>
+    <div class="divider"></div>
+    <div class="divider"></div>
+    <div class="divider"></div>
+{% endfor %}
+</div>
+<!--Permissions control-->
+{% endblock %}

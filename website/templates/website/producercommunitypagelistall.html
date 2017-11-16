@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Producer Community Pages{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<br>
+    <!--Body-->
+    <div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            
+        <a href="/producercommunity/" class="list-group-item active">
+            <i class="fa fa-users fa-1x" aria-hidden="true"></i>
+            &nbsp;Producer Community Pages
+        </a>
+        <!--Search form -->
+        <form method='GET' action='' class="form-inline waves-effect waves-light">
+            <input type='text' name='q' class="text-center blue-text" placeholder='Search a page' value='{{ request.GET.q }}'/>
+	        <input type='submit' value='Search' style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
+        </form>
+        <!--/Search form -->
+        <span class="counter" style="margin-left:80%; margin-top:15px;">{{ object_list|length }}</span>
+        
+        {% for pclapg in object_list %}
+        
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            
+            <div class="col-md-3 pull-left white-text warning-color-dark">
+                
+                <small><strong>Producer:</strong> {{ pclapg.owner }}</small><br>
+                <small><strong>Topic id:</strong> {{ pclapg.id }}</small><br>
+                <small><strong>C.Date:</strong> {{ pclapg.edited_on }}</small><br>
+                <small><strong>Fun.Group:</strong> {{ pclapg.functional_group }}</small><br>
+                <small><strong>Position:</strong> {{ pclapg.footer_position }}</small><br>
+                {% if pclapg.is_published = 0 %}
+                    <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ pclapg.is_published }}</span></small><br>
+                {% else %}
+                    <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ pclapg.is_published }}</span></small><br>
+                {% endif %}
+                {% if pclapg.is_verified = 0 %}
+                    <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ pclapg.is_verified }}</span></small><br>
+                {% else %}
+                    <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ pclapg.is_verified }}</span></small><br>
+                {% endif %}
+            </div>
+
+            <div class="col-md-2 col-xs-2 warning-color">
+                {% if pclapg.covermedia %}
+                <img src="{{ pclapg.covermedia.url }}" class="img-thumbnail list-img-md img-responsive img-fluid" alt="speaker_image">
+                <small><strong>Media</strong></small><br>
+                {% endif %}
+
+            </div>
+            
+            <div class="col-md-7 pull-left yellow lighten-5 hoverable">
+                <small><strong>Title:</strong> {{ pclapg.main_title }}</small><br>
+                <small><strong>Sec. Title:</strong> {{ pclapg.high_title }}</small><br>
+                <small><strong>Content:</strong> {{ pclapg.content }}</small><br>
+                <small><strong>L.Btn.Name:</strong> {{ pclapg.left_btnname }}</small><br>
+                <small><strong>L.Btn.Link:</strong> {{ pclapg.left_btnlink }}</small><br>
+                <small><strong>R.Btn.Name:</strong> {{ pclapg.right_btnname }}</small><br>
+                <small><strong>R.Btn.Link:</strong> {{ pclapg.right_btnlink }}</small><br>
+                <small><strong>Menu.Btn.Name:</strong> {{ pclapg.footer_linkname }}</small><br>
+                <small><strong>Menu.Btn.Link:</strong> {{ pclapg.footer_btnlink }}</small><br>
+
+            </div>
+                        
+        </div>
+        </div>
+        </li>
+        
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+    </div>
+    <!--/Body-->
+
+    <div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+
+<div class="divider"></div>
+
+
+
+<div class="divider"></div>
+
+{% endblock %}

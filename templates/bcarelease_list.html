@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+{% block content %}
+{% if user.is_authenticated %}
+<head>
+    <style>
+        body {
+                font-family: "Lato", sans-serif;
+                background: #E9EAED;
+            }
+    </style>
+</head>
+
+<div class="divider"></div>
+
+<div class="container-fluid" style="overflow: hidden;">
+    <h1 class="grey-text" style="float:right; font-weight: lighter; color:rgba(255, 255, 255, 0.52)!important">BCA Releases</h1>
+    <h6 class="badge red white-text" style="float:right;">rendered</h6>
+</div>
+
+<!--maincontainer-->
+<div class="container-fluid" style="overflow: hidden;">
+    <!--body-->
+    <div class="container-fluid" style="overflow: hidden;">
+         {% for object in object_list %}
+        <div class="row mb-r">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 badge green">
+                <ul class="list-group z-depth-0">
+                    <li class="list-group-item grey-text">
+                        <ul class="text-left">
+                            <li>Version: {{ object.version }}</li><br>
+                            <li>Released: {{ object.created|get_due_date_string }}</li><br>
+                            <li><small>Updated: {{ object.updated }}</small></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-md-8">
+               <ul class="list-group z-depth-0">
+                    <li class="list-group-item">
+                        <ul>
+                            <li class="grey-text"><strong>Project Name:</strong> {{ object.project_name }} </li>
+                            <li class="grey-text"><strong>Description:</strong> {{ object.description }}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        {% empty %}
+        {% endfor %}
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="pull-right">
+            {% if is_paginated %}
+            <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li>
+                    <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                </li>
+            {% endif %}
+                <li class="">
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                </li>
+            {% endif %}
+            </ul>
+            {% else %}
+                <p class="deep-orange-text text-center">end of list</p>
+            {% endif %}
+    </div>
+</div>
+<!--maincontainer-->
+<div class="divider"></div>
+{% endif %}
+{% endblock %}

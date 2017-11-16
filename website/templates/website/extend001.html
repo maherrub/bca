@@ -1,0 +1,111 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+
+
+{% if eo.layout == 'parallax-style' %}
+    {% if eo.extendmedia and eo.display_section %}
+    <style>
+    section {
+        height: 90vh !important;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    
+    @media screen and (orientation: landscape) {
+        #{{ eo.display_section }} {
+        background-image: url("{{ eo.extendmedia.url }}");
+        transition: all 0.3s ease;
+        background-position: center center;
+        }
+    }
+    
+    @media screen and (orientation: portrait) {
+        #{{ eo.display_section }} {
+        background-image: url("{{ eo.extendmedia.url }}");
+        transition: all 0.3s ease;
+        background-size: contain;
+        background-position: top center;
+        }
+
+        li a {
+             background-color:transparent !important;
+        }
+        
+        li h1 {
+            border-left: 5px solid #3F729B;
+            padding: 13px 64px 11px 17px;
+            font-size: 14px;
+            font-size: .875rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+            
+        }
+        
+        
+        li h5 {
+            border-left: 5px double #3F729B;
+            padding: 13px 64px 11px 17px;
+            font-size: 14px;
+            font-size: .875rem;
+            line-height: 1.4285714286;
+            color: rgba(0,0,0,.5);
+            background-color: rgba(242, 242, 242, 0.3);
+        }
+
+    }
+    
+    </style>
+    {% endif %}
+
+<section class="parallax" id="{{ eo.display_section }}">
+    <div>
+    <!--update this extended page section link-->
+    <a href="/{{ eo.pk }}/producerpageextend_update" class="red-text">&nbsp;edit</a>
+    <!--update this extended page section link-->
+    </div>
+
+
+    <!--Texts and buttons on image1 -->
+    <div class="containerBox">
+        <div class="text-box">
+        <div class="mask flex-center"></div>
+        {% if request|is_pc %}
+        <ul style="margin-top: -2% !important;">
+            <li>
+                <h1 style="line-height: 1.6em;" class="h1-responsive {{ eo.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ eo.main_title }}</h1>
+            </li>
+                    
+            <li>
+                <lead style="line-height: 1.6em;" class="h5-responsive {{ eo.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ eo.high_title }}</lead>
+            </li>
+        </ul>
+        
+        <div class="col-md-10 offset-md-1 {{ eo.high_title_color }} noselect excerpt wow fadeIn" data-wow-delay="0.4s">
+            <p><strong class="text-left">{{ eo.content }}</strong></p>
+        </div>
+        
+        {% elif request|is_mobile %}
+        <ul style="margin-top: -10% !important;">
+            <li>
+                <h1 style="line-height: 1.2em;" class="h1-responsive {{ eo.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ eo.main_title }}</h1>
+            </li>
+                    
+            <li>
+                <h5 style="line-height: 1em;" class="h5-responsive {{ eo.high_title_color }} wow fadeInUp noselect" data-wow-delay="0.1s">{{ eo.high_title }}</h5>
+            </li>
+        </ul>
+        
+        <div class="col-md-10 offset-md-1 {{ eo.high_title_color }} noselect excerpt wow fadeIn" data-wow-delay="0.4s">
+            <h5 class="text-left">{{ eo.content }}</h5>
+        </div>
+        {% endif %}
+        </div>
+    </div>
+    <!--Texts and buttons on image1 -->
+</section>
+
+{% endif %}

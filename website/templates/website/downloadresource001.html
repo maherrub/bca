@@ -1,0 +1,81 @@
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load user_agents %}
+{% load website_filters %}
+        
+        <!--/column-->
+        <div id="mobile-pt" class="col-xl-2 col-lg-2 col-md-3 col-sm-6 mb-r">
+            <!--card-->
+            <div class="card">
+                {% if object.cover %}
+                <!--image-->
+                <div class="overlay hm-white-slight">
+                    <img src="{{ object.cover.url }}" class="img-fluid text-center img-fluid" alt="speaker image">
+                    <a>
+                        <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--/image-->
+                {% endif %}
+                    
+                {% if not object.cover %}
+                <div class="view overlay hm-white-slight">
+                    <img src="{% static 'images\bubble600.png' %}" class="img-responsive text-center img-fluid" alt="speaker image">
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                </div>
+                {% endif %}
+                    
+                <!--body-->
+                <div class="bluegrey-text" style="padding:0% 2% 0% 2%;">
+                    {% if object.author %}
+                        <small><span id="mobile-label">Author</span>:<strong> {{ object.author }}</strong></small><br>
+                    {% endif %}
+
+                    {% if not object.author %}
+                        {% if object.author_locale %}
+                        <small><span id="mobile-label">Author</span>:<strong> {{ object.author_locale|print_file_withlines:0 }}</strong></small><br>
+                        {% else %}
+                        <small><span id="mobile-label">Author</span>:<strong> Multiple Authors</strong></small><br>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if object.functional_group == "All" %}
+                        <small><span id="mobile-label">Producer</span>:<strong> BC Resource Team</strong></small><br>
+                    {% elif object.functional_group != "All" %}
+                        <small><span id="mobile-label">Producer</span>:<strong> {{ object.functional_group }} Ministry </strong></small><br>
+                    {% endif %}
+
+                    {% if object.language %}
+                        <small><span id="mobile-label">Language</span>:<strong> {{ object.language }}</strong></small><br>
+                    {% endif %}
+
+                    {% if object.genre %}
+                        <small><span id="mobile-label">Genre</span>:<strong> {{ object.genre }}</strong></small><br>
+                    {% endif %}
+
+                    {% if object.created %}
+                        <small><span id="mobile-label">Released</span>:<strong> {{ object.created|get_due_date_string }}</strong></small><br>
+                    {% endif %}
+
+                    {% if object.updated %}
+                        <small><span id="mobile-label">Updated</span>:<strong> {{ object.updated|date:"Y-d-m" }}</strong></small><br>
+                    {% endif %}
+                </div>
+                <!--/body-->
+
+                <a href="/{{ object.pk }}/downloadresource_item">
+                {% if object.title %}
+                    <h6 class="white-text card-data">{{ object.title|upper }}</h6>
+                {% elif object.title_locale %}
+                    <h6 class="white-text card-data">{{ object.title_locale|print_file_withlines:0 }}</h6>
+                {% elif not object.title and not object.title_locale %}
+                    <h6 class="white-text card-data">{{ object.genre|upper }}</h6>
+                {% endif %}
+                </a>
+            </div>
+            <!--/card-->
+        </div>
+        <!--/column-->

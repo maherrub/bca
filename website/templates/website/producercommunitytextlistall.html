@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load website_filters %}
+
+{% block title %}Producer Community Contents{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<br>
+    <!--Body-->
+    <div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            
+        <a href="/producercommunity/" class="list-group-item active">
+            <i class="fa fa-users fa-1x" aria-hidden="true"></i>
+            &nbsp;Producer Community Texts
+        </a>
+        <!--Search form -->
+        <form method='GET' action='' class="form-inline waves-effect waves-light">
+            <input type='text' name='q' class="text-center blue-text" placeholder='Search a text record' value='{{ request.GET.q }}'/>
+	        <input type='submit' value='Search' style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
+        </form>
+        <!--/Search form -->
+        <span class="counter" style="margin-left:80%; margin-top:15px;">{{ object_list|length }}</span>
+        
+        {% for pclatxt in object_list %}
+        
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            
+            <div class="col-md-3 pull-left white-text default-color-dark">
+                
+                <small><strong>Producer:</strong> {{ pclatxt.content_owner }}</small><br>
+                <small><strong>Topic id:</strong> {{ pclatxt.id }}</small><br>
+                <small><strong>Created:</strong> {{ pclatxt.edited_on|get_due_date_string }}</small><br>
+                <small><strong>Updated:</strong> {{ pclatxt.updated }}</small><br>
+                <small><strong>Fun.Group:</strong> {{ pclatxt.functional_group }}</small><br>
+                <small><strong>Position:</strong> {{ pclatxt.display_position_text }}</small><br>
+                {% if pclatxt.is_published = 0 %}
+                    <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ pclatxt.is_published }}</span></small><br>
+                {% else %}
+                    <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ pclatxt.is_published }}</span></small><br>
+                {% endif %}
+                {% if pclatxt.is_verified = 0 %}
+                    <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ pclatxt.is_verified }}</span></small><br>
+                {% else %}
+                    <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ pclatxt.is_verified }}</span></small><br>
+                {% endif %}
+            </div>
+
+            <div class="col-md-2 col-xs-2 default-color">
+                <small><strong>Button Name:</strong> {{ pclatxt.button_name }}</small><br>
+                <small><strong>Button Link:</strong> {{ pclatxt.link_url }}</small><br>
+            </div>
+            
+            <div class="col-md-7 pull-left teal lighten-5 hoverable">
+                <small><strong>Title:</strong> {{ pclatxt.main_title_text }}</small><br>
+                <small><strong>Sec. Title:</strong> {{ pclatxt.secondary_title_text }}</small><br>
+                <small><strong>St. Desc:</strong> {{ pclatxt.short_description_text }}</small><br>
+                {% if pclatxt.translatedtxtfile1 %}
+                <p class="noselect"><small><strong>TransFile1:</strong> {{ pclatxt.translatedtxtfile1|print_file_content }}</small></p>
+                {% endif %}
+
+                {% if pclatxt.translatedtxtfile2 %}
+                <p class="noselect"><small><strong>TransFile2:</strong> {{ pclatxt.translatedtxtfile2|print_file_content }}</small></p>
+                {% endif %}
+            </div>
+                        
+        </div>
+        </div>
+        </li>
+        
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+    </div>
+    <!--/Body-->
+
+    <div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+
+<div class="divider"></div>
+
+
+
+<div class="divider"></div>
+
+{% endblock %}

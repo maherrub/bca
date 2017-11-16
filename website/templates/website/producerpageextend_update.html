@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Updating... extended page" %}{% endblock %}
+
+{% block content %}
+
+<div class="divider"></div>
+<div class="divider"></div>
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        </div>
+        {% for p in page_objects %}
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/{{ p.pk }}/producerpageextend_list" class="btn-floating btn-small red"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% empty %}
+        {% endfor %}
+    </div>
+    </div>
+</div>
+
+<div class="container">
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <table>
+            {{form|crispy}}
+            </table>
+            
+            <button type="submit" class="btn btn-success col-md-5 pull-left">Update</button>
+            <a href="/producer/" class="btn btn-primary col-md-5 pull-right">Back</a>
+            
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}

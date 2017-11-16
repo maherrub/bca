@@ -1,0 +1,306 @@
+{% extends "django_messages/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load url from future %}
+{% load inbox %}
+{% block content %}
+
+<head>
+    <link href="{% static 'css/socialmedia.css' %}" rel="stylesheet">
+    <style>
+        body {
+        font-family: "Lato", sans-serif;
+         background: #E9EAED;
+        }
+
+
+        @media screen and (max-width: 480px) {
+        label {
+            font-size: 0px;
+            padding: 0px !important;
+        }}
+    </style>
+</head>
+
+
+<div class="divider"></div>
+<div class="divider"></div>
+
+
+<div class="container">
+    <div class="row">
+        <!--left adjustment column-->
+        <div class="col-md-4 col-sm-4 text-center">
+
+        </div>
+        <!--/left adjustment column-->
+        <div class="col-md-4 col-sm-4 text-center">
+            <a href="/messages/inbox/" class="btn btn-light-green btn-sm smooth-scroll">go to Received {{ messages_inbox_count }} <i class="fa fa-commenting-o animated rubberBand"></i> </a>
+        </div>
+        <!--left adjustment column-->
+        <div class="col-md-4 col-sm-4 text-center">
+            <span class="counter">{{ message_list|length }}</span><br>
+        </div>
+    </div>
+</div>
+
+<!--Post display definitions-->
+<div class="container" style="overflow: hidden;">
+    {% for message in message_list %}
+        
+    <!--Post display main row-->
+    <div class="row">
+        
+        <!--left adjustment column-->
+        <div class="col-md-3"></div>
+        <!--/left adjustment column-->
+        
+        <!--middle column-->
+        <div class="col-md-6 wow fadeIn" data-wow-delay="0.01s" style="overflow: hidden;">
+            
+            <div class="sm-box" style="margin: 0px -10px 0px -10px; overflow: hidden;">
+            <!--notify section-->
+            <div class="accordion" id="accordion_{{ message.pk }}" role="tablist" aria-multiselectable="true">
+                <div class="pull-right" role="tab" id="headingOne">
+                    <a data-toggle="collapse" data-parent="#accordion_{{ message.pk }}" href="#collapseOne_{{ message.pk }}" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                        <span class="mb-0"><i class="fa fa-angle-down rotate-icon"></i></span>
+                    </a><br>
+                </div>
+                    
+                <div id="collapseOne_{{ message.pk }}" class="collapse" role="" aria-labelledby="headingOne" aria-expanded="false">
+                    {% if message.read_at %}
+                        <a class="list-group-item green-text"><small>This message has been viewed at {{ message.read_at }}</small></a>
+                    {% endif %}
+
+                    
+
+                    {% if message.sender_deleted_at %}
+                        <a class="list-group-item red-text"><small>Sender has deleted this message at {{ message.sender_deleted_at }}</small></a>
+                    {% endif %}
+
+                    {% if message.recipient_deleted_at %}
+                        <a class="list-group-item red-text"><small>Receipient has trashed this message at : {{ message.recipient_deleted_at }}</small></a>
+                    {% endif %}
+                    
+                    <!--earlier parent message by the sender-->
+                    {% for object in in_list %}
+                        {% if message.parent_msg|slugify == object.subject|slugify %}
+                            {% for up in uprofile %}
+                                {% if object.sender == up.user %}
+
+                        <a href="/messages/view/{{ object.pk }}/" class="list-group-item grey-text">
+                                    
+                                    <!--Avatar-->
+                                    <div class="avatar ">
+                                        <img src="{{ up.usercover.url }}" class="rounded-circle z-depth-0">
+                                    </div>
+                                    <!--/Avatar-->
+                                {% else %}
+                                {% endif %}
+                                {% empty %}
+                            {% endfor %}        
+                        
+                        <small>Earlier {{ object.sender }} <i class="fa fa-pencil"></i><br>{{ object.subject }}<br>{{ object.body }}</small></a>
+                        
+                        {% else %}
+                        {% endif %}
+                    {% empty %}
+                    {% endfor %}
+                    <!--/earlier parent message by the sender-->
+
+                    <!--user has sent a reply to the receipt timing details-->
+                    {% if message.replied_at %}
+                        <a class="list-group-item green-text"><small>response received at {{ message.replied_at }} </small><i class="fa fa-check"></i></a>
+                    {% endif %}
+                    <!--/user has sent a reply to the receipt timing details-->
+                </div>
+            </div>
+            <!--/notify section-->
+        
+            <!--Avatar header section-->
+            <div class="container" style="margin: 0px 0px 0px 5px; overflow: hidden;">
+                <div class="row">
+                    <!--sender section-->
+                    <div class="col-5">
+                        {% for object in uprofile %}
+                            {% if message.sender == object.user %}
+                                <!--Avatar-->
+                                <div class="avatar ">
+                                    <img src="{{ object.usercover.url }}" class="rounded z-depth-0">
+                                </div>
+                                <!--/Avatar-->
+                            {% else %}
+                            {% endif %}
+                            {% empty %}
+                                <!--Avatar-->
+                                <div class="avatar ">
+                                    <i class="fa fa-user-times"></i>
+                                </div>
+                                <!--Avatar-->
+                        {% endfor %}
+
+                        <!--/Author Data-->
+                        <div class="name blue-grey-text">
+                            <h6><strong>{{ message.sender }}</strong></h6>
+                            <small>{{ message.sent_at }}</small>
+                        </div>
+                        <!--/Author Data-->
+                    </div>
+
+                    <!--/sender section-->
+                    
+                    <!--communication direction-->
+                    <div class="col-2">
+                        <i style ="padding-top:50%;" class="fa fa-long-arrow-right fa-2x animated slideInLeft"></i>
+                    </div>
+                    <!--/communication direction-->
+
+                    <!--receiver section-->
+                    <div class="col-5">
+                        {% for object in uprofile %}
+                            {% if message.recipient == object.user %}
+                                <!--Avatar-->
+                                <div class="avatar ">
+                                    <img src="{{ object.usercover.url }}" class="rounded z-depth-0">
+                                </div>
+                                <!--/Avatar-->
+                            {% else %}
+                            {% endif %}
+                            {% empty %}
+                                <!--Avatar-->
+                                <div class="avatar ">
+                                    <i class="fa fa-user-times"></i>
+                                </div>
+                                <!--Avatar-->
+                        {% endfor %}
+
+                        <!--/Author Data-->
+                        <div class="name blue-grey-text">
+                            <h6><strong>{{ message.recipient }}</strong></h6>
+                            <small>{{ message.sent_at }}</small>
+                        </div>
+                        <!--/Author Data-->
+                    </div>
+                    <!--/receiver section-->
+
+                </div>
+            </div>
+            <!--Avatar header section-->
+
+            <hr>
+         
+            <!--Avatar Post-->
+            <div class="container" style="overflow: hidden;">
+                <div class="row">
+                    <div class="avatar-post grey-text">
+                        <p>{{ message.subject }}</p>
+                        <p>{{ message.body }}</p>
+                     </div>
+                </div>
+            </div>
+            <!--Avatar Post-->
+        
+        <!--Avatar Footer-->
+        <div class="container sm-footer" style="overflow: hidden;">
+            <div class="row">
+            {% if message.sender.pk = user.pk %}
+                
+                <!--delete button-->
+                <span style="padding:0px 5px 0px 10px;">
+                    <a href="{% url 'messages_delete' message.id %}">{% trans "Delete" %}
+                        <i class="fa fa-times"></i>
+                    </a>
+                </span>
+                <!--/delete button-->
+
+                <!--view footprint of parent message-->
+                {% if message.parent_msg %}
+                <span class="grey-text" style="padding:0px 5px 0px 10px;">
+                    <a>{% trans "Footprint" %}
+                        <i class="fa fa-paw"></i>
+                    </a>
+                </span>
+                {% endif %}
+                <!--/view footprint of parent message-->
+
+                <!--if the receipient has deleted the message-->
+                {% if message.recipient_deleted_at %}
+                <span class="grey-text" style="padding:0px 5px 0px 10px;">
+                    <a>{% trans "Trashed" %}
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                </span>
+                {% endif %}
+                <!--/if the receipient has deleted the message-->
+
+                
+                <!--Response status-->
+                {% if message.replied_at %}
+                <span class="grey-text" style="padding:0px 5px 0px 10px;">
+                    <a> Responded&nbsp; 
+                        <i class="fa fa-check-square-o"></i>
+                    </a>
+                </span>
+                {% endif %}
+                <!--Response status-->
+                
+                <!--message id-->
+                <span class="grey-text" style="padding:0px 5px 0px 10px;">
+                    <a href="#">{{ message.pk }}
+                        <i class="fa fa-info"></i>
+                    </a>
+                </span>
+                <!--/message id-->
+
+             {% endif %}
+            </div>
+        </div>
+        <!--Avatar Footer-->
+        </div>
+    
+        </div>
+        <!--/middle column-->
+
+       
+        <!--right adjustment column-->
+        <div class="col-md-3"></div>
+        <!--/right adjustment column-->
+
+    </div>
+    <!--Post display main row-->
+        
+    {% endfor %}
+</div>
+<!--Post display definitions-->
+ 
+
+
+
+{% endblock %}
+
+{% comment %}
+<h1>{% trans "Sent Messages" %}</h1>
+{% if message_list %}
+<table class="messages">
+    <thead>
+        <tr><th>{% trans "ID" %}</th><th>{% trans "Recipient" %}</th><th>{% trans "Subject" %}</th><th>{% trans "Sent" %}</th><th>{% trans "Action" %}</th></tr>
+    </thead>
+    <tbody>
+{% for message in message_list %}
+    <tr>
+        <td>{{ message.pk }}</td>
+        <td>{{ message.recipient }}</td>
+        <td>
+        <a href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
+        </td>
+        <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
+        <td><a href="{% url 'messages_delete' message.id %}?next={% url 'messages_outbox' %}">{% trans "delete" %}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>{% trans "No messages." %}</p>
+{% endif %}
+{% endcomment %}

@@ -1,0 +1,268 @@
+.divider {
+    height:50px;
+}
+
+section {
+    height:688px;
+    padding-top:50px;
+    padding-bottom:50px;
+    overflow:auto;
+/*custom extension to have full spread of the picture*/
+    margin-left: -34px;
+    margin-right: -34px;
+    margin-top:-20px;
+	overflow-x: hidden;
+	
+}
+
+.bg-1 {
+	/*
+	background: url('images/bc1.png') no-repeat center center fixed;
+    */
+	background: url('/media/parallax_images/english_hg_1.png') no-repeat center center fixed;
+	color:#fff;
+    background-size:cover;
+}
+  
+.bg-2 {
+    background: url('/media/parallax_images/english_hg_2.png') no-repeat top center fixed;
+    color:#fff;
+    background-size:cover;
+}
+
+.bg-3 {
+    background: url('/media/parallax_images/english_hg_3.png') no-repeat bottom center fixed;
+    color:#fff;
+    background-size:cover;
+}
+
+#footer {
+    height: 60px;
+    background-color:#585858;
+    margin-top:50px;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+#footer a {
+  color:#efefef;
+}
+
+.btn-position-bottom {
+        margin-top: 150px;
+        border-color: #ccc;
+        background-color: rgba(23, 20, 20, 0.1);
+}
+
+.btn-transparent {
+    color: #333;
+    background-color: rgba(23, 20, 20, 0.1);
+    border-color: #ccc;
+}
+
+.img-center {
+    margin:0 auto;
+}
+
+.panel-body-fh {
+  height: 200px; 
+  /* height: calc(100vh - 200px); */
+  overflow-y: hidden; 
+}
+
+/* custom fonts Ruban */
+
+.font-vibes-lg{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Great Vibes', cursive; 
+	font-size: 90px;
+}
+
+.font-vibes-md{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Great Vibes', cursive; 
+	font-size: 45px;
+}
+
+.font-vibes-sm{
+	
+	text-shadow: 2px 2px 2px #aaa; 
+	font-family: 'Great Vibes', cursive; 
+	font-size: 24px;
+}
+
+.font-vibes-xs{
+	
+	text-shadow: 2px 2px 2px #aaa; 
+	font-family: 'Great Vibes', cursive; 
+	font-size: 12px;
+}
+
+.font-roboto-lg{
+	
+	text-shadow: 1px 1px 1px #aaa; 
+	font-family: 'Roboto', sans-serif; 
+	font-size: 90px;
+}
+
+.font-roboto-md{
+	
+	text-shadow: 1px 1px 1px #aaa; 
+	font-family: 'Roboto', sans-serif; 
+	font-size: 45px;
+}
+
+.font-roboto-sm{
+	
+	text-shadow: 1px 1px 1px #aaa; 
+	font-family: 'Roboto', sans-serif; 
+	font-size: 24px;
+}
+
+.font-roboto-xs{
+	
+	text-shadow: 1px 1px 1px #aaa; 
+	font-family: 'Roboto', sans-serif; 
+	font-size: 16px;
+}
+
+.font-helvetica-lg{
+	
+	text-shadow: 1px 1px 1px #aaa; 
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 90px;
+	font-weight: 900;
+}
+
+.font-helvetica-md{
+	
+	text-shadow: 1px 1px 1px #aaa; 
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 45px;
+	font-weight: 900;
+}
+
+.font-helvetica-sm{
+	
+	text-shadow: 1px 1px 1px #aaa; 
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+
+.font-helvetica-xs{
+	
+	text-shadow: 2px 2px 2px #aaa; 
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+
+.font-cinzel-lg{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Cinzel Decorative', cursive;
+	font-size: 90px;
+}
+
+.font-cinzel-md{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Cinzel Decorative', cursive;
+	font-size: 45px;
+}
+
+.font-cinzel-sm{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Cinzel Decorative', cursive;
+	font-size: 24px;
+}
+
+.font-cinzel-xs{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Cinzel Decorative', cursive;
+	font-size: 12px;
+}
+
+.font-fredericka-lg{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 90px;
+}
+
+.font-fredericka-md{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 45px;
+}
+
+
+.font-fredericka-sm{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 24px;
+}
+
+.font-pompiere-lg{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Pompiere', cursive;
+	font-size: 90px;
+}
+
+.font-pompiere-md{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Pompiere', cursive;
+	font-size: 45px;
+}
+
+.font-pompiere-sm{
+	
+	text-shadow: 4px 4px 4px #aaa; 
+	font-family: 'Pompiere', cursive;
+	font-size: 24px;
+}
+
+
+/* Custom Tooltip */
+
+ .bluetips + .tooltip > .tooltip-inner {
+      
+	color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+	font-size: 12px;
+	border-radius: 25px;
+	padding: 5px 20px 5px 20px;
+	  
+  }
+  /* Tooltip on top */
+  .bluetips + .tooltip.top > .tooltip-arrow {
+      border-top: 5px solid red;
+  }
+  /* Tooltip on bottom */
+  .bluetips + .tooltip.bottom > .tooltip-arrow {
+      border-bottom: 5px solid red;
+  }
+  /* Tooltip on left */
+  .bluetips + .tooltip.left > .tooltip-arrow {
+      border-left: 5px solid red;
+  }
+  /* Tooltip on right */
+  .bluetips + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid red;
+  }
+
+
+
+

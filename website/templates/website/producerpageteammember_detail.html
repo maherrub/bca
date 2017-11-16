@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<!--Permissions control-->
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        <h6><span class="badge red">{{ object.member_name }}'s detail</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a onclick="history.go(-1);" class="btn-floating btn-small red"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!--head section-->
+<div class="container">
+    <!--First row-->
+    <div class="row text-center">
+
+    <!--Dummy First column-->
+    <div class="col-md-4 mb-r wow fadeIn" data-wow-delay="0.1s">
+        <!--do not remove left space adjustment-->                        
+    </div>
+    <!--/Dummy First column-->
+
+    <!--Second column-->
+    <div class="col-md-4 mb-r wow fadeIn" data-wow-delay="0.2s">
+        <div class="testimonial">
+            <!--Avatar-->
+            <div class="avatar middle mb-r wow animated zoomIn" data-wow-delay="0.1s">
+                <img src="{{ object.member_picture.url }}" class="rounded-circle team-leader img-fluid">
+            </div>
+
+            <!--Content-->
+            <h4 class="black-text">{{ object.member_name }}</h4>
+            <h6>{{ object.member_title }}</h6>
+
+            {% if object.member_crux %}
+                <small>{{ object.member_crux }}</small><br>
+            {% endif %}
+            
+            {% if object.translatedtxtfile2 %}
+            <small>{{ object.translatedtxtfile2|print_file_content }}</small>
+            {% endif %}
+
+            {% if object.more_link %}
+                <small><a href="{{ object.more_link }}">...more</a></small>
+            {% endif %}
+        </div>
+    </div>
+    <!--/Second column-->
+
+    <!--Dummy Third column-->
+    <div class="col-md-4 mb-r wow fadeInDown" data-wow-delay="0.5s">
+        <!--do not remove left space adjustment-->                        
+    </div>
+    <!--/Dummy Third column-->
+
+    </div>
+    <!--/First row-->
+</div>
+<!--/head section-->
+
+{% endblock %}

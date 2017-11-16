@@ -1,0 +1,344 @@
+{% load static %}
+
+
+<head>
+		<link href="{% static 'css/dmenustyle.css' %}" rel="stylesheet">
+        <link href="{% static 'css/dmenubase.css' %}" rel="stylesheet">
+
+</head>
+ {% if user.is_authenticated %}
+<nav class="fixed-top">
+    <ul class="content clearfix">
+        
+        <!--HOME-->
+        <li class="dropdown">
+            <a href="\"><i class="fa fa-university"></i>&nbsp;HOME</a>
+            <ul class="sub-menu">
+                {% for menu in menus|dictsort:"menu_name" %}
+                    {% if menu.menu_position = 'HOME' %}
+                        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    {% endif %}
+                {% empty %}
+                {% endfor %}
+            </ul>
+        </li>
+
+        <!--DISCOVER BC-->
+        <li class="dropdown">
+            <a href="#"><i class="fa fa-spinner"></i>&nbsp;DISCOVER&nbsp;BC</a>
+            <ul class="sub-menu">
+                {% for menu in menus|dictsort:"menu_name" %}
+                    {% if menu.menu_position = 'DISCOVER_BC' %}
+                        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    {% endif %}
+                	{% empty %}
+                {% endfor %}
+            </ul>
+        </li>
+        
+        <!--EXPERIENCE-->
+        <li class="dropdown">
+            <a href="#"><i class="fa fa-star-o"></i>&nbsp;EXPERIENCE</a>
+            <ul class="sub-menu">
+                {% for menu in menus|dictsort:"menu_name" %}
+                    {% if menu.menu_position = 'EXPERIENCE' %}
+                        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    {% endif %}
+                	{% empty %}
+                {% endfor %}
+            </ul>
+        </li>
+
+        <!--ENGAGE-->
+        <li class="dropdown">
+            <a href="#"><i class="fa fa-users"></i>&nbsp;ENGAGE</a>
+            <ul class="sub-menu">
+                <!--International Ministries-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-globe"></i>&nbsp;INTERNATIONAL&nbsp;MINISTRIES</a>
+                    <ul class="sub-menu">
+                        <li class="dropdown">
+                            <a href="/cn/">MANDARIN&nbsp;MINISTRY</a>
+                                <ul class="sub-menu">
+                                    {% for menu in menus|dictsort:"menu_name" %}
+                                        {% if menu.menu_position = 'MANDARIN_MINISTRY' %}
+                                            <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                                        {% endif %}
+                                        {% empty %}
+                                    {% endfor %}
+                                </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="/hk/">HOKKIEN&nbsp;MINISTRY</a>
+                                <ul class="sub-menu">
+                                    {% for menu in menus|dictsort:"menu_name" %}
+                                        {% if menu.menu_position = 'HOKKIEN_MINISTRY' %}
+                                            <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                                        {% endif %}
+                                        {% empty %}
+                                    {% endfor %}
+                                </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="/ct/">CANTONESE&nbsp;MINISTRY</a>
+                                <ul class="sub-menu">
+                                    {% for menu in menus|dictsort:"menu_name" %}
+                                        {% if menu.menu_position = 'CANTONESE_MINISTRY' %}
+                                            <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                                        {% endif %}
+                                        {% empty %}
+                                    {% endfor %}
+                                </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="/in/">INDIAN&nbsp;MINISTRY</a>
+                                <ul class="sub-menu">
+                                    {% for menu in menus|dictsort:"menu_name" %}
+                                        {% if menu.menu_position = 'INDIAN_MINISTRY' %}
+                                            <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                                        {% endif %}
+                                        {% empty %}
+                                    {% endfor %}
+                                </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="/fp/">FILIPINO&nbsp;MINISTRY</a>
+                                <ul class="sub-menu">
+                                    {% for menu in menus|dictsort:"menu_name" %}
+                                        {% if menu.menu_position = 'FILIPINO_MINISTRTY' %}
+                                            <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                                        {% endif %}
+                                        {% empty %}
+                                    {% endfor %}
+                                </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--OIKOS-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-cubes"></i>&nbsp;OIKOS (CELL GROUP)</a>
+                        <ul class="sub-menu">
+                            <!--Oikos General-->
+                            {% for menu in menus|dictsort:"menu_name" %}
+                    		    {% if menu.menu_position = 'ENGAGE_OIKOS' %}
+                        		    <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			{% endif %}
+                			{% empty %}
+                			{% endfor %}
+
+                            <!--Family Oikos-->
+                            <li class="dropdown">
+                                <a href="#">FAMILY</a>
+                                    <ul class="sub-menu">
+                                    {% for menu in menus|dictsort:"menu_name" %}
+                    			        {% if menu.menu_position = 'ENGAGE_FAMILY_OIKOS' %}
+                        		            <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			        {% endif %}
+                				        {% empty %}
+                			        {% endfor %}
+                                    </ul>
+                            </li>
+                            <!--Youth and Young Adults Oikos-->
+                            <li class="dropdown">
+                                <a href="#">YOUTH&YOUNG ADUILTS</a>
+                                    <ul class="sub-menu">
+                                    {% for menu in menus|dictsort:"menu_name" %}
+                    			        {% if menu.menu_position = 'ENGAGE_YOUTH_YOUNG_ADUILTS_OIKOS' %}
+                        		            <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			        {% endif %}
+                				        {% empty %}
+                			        {% endfor %}
+                                    </ul>
+                            </li>
+                            
+                            
+                        </ul>
+                </li>
+                <!--Womens ministry-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-gift"></i>&nbsp;WOMEN'S MINISTRY</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_WOMENS_MINISTRY' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+                <!--Worship ministry-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-music"></i>&nbsp;WORSHIP MINISTRY</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_WORSHIP_MINISTRY' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+                <!--Youth at BC-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-diamond"></i>&nbsp;YOUTH[AT]BC</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_YOUTH_AT_BC' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+                <!--Kids Connect-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp;KIDS&nbsp;CONNECT</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_KIDS_CONNECT' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+                <!--Evangelism-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-bullhorn"></i>&nbsp;EVANGELISM</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_EVANGELISM' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+                <!--Prayer Ministry-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-key"></i>&nbsp;PRAYER&nbsp;MINISTRY</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_PRAYER_MINISTRY' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+                <!--Social Concerns-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-heart red-text"></i>&nbsp;SOCIAL&nbsp;CONCERNS</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_SOCIAL_CONCERNS' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+                <!--Tuition Centre-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-book"></i>&nbsp;TUITION&nbsp;CENTRE</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_TUITION_CENTRE' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+                <!--Usher Ministry-->
+                <li class="dropdown">
+                    <a href="#"><i class="fa fa-anchor"></i>&nbsp;USHER&nbsp;MINISTRY</a>
+                        <ul class="sub-menu">
+                            <li class="dropdown">
+                                {% for menu in menus|dictsort:"menu_name" %}
+                    			    {% if menu.menu_position = 'ENGAGE_USHER_MINISTRY' %}
+                        		        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    			    {% endif %}
+                				{% empty %}
+                			    {% endfor %}
+                            </li>
+                        </ul>
+                </li>
+
+                <!--General menu under Engage-->
+                {% for menu in menus|dictsort:"menu_name" %}
+                    {% if menu.menu_position = 'ENGAGE' %}
+                        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    {% endif %}
+                	{% empty %}
+                {% endfor %}
+            </ul>
+        </li>
+
+        <!--GROW-->
+        <li class="dropdown">
+            <a href="#"><i class="fa fa-rocket"></i>&nbsp;GROW</a>
+            <ul class="sub-menu">
+                {% for menu in menus|dictsort:"menu_name" %}
+                    {% if menu.menu_position = 'GROW' %}
+                        <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                    {% endif %}
+                	{% empty %}
+                {% endfor %}
+            </ul>
+        </li>
+
+        <!--Connect-->
+        <li class="dropdown">
+            <a href="#"><i class="fa fa-plug"></i>&nbsp;CONNECT</a>
+            <ul class="sub-menu">
+            {% for menu in menus|dictsort:"menu_name" %}
+                {% if menu.menu_position = 'CONNECT' %}
+                    <li><a href="{{ menu.menu_link }}">{{ menu.menu_name|upper }}</a></li>        
+                {% endif %}
+                {% empty %}
+            {% endfor %}
+            </ul>
+        </li>
+
+        <!--PROFILE-->
+        <li class="dropdown">
+            <a href="#"><i class="fa fa-user"></i>&nbsp;{{ user.username|upper }}</a>
+            <ul class="sub-menu">
+                <li><a href="/accounts/logout/"><i class="fa fa-sign-out"></i>&nbsp;LOGOUT</a></li>
+                <li><a href="/up/up_list"><i class="fa fa-spinner fa-spin"></i>&nbsp;START</a></li>
+                <li><a href="/apps_list/"><i class="fa fa-clone"></i>&nbsp;APP&nbsp;STASH</a></li>
+            </ul>
+        </li>
+
+        <!--Social-->
+        <li><a href="#" target="_blank"><i class="fa fa-facebook"> </i></a></li>
+        <li><a href="#" target="_blank"><i class="fa fa-instagram"> </i></a></li>
+        <li><a href="#" target="_blank"><i class="fa fa-youtube"> </i></a></li>
+
+
+    </ul>
+    
+    
+</nav>
+ {% endif %}

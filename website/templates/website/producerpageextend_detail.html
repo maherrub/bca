@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+
+{% block content %}
+
+{% if object.layout == 'parallax-style' %}
+
+<!--load extend parallax-style layout -->
+    {% if object.extendmedia and object.display_section %}
+    <style>
+        section {
+            height: 400px;
+        }
+        
+        #section1 {
+            background-image: url("{{ object.extendmedia.url }}");
+        }
+
+    </style>
+    {% endif %}
+
+    <section class="parallax" id="section1">
+    <a href="" class="red-text">&nbsp;edit</a>
+    <!--Texts and buttons on image1 -->
+    <div class="containerBox">
+        <div class="text-box">
+        <div class="mask flex-center"></div>
+        {% if request|is_pc %}
+        <ul style="margin-top: -2% !important;">
+            <li>
+                <h1 style="line-height: 1.6em;" class="h1-responsive {{ object.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ object.main_title }}</h1>
+            </li>
+                    
+            <li>
+                <lead style="line-height: 1.6em;" class="h5-responsive {{ object.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ object.high_title }}</lead>
+            </li>
+        </ul>
+        
+        <div class="col-md-10 offset-md-1 {{ object.high_title_color }} noselect excerpt wow fadeIn" data-wow-delay="0.4s">
+            <p><strong class="text-left">{{ object.content }}</strong></p>
+        </div>
+        
+        {% elif request|is_mobile %}
+        
+        <ul style="margin-top: -10% !important;">
+            <li>
+                <h1 style="line-height: 1.2em;" class="{{ object.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ object.main_title }}</h1>
+            </li>
+                    
+            <li>
+                <lead style="line-height: 1em;" class=" {{ object.high_title_color }} noselect wow fadeInUp noselect" data-wow-delay="0.1s">{{ object.high_title }}</lead>
+            </li>
+        </ul>
+        
+        <div class="col-md-10 offset-md-1 {{ object.high_title_color }} noselect excerpt wow fadeIn" data-wow-delay="0.4s">
+            <p class="text-left"><lead>{{ object.content }}</lead></p>
+        </div>
+        {% endif %}
+        </div>
+        </div>
+    <!--Texts and buttons on image1 -->
+    </section>
+    
+    <!--translated files for extended page -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/translated files for extended page -->
+
+<!--/load extend parallax-style layout -->
+
+{% elif object.layout == 'picture-left-text-right' %}
+
+<!--load extend picture-left-text-right layout -->
+    <!--Layout picture-left-text-right-->
+    
+    <div class="container-fluid">
+    <div class="divider"></div>
+    <div class="divider"></div>
+        <a href="" class="red-text">&nbsp;edit</a>
+            <div class="row">
+                <!--First column-->
+                <div class="col-md-5 mb-r wow fadeInLeft" data-wow-delay="0.4s">
+                    <!--Featured image-->
+                    <div class="view overlay hm-black-slight z-depth-2 hoverable" style="max-height: 400px;">
+                        {% if object.extendmedia and object.display_section %}
+                        <img class="img-fluid" src="{{ object.extendmedia.url }}">
+                        {% endif %}
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                    </div>
+                </div>
+                <!--/First column-->
+
+                <!--Second column-->
+                <div class="col-md-7 mb-r wow fadeInRight" data-wow-delay="0.4s">
+                    <!--Excerpt-->
+                    <h3 class=""><i class="fa fa-television"></i>{{ object.main_title }}</h3>
+                    <h5 class="{{ object.high_title_color }}"><strong>{{ object.high_title }}</strong></h5>
+                    
+                    <div class="excerpt wow fadeIn" data-wow-delay="0.4s">
+                        <p><lead>{{ object.content }}</lead></p>
+                    </div>
+                </div>
+                <!--/Second column-->
+            </div>
+        </div>
+        <!--translated files for extended page -->
+        {% include 'website/translatedfiles.html' %}
+        <!--/translated files for extended page -->
+        
+    
+<!--/load extend picture-left-text-right layout -->
+
+{% elif object.layout == 'text-left-picture-right' %}
+
+<!--load extend text-left-picture-right layout -->
+<!--loading publicpage layout3-->
+<div class="container-fluid">
+    
+    <div class="divider"></div>
+    <div class="divider"></div>
+    <!--Layout text-left-picture-right-->
+    <div class="row">
+        
+        <!--First column-->
+        <div class="col-md-7 mb-r wow fadeInLeft" data-wow-delay="0.3s">
+            <a href="" class="red-text">&nbsp;edit</a>
+            <!--Excerpt-->
+            <h3 class=""><i class="fa fa-television"></i>{{ object.main_title }}</h3>
+            <h5 class="{{ object.high_title_color }}" >{{ object.high_title }}</h5>
+            <p><lead>{{ object.content }}</lead></p>
+        </div>
+        <!--/First column-->
+
+        <!--Second column-->
+        <div class="col-md-5 mb-r wow fadeInRight" data-wow-delay="0.3s">
+            <!--Featured image-->
+            
+            <div class="view overlay hm-black-slight z-depth-2 hoverable" style="max-height: 400px;">
+                {% if object.extendmedia and object.display_section %}
+                <img class="img-fluid" src="{{ object.extendmedia.url }}">
+                {% endif %}
+                    <a>
+                        <div class="mask"></div>
+                    </a>
+            </div>
+        </div>
+        <!--/Second column-->
+    </div>
+    <!--translated files for extended page -->
+        {% include 'website/translatedfiles.html' %}
+    <!--/translated files for extended page -->
+</div>
+<!--/load extend text-left-picture-right layout -->
+
+
+{% elif object.layout == 'plx-imgmap-link' %}
+
+        <!--load extend parallax image map with link layout-->
+        {% include 'website/extend001b.html' %}    
+        <!--/load extend parallax image map with link layout-->
+
+    {% elif object.layout == 'plx-imgmap-tooltip' %}
+
+        <!--load extend parallax image map with tooltip layout-->
+        {% include 'website/extend001c.html' %}    
+        <!--/load extend parallax image map with tooltip layout-->
+
+    {% elif object.layout == 'plx-imgmap-tooltip-link' %}
+
+        <!--load extend parallax image map with tooltip and link layout-->
+        {% include 'website/extend001d.html' %}    
+        <!--/load extend parallax image map with tooltip and link layout-->
+
+    {% elif object.layout == 'plx-moveable-txtbox' %}
+
+        <!--load extend parallax image map moveable text box layout-->
+        {% include 'website/extend001e.html' %}    
+        <!--/load extend parallax image map moveable text box layout-->
+    
+    {% elif object.layout == 'plx-moveable-txtbox-link' %}
+
+        <!--load extend parallax image map moveable text box with link layout-->
+        {% include 'website/extend001f.html' %}    
+        <!--/load extend parallax image map moveable text box with link layout-->
+
+
+
+
+{% endif %}
+
+<hr>
+<small class="red-text">below item(s) will not be published</small><br>
+<small class="amber-text">your image mapping properties will not show correctly in this section, your admin will take care of it before publishing your pages. In your request ticket, kindly request your administrator to fine tune the image mapping properties.</small><br>
+<div class="col-md-12">
+    <a href="/producer/" class="col-md-2 btn btn-primary pull-left">Producer</a>
+</div>
+
+<div class="divider"></div>
+<div class="divider"></div>
+
+{% endblock %}

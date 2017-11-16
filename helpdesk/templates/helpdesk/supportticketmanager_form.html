@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %} Support admin reply {% endblock %}</h6>
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="container-fluid">
+<div class="row">
+    <!--Offsets-->
+<div class="col-md-6 offset-md-3">
+        
+    
+    <div class="">
+        
+    <!--Form with header-->
+        <div class="">
+        <!--Header-->
+        <div class="">
+            <h3 class="red-text text-right"><i class="fa fa-thumbs-up"></i>Support Admin Reply</h3>
+            
+        </div>
+            <!--Body-->
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                {{form|crispy}}
+                </table>
+                <button type="submit" class="btn btn-success col-md-4 pull-left">Send</button>
+                <div><a class="pull-right btn btn-primary btn-small col-md-4" href="/helpdesk/supportticket_list/">Back</a> </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

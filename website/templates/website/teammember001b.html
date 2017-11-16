@@ -1,0 +1,131 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<head>
+    <style>
+
+        #team-title {
+            margin-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        {% if request|is_mobile %}
+             @media screen and (orientation: landscape) {
+                    #team-title {
+                    margin-top: 4em;
+                    padding-bottom: 1em;
+                }
+             }
+        {% endif %}
+
+
+            @media screen and (orientation: portrait) {
+                #team-title {
+                    margin-top: 3em;
+                    padding-bottom: 1em;
+                }
+            }    
+    
+    </style>
+</head>
+
+
+
+        <!--Teammember001b Leader-->
+        <!--Section: Page>Team Name>Team Member001b-->
+            {% for tl in teammembers_objects %}
+            {% if not tl.hierarchy = '2' and tl.teamname_id|slugify = tn.team_name|slugify and tl.layout == 'Locale' %}
+                <!--Team head section-->
+                <div class="container" style="overflow: hidden;">
+                        <!--First row-->
+                        <div class="row text-center">
+
+                            <!--Dummy First column-->
+                            <div class="col-md-4 mb-r wow fadeIn" data-wow-delay="0.1s">
+                                <!--do not remove left space adjustment-->                        
+                            </div>
+                            <!--/Dummy First column-->
+
+                            <!--Second column-->
+                            <div class="col-md-4 mb-r wow fadeIn" data-wow-delay="0.2s">
+                                <div class="testimonial">
+                                    <!--Avatar-->
+                                    {% if tl.hierarchy = '1' %}
+                                        {% if tl.member_picture %}
+                                    <div class="avatar middle mb-r wow animated zoomIn" data-wow-delay="0.1s">
+                                        <img src="{{ tl.member_picture.url }}" class="rounded-circle team-leader img-fluid">
+                                    
+                                    </div>
+                                        {% endif %}
+
+                                    <!--Content-->
+                                    <h4 class="black-text">{{ tl.form_locale|print_file_withlines:0 }}</h4> <!--member_name-->
+                                    <h6>{{ tl.form_locale|print_file_withlines:1 }}</h6> <!--member_title-->
+
+                                        {% if tl.form_locale|print_file_withlines:2 %}
+                                            <small>{{ tl.form_locale|print_file_withlines:2 }}</small><br> <!--member_crux-->
+                                        {% endif %}
+                                        
+                                        {% if tl.more_link %}
+                                            <small><a href="{{ tl.more_link }}">...{{ tl.form_locale|print_file_withlines:3 }}</a></small> <!--more_text-->
+                                        {% endif %}
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!--/Second column-->
+
+                            <!--Dummy Third column-->
+                            <div class="col-md-4 mb-r wow fadeInDown" data-wow-delay="0.5s">
+                                <!--do not remove left space adjustment-->                        
+                            </div>
+                            <!--/Dummy Third column-->
+
+                        </div>
+                        <!--/First row-->
+                </div>
+                <!--/Team head section-->
+                {% endif %}
+            {% empty %}
+            {% endfor %}
+        <!--Teammember001b Leader-->
+
+        <!--Teammember001b members container-->
+        <div class="container" style="overflow: hidden;">
+        <div class="row">
+            <div class="col-md-12">
+            {% for tm in teammembers_objects %}
+                {% if tm.hierarchy = '2' and tm.teamname_id|slugify = tn.team_name|slugify and tm.layout == 'Locale' %}
+                <!--Column 1-->
+                <div class="col-md-6 mb-r pull-left wow fadeIn" data-wow-delay="0.1s">
+                    <div class="media">
+                        
+                        <a class="media-left mb-r wow animated zoomIn" data-wow-delay="0.1s">
+                            <img class="rounded-circle team-member img-fluid" src="{{ tm.member_picture.url }}">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="black-text media-heading">{{ tm.form_locale|print_file_withlines:0 }}</h5> <!--member_name-->
+                            <h6>{{ tm.form_locale|print_file_withlines:1 }}</h6> <!--member_title-->
+
+                                {% if tm.form_locale|print_file_withlines:2 %}
+                                    <small>{{ tm.form_locale|print_file_withlines:2 }}</small><br> <!--member_crux-->
+                                {% endif %}
+                                        
+                                {% if tm.more_link %}
+                                    <small><a href="{{ tm.more_link }}">...{{ tm.form_locale|print_file_withlines:3 }}</a></small>
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <!--/Column 1-->
+            {% empty %}
+            {% endfor %}
+            </div>
+        </div>
+        <!--/Row-->
+        </div>
+        <!--/Teammember001b members container-->

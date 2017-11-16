@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Producer Community Contents{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<br>
+    <!--Body-->
+    <div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            
+        <a href="/producercommunity/" class="list-group-item active">
+            <i class="fa fa-users fa-1x" aria-hidden="true"></i>
+            &nbsp;Producer Community Team Members
+        </a>
+        <!--Search form -->
+        <form method='GET' action='' class="form-inline waves-effect waves-light">
+            <input type='text' name='q' class="text-center blue-text" placeholder='Search a team member' value='{{ request.GET.q }}'/>
+	        <input type='submit' value='Search' style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
+        </form>
+        <!--/Search form -->
+        <span class="counter" style="margin-left:80%; margin-top:15px;">{{ object_list|length }}</span>
+        
+        {% for pclatmem in object_list %}
+        
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            
+            <div class="col-md-3 pull-left white-text lime darken-4">
+                
+                <small><strong>Producer:</strong> {{ pclatmem.owner }}</small><br>
+                <small><strong>This id:</strong> {{ pclatmem.id }}</small><br>
+                <small><strong>C.Date:</strong> {{ pclatmem.edited_on }}</small><br>
+                <small><strong>Team id:</strong> {{ pclatmem.teamname_id }}</small><br>
+                <small><strong>Hierarchy:</strong>{{ pclatmem.hierarchy }}</small><br>
+                <small><strong>Display:</strong>{{ pclatmem.member_displayposition }}</small><br>
+            </div>
+
+            <div class="col-md-2 col-xs-2 lime darken-2 text-center">
+                {% if pclatmem.member_picture %}
+                    <img src="{{ pclatmem.member_picture.url }}" class="rounded-circle list-img-md img-responsive img-fluid" alt="speaker_image">
+                    {% if pclatmem.hierarchy == '1' %}
+                    <small><strong>Leader</strong></small><br>
+                    {% else %}
+                    <small><strong>member</strong></small><br>
+                    {% endif %}
+                {% endif %}
+            </div>
+            
+            <div class="col-md-7 pull-left lime lighten-4 hoverable">
+                <small><strong>Name:</strong> {{ pclatmem.member_name }}</small><br>
+                <small><strong>Title:</strong> {{ pclatmem.member_title }}</small><br>
+                <small><strong>Crux:</strong> {{ pclatmem.member_crux }}</small><br>
+                <small><strong>Link:</strong> {{ pclatmem.more_link }}</small><br>
+            </div>
+                        
+        </div>
+        </div>
+        </li>
+        
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+    </div>
+    <!--/Body-->
+
+    <div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+
+<div class="divider"></div>
+
+
+
+<div class="divider"></div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+{% block title %}{% trans "Producer Home Group Text Detail" %}{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+        <div class="jumbotron text-center z-depth-0 hoverable " style="background-color: white;  margin-left: 0px; margin-right: 0px; overflow: hidden;">
+            {% if object.main_title_text %}
+                <span class="noselect font-vibes-md wow fadeIn" data-wow-delay="0.2s">{{ object.main_title_text }}</span><br>      
+            {% endif %}
+
+            {% if object.secondary_title_text %}
+                <span class="noselect text-center wow fadeIn" data-wow-delay="0.2s">{{ object.secondary_title_text }}</span><br>
+            {% endif %}
+
+            {% if object.short_description_text %}
+                <span class="noselect text-center wow fadeIn" data-wow-delay="0.2s">{{ object.short_description_text }}</span><br><br>
+            {% endif %}
+            <!--load text section translated files -->
+                {% include 'website/translatedfiles.html' %}
+            <!--/load text section translated files -->
+        </div>
+        <a href="/producer/" class="btn btn-primary pull-right">Topic</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

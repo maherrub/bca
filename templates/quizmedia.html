@@ -1,0 +1,369 @@
+{% load i18n %}
+{% load static %}
+{% load user_agents %}
+
+<head>
+    <link href="{% static 'css/socialmedia.css' %}" rel="stylesheet">
+    <style>
+        @media screen and (max-width: 480px) {
+        label {
+            font-size: 0px;
+            padding: 0px !important;
+        }}
+    </style>
+</head>
+
+
+<!--Post definitions-->
+<!--Post-->
+<div class="container" style="overflow: hidden;">
+	<!--Post main row-->
+    <div class="row">
+	
+    <!--left adjustment columns-->
+    <div class="col-md-3"></div>
+    
+    <!--middle column-->
+    <div class="col-md-6 col-sm-12" style="overflow: hidden;">
+        <!--
+        <div class="social-banner" style="margin:0px -10px 0px -10px;">
+		    <h3 class="text-center">Social Media</h3>
+        </div>
+        <hr>
+        -->
+        <!-- Nav tabs -->
+        
+        <ul class="nav nav-tabs md-pills pills-ins" role="tablist">
+            <li class="nav-item" style="margin-left: -20px;">
+                <a class="nav-link active" data-toggle="tab" href="#panel21" role="tab"><i class="fa fa-file-o"></i><label> +quiz</label></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel22" role="tab"><i class="fa fa-camera"></i><label> +poster</label></a>
+            </li>
+        </ul>
+        <!-- /Nav tabs -->
+        
+        <!-- Tab panels -->
+        <div class="tab-content" style="margin:0px -25px 0px -25px;">
+
+            <!--Panel 21-->
+            <div class="tab-pane fade in show active" id="panel21" role="tabpanel">
+                <br>
+                <form action="#" method="post" role="form" enctype="multipart/form-data" class="share-box" style="margin-top:-50px;">
+			        <div class="share">
+                        <div class="panel panel-default">
+                                
+                                <!--Panel21 inline header-->
+                                <div class="panel-heading"><i class="fa fa-file"></i> Compose Quiz</div>
+                                <!--/Panel21 inline header-->
+                                
+                                <!--Panel21 post text area-->
+                                <div class="panel-body">
+                                    <div class="social-text-body">
+                                        <textarea name="message" cols="40" rows="10" id="status_message" class="form-control message" style="height: 62px; overflow: hidden;" placeholder="What's on your mind ?"></textarea> 
+                                    </div>
+                                </div>
+                                <!--/Panel21 post text area-->
+                                
+                                <!--Panel21 footer-->
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <div class="form-group" style="padding: 5px;">
+                                                <select name="privacy" class="form-control privacy-dropdown pull-left input-sm" style="margin-bottom:-5px;">
+                                                    <option value="1" selected="selected">Public</option>
+                                                    <option value="2">Groups</option>
+                                                    <option value="3">Friends</option>
+                                                </select>                                    
+                                                <input type="submit" name="submit" value="Post" class="pull-right btn-social btn-sm">                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/Panel21 footer-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--/.Panel21-->
+
+            <!--Panel22-->
+            <div class="tab-pane fade" id="panel22" role="tabpanel">
+                <br>
+                <form action="#" method="post" role="form" enctype="multipart/form-data" class="share-box" style="margin-top:-50px;">
+			        <div class="share">
+                        <!--Panel22 Adding photo-->
+                        <div class="panel panel-default">
+                            <!--Panel22 inline header-->  
+                            <div class="panel-heading"><i class="fa fa-camera"></i> Add Quiz Poster</div>
+                            <!--Panel22 inline header-->  
+                            
+                            <!--Panel22 body-->
+                            <div class="panel-body">
+                                <!--Selecting photo-->
+                                <div class="file-field">
+                                    <div class="btn btn-primary btn-sm">
+                                        <span>Choose photo</span>
+                                        <input type="file">
+                                    </div>
+
+                                    <!--Attaching photo-->
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Upload photo">
+                                    </div>
+                                    <!--Attaching photo-->
+
+                                    <!--Comment box-->
+                                    <textarea name="message" cols="40" rows="10" id="status_message" class="form-control message" style="padding-left: 10px; height: 62px; overflow: hidden;" placeholder="About this photo..."></textarea> 
+                                    <!--/Comment box-->
+                                </div>
+                                <!--/Selecting photo-->
+                            </div>
+                            <!--Panel22 body-->
+
+                            <!--Panel22 Options lists-->
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div class="form-group" style="padding: 5px;">
+                                            <select name="privacy" class="form-control privacy-dropdown pull-left input-sm" style="margin-bottom:-5px;">
+                                                <option value="1" selected="selected">Public</option>
+                                                <option value="2">Groups</option>
+                                                <option value="3">Friends</option>
+                                            </select>                                    
+                                            <input type="submit" name="submit" value="Post" class="pull-right btn-social btn-sm">                               
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Panel22 Options lists-->
+                        </div>
+                        <!--Panel22 Adding photo-->
+                    </div>
+                </form>
+            </div>
+            <!--/.Panel22-->
+           
+        </div>
+        <!--/Tab panels -->
+    </div>
+    <!--/middle column-->
+    <!--right adjustment column-->
+    <div class="col-md-3"></div>
+    <!--right adjustment column-->
+</div>
+<!--/Post main row-->
+</div>
+<!--/Post definitions-->
+
+
+<!--Post display definitions-->
+<div class="container" style="overflow: hidden;">
+    <!--Post display main row-->
+    <div class="row">
+        
+        <!--left adjustment column-->
+        <div class="col-md-3"></div>
+        <!--/left adjustment column-->
+        
+        <!--middle column-->
+        <div class="col-md-6" style="overflow: hidden;">
+            <div class="sm-box" style="margin: 0px -10px 0px -10px; overflow: hidden;">
+            <!--notify section-->
+            <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="pull-right" role="tab" id="headingOne">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                        <span class="mb-0"><i class="fa fa-angle-down rotate-icon"></i></span>
+                    </a><br>
+                </div>
+                    
+                <div id="collapseOne" class="collapse" role="" aria-labelledby="headingOne" aria-expanded="false">
+                    <a href="#" class="list-group-item">Report this post</a>
+                </div>
+            </div>
+            <!--/notify section-->
+        
+            <!--Avatar header section-->
+            <div class="container" style="margin: 0px 0px 0px 5px; overflow: hidden;">
+                <div class="row">
+                    <!--Avatar-->
+                    <div class="avatar ">
+                        <img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="rounded z-depth-0">
+                    </div>
+                    <!--Avatar-->
+
+                    <!--/Author Data-->
+                    <div class="name">
+                        <h6><strong>John Doe</strong></h6>
+                        <small>10 October 2015 at 15:00</small>
+                    </div>
+                    <!--/Author Data-->
+                </div>
+            </div>
+            <!--Avatar header section-->
+
+            <hr>
+         
+            <!--Avatar Post-->
+            <div class="container" style="overflow: hidden;">
+                <div class="row">
+                    <div class="avatar-post">
+                        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint esse nulla quia quam veniam commodi dicta, iusto inventore. Voluptatum pariatur eveniet ea, officiis vitae praesentium beatae quas libero, esse facere.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--Avatar Post-->
+        
+        <!--Avatar Footer-->
+        <div class="container sm-footer" style="overflow: hidden;">
+            <div class="row">
+                <!--like button-->
+                <span style="padding:0px 5px 0px 10px;">
+                    <a href="#">
+                        <i class="fa fa-thumbs-o-up fa-fw"></i> Like
+                    </a>
+                </span>
+                <!--/like button-->
+
+                <!--like counter-->
+                <span style="padding:0px 5px 0px 10px;">
+                    6 people like this.
+                </span>
+                <!--/like counter-->
+            </div>
+        </div>
+        <!--Avatar Footer-->
+        
+
+        {% for up in object_list %}
+            {% if up.user|slugify = user.username|slugify  %}
+        <!--Write comment-->    
+        <div class="container" style="margin: 0px 0px 0px 5px; overflow: hidden; overflow: hidden;" >
+            <div class="row">
+                
+                <!--Small avatar-->
+                <div class="small-avatar">
+                    
+                    <img src="{{ up.usercover.url }}" class="rounded z-depth-0">
+                </div>
+                <!--Small avatar-->
+
+                <!--comment with button form-->
+                <div class="write-comment" style="width:89%">
+                    <form class="comment-form" method="get">
+                        <p class="flex1"><input type="text" class="form-control flex2" placeholder="Leave a comment..."> 
+                        <input type="submit" name="write-comment" value="Post" class="pull-right btn-social-sm btn-sm"></p> 
+                    </form>
+                </div>
+                <!--comment with button form-->
+
+            </div>
+        </div>
+        <!--Write comment-->
+            {% endif %}
+        {% empty %}
+        {% endfor %}
+        <!--comments section-->
+        <div class="accordion sm-footer" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="pull-right" role="tab" id="headingTwo">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
+                    <span class="mb-0">comments <i class="fa fa-comments-o rotate-icon"></i></span>
+                </a><br>
+            </div>
+                
+            <div id="collapseTwo" class="collapse" role="" aria-labelledby="headingTwo" aria-expanded="false">
+                
+                <a class="list-group-item">
+                    <!--Small avatar-->
+                    <div class="small-avatar">
+                        <img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="rounded z-depth-0">
+                    </div>
+                    <!--Small avatar-->
+                    <!--/Author Data-->
+                    <div class="name">
+                        <h6><strong>John Doe</strong></h6>
+                        <small>10 October 2015 at 15:00</small>
+                    </div>
+                    <!--/Author Data-->
+                    
+                    <!--comment for post-->
+                    <div class="avatar-post">
+                        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint esse nulla quia quam veniam commodi dicta, iusto inventore. Voluptatum pariatur eveniet ea, officiis vitae praesentium beatae quas libero, esse facere.
+                        </p>
+                    </div>
+                    <!--/comment for post-->
+                </a>
+                    <!--reply for comments-->
+                    <div class="accordion sm-footer" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="pull-right" role="tab" id="headingThree">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="collapsed">
+                                <span class="mb-0">reply <i class="fa fa-reply rotate-icon"></i></span>
+                            </a><br>
+                        </div>
+                            
+                        <div id="collapseThree" class="collapse" role="" aria-labelledby="headingThree" aria-expanded="false">
+                            <!--reply with button form-->
+                            <div class="write-comment" style="width:89%">
+                                <form class="comment-form" method="get">
+                                    <p class="flex1"><input type="text" class="form-control flex2" placeholder="Leave a comment..."> 
+                                        <input type="submit" name="write-comment" value="Post" class="pull-right btn-social-sm btn-sm"></p> 
+                                </form>
+                            </div>
+                            <!--/reply with button form-->
+                            
+                            
+                            
+                            <a href="#" class="list-group-item">Reply 1</a>
+                            
+                            <!--Display for reply to comments-->
+                            <a class="list-group-item">
+                                <!--Small avatar-->
+                                <div class="small-avatar">
+                                    <img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="rounded z-depth-0">
+                                </div>
+                                <!--Small avatar-->
+                                <!--/Author Data-->
+                                <div class="name">
+                                    <h6><strong>John Doe</strong></h6>
+                                    <small>10 October 2015 at 15:00</small>
+                                </div>
+                                <!--/Author Data-->
+                                
+                                <!--comment for post-->
+                                <div class="avatar-post">
+                                    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint esse nulla quia quam veniam commodi dicta, iusto inventore. Voluptatum pariatur eveniet ea, officiis vitae praesentium beatae quas libero, esse facere.
+                                    </p>
+                                </div>
+                                <!--/comment for post-->
+                            </a>
+                            <!--/Display for reply to comments-->
+
+                            <a href="#" class="list-group-item">Reply 3</a>
+                            
+                        </div>
+                    <!--/reply for comment-->
+                
+
+                
+                <a href="#" class="list-group-item">Second comment</a>
+                <a href="#" class="list-group-item">Third comment</a>
+            </div>
+        </div>
+        <!--/comments section-->
+    </div>
+</div>
+        </div>
+<!--/.Author box-->
+
+</div>
+<!--Post display definitions-->
+    <div class="col-md-3"></div>
+        
+    </div>
+ </div>
+

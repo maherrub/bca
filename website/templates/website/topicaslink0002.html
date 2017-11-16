@@ -1,0 +1,445 @@
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--topic is a link 0002 for public page contains 3 styles-->
+
+<head>
+    <style>
+
+         #topic-link0002-intro{
+            margin-top: -5em;
+            margin-bottom: -6.25em;
+        }
+
+        #a-link {
+                text-decoration: none;
+                color: rgba(0, 0, 0, 0.60);
+            }
+        
+        #hr-adjust {
+            margin-top: -1em;
+        }
+
+        #topic-link0002-col3 {
+            margin-top: -1em;
+        }
+
+        #topic-link-i0002 {
+            padding-top: 2.25em; 
+            padding-right:10px;
+        }
+
+        /* lanscape */
+        @media screen and (orientation: landscape) {
+                .avatarp {
+                height: 75px !important;
+                width: auto;
+            }
+
+            #topic-link0002-intro {
+                margin-top: -12.5em;
+                margin-bottom: -4.75em;
+            }
+
+            #topic-link0002-container {
+                    margin-top:3em; 
+                    margin-left:5px; 
+                    margin-right:5px;
+                    margin-bottom: 0em;
+            }
+
+            #topic-link0002-container2 {
+                margin-top: 4.75em;
+                margin-bottom: -2.5em;
+            }
+            
+            
+            #topic-link0002-container4 {
+                margin-top: 2.5em;
+                margin-bottom: 0.85em; 
+            }
+
+                
+        }
+        /* lanscape. */
+
+        /* lanscape mobile */
+        {% if object.landscape_background and request|is_mobile %}
+            @media screen and (orientation: landscape) {
+                .avatarp {
+                height: 75px !important;
+                width: auto;
+                }
+
+                #topic-link0002-col2 {
+                margin-top: -1em;
+                }
+
+                
+
+            }
+        {% endif %}
+        /* lanscape mobile. */
+
+        /* portrait mobile */
+        @media screen and (orientation: portrait) {
+            .avatarp {
+                height: 50px !important;
+                width: auto;
+            }
+
+            .small {
+                color: #2196f3 !important;
+                
+            }
+
+            #topic-link0002-intro {
+                margin-top: -16.25em;
+                margin-bottom: -6.25em;
+            }
+
+            #topic-link0002-container {
+                    margin-top:1em;
+                    margin-bottom: -0.75em; 
+                    margin-left:1px; 
+                    margin-right:1px;
+                    background-color: rgba(128, 128, 128, 0.02);
+                    padding-top:10px;
+                    border-radius: 5px;
+                    z-index: -1;
+            }
+
+            #topic-link0002-container2 {
+                margin-top: 9em;
+                margin-bottom: -4.25em;
+            }
+
+            #topic-link0002-container4 {
+                margin-top: 4.35em;
+                margin-bottom: 0.5em;
+            }
+
+            #topic-link0002-col {
+                margin-top: 2em;
+            }
+
+            #topic-link0002-col2 {
+                margin-top: -1em;
+            }
+
+            #topic-link0002-col3 {
+                margin-top: -1em;
+            }
+
+            #topic-link-i0002 {
+            padding-top: 1.25em; 
+            padding-right:10px;
+            }
+
+           
+        }
+        /* portrait mobile. */
+
+
+        @media (min-width: 275px) {
+
+            .container-fluid {
+                padding-right: 0px;
+                padding-left: 0px;
+                overflow: hidden !important;
+            }
+
+             
+        }
+
+    </style>
+</head>
+
+<!--topic as a link 0002 layout1 is list-->
+
+
+<div id="topic-link0002-intro" class="container-fluid" style="overflow:hidden;">
+    {% comment %}
+    <div class="divider-new">
+        <span class="h2-responsive"><i class="fa fa-angle-down wow fadeInDown" data-wow-delay="0.4s"></i></span>
+    </div>
+    {% endcomment %}
+        
+<div id="topic-link0002-container" class="container-fluid" style="overflow:hidden;">
+  <div class="row">
+    <!--col1-->
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "1" and  object.display_position == "ROW4-COL1/4" %} 
+        <!--column 1-->
+        <div id="topic-link0002-col" class="col-md-6 col-sm-6">
+            
+            <!--First review-->
+            <div class="media mb-1">
+                <a class="media-left waves-light avatarp">
+                    <img class="avatarp rounded" src="{{ object.speaker_image.url }}">
+                </a>
+                
+                <div class="media-body noselect">
+                    <a id="a-link" href="{{ object.link_url }}">
+                        <span>{{ object.main_title }}</span><br>
+                        <small>{{ object.secondary_title|ellipses:75 }}</small>
+                    </a>
+                </div>
+
+                <div>
+                    <a href="{{ object.link_url }}">
+                        <i id="topic-link-i0002" class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+            <hr id="hr-adjust">
+        </div>
+        <!--/column 1-->
+    
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+    <!--col1-->
+
+    <!--col2-->
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "1" and object.display_position == "ROW4-COL2/4" %}   
+     
+        <!--column 2-->
+        <div id="topic-link0002-col2" class="col-md-6 col-sm-6 topic-link0002-top">
+            
+            <!--First review-->
+            <div class="media mb-1">
+                <a class="media-left waves-light avatarp">
+                    <img class="avatarp rounded" src="{{ object.speaker_image.url }}">
+                </a>
+                
+                <div class="media-body noselect">
+                    <a id="a-link" href="{{ object.link_url }}">
+                        <span>{{ object.main_title }}</span><br>
+                        <small>{{ object.secondary_title|ellipses:75 }}</small>
+                    </a>
+                </div>
+
+                <div>
+                    <a href="{{ object.link_url }}">
+                        <i id="topic-link-i0002" class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+            <hr id="hr-adjust">
+        </div>
+        <!--/column 2-->
+    
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+    <!--/col2-->
+
+    <!--col3-->
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "1" and object.display_position == "ROW4-COL3/4" %}   
+     
+        <!--column 3-->
+        <div id="topic-link0002-col3" class="col-md-6 col-sm-6">
+            
+            <!--First review-->
+            <div class="media mb-1">
+                <a class="media-left waves-light avatarp">
+                    <img class="avatarp rounded" src="{{ object.speaker_image.url }}">
+                </a>
+                
+                <div class="media-body noselect">
+                    <a id="a-link" href="{{ object.link_url }}">
+                        <span>{{ object.main_title }}</span><br>
+                        <small>{{ object.secondary_title|ellipses:75 }}</small>
+                    </a>
+                </div>
+
+                <div>
+                    <a href="{{ object.link_url }}">
+                        <i id="topic-link-i0001" class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+            <hr id="hr-adjust">
+        </div>
+        <!--/column 3-->
+    
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+    <!--/col3-->
+
+    <!--col4-->
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "1" and object.display_position == "ROW4-COL4/4" %}   
+        <!--column 4-->
+        <div id="topic-link0002-col3" class="col-md-6 col-sm-6">
+            
+            <!--First review-->
+            <div class="media mb-1">
+                <a class="media-left waves-light avatarp">
+                    <img class="avatarp rounded" src="{{ object.speaker_image.url }}">
+                </a>
+                
+                <div class="media-body noselect">
+                    <a id="a-link" href="{{ object.link_url }}">
+                        <span>{{ object.main_title }}</span><br>
+                        <small>{{ object.secondary_title|ellipses:75 }}</small>
+                    </a>
+                </div>
+
+                <div>
+                    <a href="{{ object.link_url }}">
+                        <i id="topic-link-i0001" class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+            <hr id="hr-adjust">
+        </div>
+        <!--/column 4-->
+    
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+    <!--/col4-->
+  </div>
+  <!--/row-->
+</div>
+<!--container-->
+
+</div>
+<!--Top Container-->
+<!--/topic as a link0002 layout 1 is list-->
+
+
+<!--Topic as link0002 layout 2 is image gallery large-->
+<div id="topic-link0002-container2" class="container-fluid" style="overflow:hidden;">
+  <div class="row no-gutters">
+   
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "2" and object.display_position == "ROW4-COL1/4" %}   
+            <div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "2" and object.display_position == "ROW4-COL2/4" %}   
+            <div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "2" and object.display_position == "ROW4-COL3/4" %}   
+            <div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "2" and object.display_position == "ROW4-COL4/4" %}   
+            <div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+    
+    
+  </div>
+</div>
+<!--/Topic as link0002 style 2 is image gallery large-->
+
+
+<!--Topic as link0002 layout 4 is image gallery small-->
+<div id="topic-link0002-container4" class="container-fluid" style="overflow:hidden;">
+  <div class="row no-gutters">
+        <!--spacing adjustments do not remove-->
+        <div class="col-md-2 wow fadeIn" data-wow-delay="0.3s">
+        </div>
+   
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "4" and object.display_position == "ROW4-COL1/4" %}   
+            <div class="col-md-2 col-sm-3 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+    
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "4" and object.display_position == "ROW4-COL2/4" %}   
+            <div class="col-md-2 col-sm-3 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "4" and object.display_position == "ROW4-COL3/4" %}   
+            <div class="col-md-2 col-sm-3 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+
+    {% for object in hgtopics|dictsort:"display_position" %}
+        {% if object.card_type == "Link" and object.layout == "4" and object.display_position == "ROW4-COL4/4" %}   
+            <div class="col-md-2 col-sm-3 wow fadeIn" data-wow-delay="0.3s">
+               
+               <a href="{{ object.link_url }}">
+                    <img src="{{ object.speaker_image.url }}" class="img-fluid" />
+                </a>
+            </div>
+        {% endif %}
+    {% empty %}
+    {% endfor %}
+        
+        <!--spacing adjustments do not remove-->
+        <div class="col-md-2 wow fadeIn" data-wow-delay="0.3s">
+        </div>
+      
+  </div>
+</div>
+<!--/Topic as link0002 layout 4 is image gallery small-->
+
+{% comment %}
+<div class="divider-new">
+    <span class="h2-responsive"><i class="fa fa-angle-down wow fadeInDown" data-wow-delay="0.4s"></i></span>
+</div>
+{% endcomment %}

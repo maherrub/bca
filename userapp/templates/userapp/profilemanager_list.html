@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}Profile Manager's List{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+
+<!--Permissions control-->
+<div class="container">
+    <div class="col-sm-4 offset-sm-4">
+        <!--Search form -->
+        <form method='GET' action='' class="form-inline waves-effect waves-light">
+            <input type='text' name='q' placeholder='Search User Profiles' value='{{ request.GET.q }}'/>
+	        <input type='submit' value='Search' style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
+        </form>
+        <!--/Search form -->
+        </div>
+        <div class="divider"></div>
+    <!--Body-->
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+        <a href="#" class="list-group-item active"><i class="fa fa-users fa-1x" aria-hidden="true"></i>&nbsp;Profile Manager's List</a>
+        
+        {% for up in object_list %}
+        <a href="/up/{{ up.id }}/pmup_detail">
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-1 col-xs-1">
+                <img src="{{ up.usercover.url }}" class="rounded-circle list-img-md img-responsive img-fluid" alt="profile image">
+            </div>
+
+            <div class="col-md-5 pull-left">
+                <h6 class="strong">Login: {{ up.user }}</h6>
+                <h6>Name: {{ up.firstname }} {{ up.lastname }}</h6>
+                <h6>Contact: {{ user.email }} | {{ up.usermobile }}</h6>
+            </div>
+            
+            <div class="col-md-5 pull-left">
+                <h6>Birthday : {{ up.dob }}</h6>
+                <h6>Membership: {{ up.membership }}</h6>
+                <h6>Reports to: {{ up.manager_name }}</h6>
+            </div>
+
+            <div class="col-md-1 pull-left">
+                <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;" >edit</h6>
+            </div>
+        </div>
+        </div>
+        </li>
+        </a>
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+</div>
+<!--all link buttons here-->
+    <div class="container">
+    <div class="row col-sm-12">
+        <div class="col-sm-4"></div>
+        <div class="text-center col-sm-4 mb-r wow slideInUp" data-wow-delay="0.1s">
+            <a href="#" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/up/pm_console" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    </div>
+<!--all link buttons here-->
+
+<!--pagination starts here-->
+
+    <div class="pull-right">
+        
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+</div>
+<!--/container-->
+<div class="divider"></div>
+<!--/pagination starts here-->
+
+{% endblock %}

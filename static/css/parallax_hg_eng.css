@@ -1,0 +1,146 @@
+
+/*Parallax section 1*/
+#section-100 {
+    z-index: 1;
+    color: #fff;
+    height: 100vh;
+	overflow: hidden;
+}
+#section-100 .row {
+    position: fixed;
+}
+
+
+/*Parallax background 1*/
+#section-100 .parallax-layer-back-100 {
+	background: url('/media/uploads/parallax_images/english_hg_1.png') no-repeat top center fixed;
+	color:#fff;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size:cover;
+}
+
+/*Section with dummy content example*/
+#section-2000 {
+    z-index: 2;
+    position: relative;
+    background: #fff;
+    width: 100%;
+}
+
+
+/*Parallax section 2*/
+#section-200 {
+    z-index: 1;
+    color: #fff;
+    height: 100vh;
+	overflow: hidden;
+}
+#section-200 .row {
+    position: fixed;
+}
+
+
+/*Parallax background 2*/
+#section-200 .parallax-layer-back-200 {
+	background: url('/media/uploads/parallax_images/english_hg_2.png') no-repeat top center fixed;
+	color:#fff;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size:cover;
+}
+/* /Parallax section 2*/
+
+/*Parallax section 3*/
+
+#section-300 {
+    z-index: 1;
+    color: #fff;
+    height: 100vh;
+	overflow: hidden;
+}
+#section-300 .row {
+    position: fixed;
+}
+
+
+/*Parallax background 3*/
+#section-300 .parallax-layer-back-300 {
+	background: url('/media/uploads/parallax_images/english_hg_3.png') no-repeat bottom center fixed;
+	color:#fff;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size:cover;
+}
+
+
+.btn-position-bottom {
+        margin-top: 150px;
+        border-color: #ccc;
+        background-color: rgba(23, 20, 20, 0.1);
+}
+
+.btn-transparent {
+    color: #333;
+    background-color: rgba(23, 20, 20, 0.1);
+    border-color: #ccc;
+}
+
+.img-center {
+    margin:0 auto;
+}
+
+/*
+.panel-body-fh {
+  height: 200px; 
+  /* height: calc(100vh - 200px);
+  overflow-y: hidden; 
+}
+*/
+
+
+
+/* Custom Tooltip */
+/*
+ .bluetips + .tooltip > .tooltip-inner {
+      
+	color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+	font-size: 12px;
+	border-radius: 25px;
+	padding: 5px 20px 5px 20px;
+	  
+  }
+*/
+  /* Tooltip on top */
+  /*
+  .bluetips + .tooltip.top > .tooltip-arrow {
+      border-top: 5px solid red;
+  }
+  */
+  /* Tooltip on bottom */
+  /*
+  .bluetips + .tooltip.bottom > .tooltip-arrow {
+      border-bottom: 5px solid red;
+  }
+  */
+
+  /* Tooltip on left */
+  /*
+  .bluetips + .tooltip.left > .tooltip-arrow {
+      border-left: 5px solid red;
+  }
+*/
+  /* Tooltip on right */
+/*
+  .bluetips + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid red;
+  }
+*/
+
+
+

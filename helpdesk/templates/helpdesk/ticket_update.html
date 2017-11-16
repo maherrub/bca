@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br />
+<div class="container-fluid">
+<div class="row">
+ <!--all form-->   
+<div class="col-md-6 offset-md-3">
+        <!--Form with header-->
+        <!--Header-->
+        <div>
+            <h3 class="light-blue-text text-right"><i class="fa fa-thumbs-up"></i> Help Desk Ticket Update</h3>
+        </div>
+            <!--Body-->
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                {{form|crispy}}
+                </table>
+                <button type="submit" class="btn btn-success col-md-5 pull-left">Update</button>
+                <button onclick="history.go(-1);" class="btn btn-primary col-md-5 pull-right">Back</button>
+            </form>
+</div>
+<!--/all form-->   
+</div>
+</div>
+
+{% endblock %}

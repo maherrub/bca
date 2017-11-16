@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load user_agents %}
+{% block title %}{% trans "BC Public Pages" %}{% endblock %}
+
+{% block content %}
+
+<!--load main page -->
+{% include 'website/bcpublicpage001.html' %}
+<!--/load main page -->
+
+<!--attach and load parallaxes if page id is found-->
+{% include 'website/bcpublicpage0011.html' %}
+<!--/attach and load parallaxes if page id is found-->
+
+<!--attach and load text sections if page id is found-->
+{% include 'website/bcpublicpage0012.html' %}
+<!--/attach and load text sections if page id is found-->
+
+<!--attach and load topic as link, text and topic sections if page id is found-->
+{% include 'website/bcpublicpage0013.html' %}
+<!--attach and load topic as link, text and topic sections if page id is found-->
+
+<!--load team section-->
+{% include 'website/bcpublicpage002.html' %}
+<!--load team section-->
+
+<!--load extend sections-->
+{% include 'website/bcpublicpage003.html' %}
+<!--load extend sections-->
+
+<div class="container">
+
+    <div class="div">
+        {% if object.left_btnname or object.right_btnname %}
+            <div class="text-center excerpt wow fadeIn" data-wow-delay="0.4s">
+                <a href="{{ object.left_btnlink }}" class="col-md-3 btn btn-outline-primary btn-rounded waves-effect">{{ object.left_btnname }}</a>
+                <a href="{{ object.right_btnlink }}" class="col-md-3 btn btn-outline-primary btn-rounded waves-effect">{{ object.right_btnname }}</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}

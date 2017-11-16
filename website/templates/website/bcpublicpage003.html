@@ -1,0 +1,71 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+
+
+{% for eo in extend_objects|dictsort:"display_section" %}
+    {% if eo.layout == 'parallax-style' %}
+
+        <!--load extend parallax-style layout -->
+        {% include 'website/pextend001.html' %}
+        <!--/load extend parallax-style layout -->
+
+        <!--load translated files -->
+        {% include 'website/translatedfileseo.html' %}
+        <!--/load translated files -->
+
+    {% elif eo.layout == 'picture-left-text-right' %}
+
+        <!--load extend picture-left-text-right layout -->
+        {% include 'website/pextend002.html' %}    
+        <!--/load extend picture-left-text-right layout -->
+
+        <!--load translated files -->
+        {% include 'website/translatedfileseo.html' %}
+        <!--/load translated files -->
+
+
+    {% elif eo.layout == 'text-left-picture-right' %}
+
+        <!--load extend text-left-picture-right layout -->
+        {% include 'website/pextend003.html' %}    
+        <!--/load extend text-left-picture-right layout -->
+
+        <!--load translated files -->
+        {% include 'website/translatedfileseo.html' %}
+        <!--/load translated files -->
+
+    {% elif eo.layout == 'plx-imgmap-link' %}
+
+        <!--load extend parallax image map with link layout-->
+        {% include 'website/pextend001b.html' %}    
+        <!--/load extend parallax image map with link layout-->
+
+    {% elif eo.layout == 'plx-imgmap-tooltip' %}
+
+        <!--load extend parallax image map with tooltip layout-->
+        {% include 'website/pextend001c.html' %}    
+        <!--/load extend parallax image map with tooltip layout-->
+
+    {% elif eo.layout == 'plx-imgmap-tooltip-link' %}
+
+        <!--load extend parallax image map with tooltip and link layout-->
+        {% include 'website/pextend001d.html' %}    
+        <!--/load extend parallax image map with tooltip and link layout-->
+
+    {% elif eo.layout == 'plx-moveable-txtbox' %}
+
+        <!--load extend parallax image map moveable text box layout-->
+        {% include 'website/pextend001e.html' %}    
+        <!--/load extend parallax image map moveable text box layout-->
+    
+    {% elif eo.layout == 'plx-moveable-txtbox-link' %}
+
+        <!--load extend parallax image map moveable text box with link layout-->
+        {% include 'website/pextend001f.html' %}    
+        <!--/load extend parallax image map moveable text box with link layout-->
+
+    {% endif %}
+{% empty %}
+{% endfor %}

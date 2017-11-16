@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+{% block content %}
+
+<!--Check login-->
+{% if user.is_authenticated %}
+<head>
+    <style>
+        body {
+                font-family: "Lato", sans-serif;
+                background: #E9EAED;
+            }
+
+            @media screen and (orientation: portrait) {
+                #mobile-pt{
+                        width: 54%;
+                        margin-left: -10px;
+                        margin-right: -10px;
+                }
+
+                 #mobile-label {
+                    font-size: 8px;
+                }
+
+                #mbadge { margin-top: -10px;}
+}
+
+    </style>
+</head>
+<div class="divider"></div>
+<h1 style="float: right; font-weight: 100 !important; color: rgba(158, 158, 158, 0.38);">Resources</h1>
+
+<div class="divider"></div>
+
+<!--Main Container-->
+<div class="container-fluid" style="overflow: hidden;">
+    <!--row last 7 days-->
+    {% if resource_tw|length > 0 %}
+        
+    <span id="last7" class="badge green">{{ resource_tw|length }} New! releases this week.</span>
+        &nbsp; <a href="#fe1000" class"grey-text">[ <i class="fa fa-calendar-o" aria-hidden="true"></i> Featured <span id="mbadge" class="badge blue">{{ resource_featured|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q4" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q4 <span id="mbadge" class="badge blue">{{ resource_2017Q4|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q3" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q3 <span id="mbadge" class="badge blue">{{ resource_2017Q3|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q2" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q2 <span id="mbadge" class="badge blue">{{ resource_2017Q2|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q1" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q1 <span id="mbadge" class="badge blue">{{ resource_2017Q1|length }}</span> ]</a>
+        <br><br>
+
+    {% endif %}
+    <div class="row">
+    
+    {% for object in resource_tw %}
+        
+        <!--load downloadresources for this week -->
+        {% include 'website/downloadresource001.html' %}
+        <!--/load downloadresources for this week -->
+        
+    {% empty %}
+    {% endfor %}
+    </div>
+    <!--/row last 7 days-->
+
+    <!--row 2017Q4-->
+    {% if resource_2017Q4|length > 0 %}
+        <span id="2017Q4" class="badge blue">{{ resource_2017Q4|length }} releases in 2017Q4</span>
+        &nbsp; <a href="#fe1000" class"grey-text">[ <i class="fa fa-calendar-o" aria-hidden="true"></i> Featured <span id="mbadge" class="badge blue">{{ resource_featured|length }}</span> ]</a>
+        &nbsp; <a href="#last7" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> this week <span id="mbadge" class="badge blue">{{ resource_tw|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q3" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q3 <span id="mbadge" class="badge blue">{{ resource_2017Q3|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q2" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q2 <span id="mbadge" class="badge blue">{{ resource_2017Q2|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q1" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q1 <span id="mbadge" class="badge blue">{{ resource_2017Q1|length }}</span> ]</a>
+        <br><br>
+    {% endif %}
+    <div class="row">
+    {% for object in resource_2017Q4 %}
+
+        <!--load downloadresources for 2017Q4 -->
+        {% include 'website/downloadresource001.html' %}
+        <!--/load downloadresources for 2017Q4 -->
+
+    {% empty %}
+    {% endfor %}
+    </div>
+    <!--/row 2017Q4-->
+
+    <!--row 2017Q3-->
+    {% if resource_2017Q3|length > 0 %}
+    <span id="2017Q3" class="badge orange">{{ resource_2017Q3|length }} releases in 2017Q3.</span>
+        &nbsp; <a href="#fe1000" class"grey-text">[ <i class="fa fa-calendar-o" aria-hidden="true"></i> Featured <span id="mbadge" class="badge blue">{{ resource_featured|length }}</span> ]</a>
+        &nbsp; <a href="#last7" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> this week <span id="mbadge" class="badge blue">{{ resource_tw|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q4" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q4 <span id="mbadge" class="badge blue">{{ resource_2017Q4|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q2" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q2 <span id="mbadge" class="badge blue">{{ resource_2017Q2|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q1" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q1 <span id="mbadge" class="badge blue">{{ resource_2017Q1|length }}</span> ]</a>
+        <br><br>
+    {% endif %}
+    <div class="row">
+    {% for object in resource_2017Q3 %}
+        <!--load downloadresources for 2017Q3 -->
+        {% include 'website/downloadresource001.html' %}
+        <!--/load downloadresources for 2017Q3 -->
+    {% empty %}
+    {% endfor %}
+    </div>
+    <!--/row 2017Q3-->
+
+    <!--row 2017Q2-->
+    {% if resource_2017Q2|length > 0 %}
+    <span id="2017Q2" class="badge orange">{{ resource_2017Q2|length }} releases in 2017Q2.</span>
+        &nbsp; <a href="#fe1000" class"grey-text">[ <i class="fa fa-calendar-o" aria-hidden="true"></i> Featured <span id="mbadge" class="badge blue">{{ resource_featured|length }}</span> ]</a>
+        &nbsp; <a href="#last7" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> this week <span id="mbadge" class="badge blue">{{ resource_tw|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q4" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q4 <span id="mbadge" class="badge blue">{{ resource_2017Q4|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q3" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q3 <span id="mbadge" class="badge blue">{{ resource_2017Q3|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q1" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q1 <span id="mbadge" class="badge blue">{{ resource_2017Q1|length }}</span> ]</a>
+        <br><br>
+    {% endif %}
+    <div class="row">
+    {% for object in resource_2017Q2 %}
+        <!--load downloadresources for 2017Q2 -->
+        {% include 'website/downloadresource001.html' %}
+        <!--/load downloadresources for 2017Q2 -->
+    {% empty %}
+    {% endfor %}
+    </div>
+    <!--/row 2017Q2-->
+    
+    <!--row 2017Q1-->
+    {% if resource_2017Q1|length > 0 %}
+    <span id="2017Q1" class="badge orange">{{ resource_2017Q1|length }} releases in 2017Q1.</span>
+        &nbsp; <a href="#fe1000" class"grey-text">[ <i class="fa fa-calendar-o" aria-hidden="true"></i> Featured <span id="mbadge" class="badge blue">{{ resource_featured|length }}</span> ]</a>
+        &nbsp; <a href="#last7" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> this week <span id="mbadge" class="badge blue">{{ resource_tw|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q4" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q4 <span id="mbadge" class="badge blue">{{ resource_2017Q4|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q3" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q3 <span id="mbadge" class="badge blue">{{ resource_2017Q3|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q2" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q2 <span id="mbadge" class="badge blue">{{ resource_2017Q2|length }}</span> ]</a>
+        <br><br>
+    {% endif %}
+    <div class="row">
+    {% for object in resource_2017Q1 %}
+        <!--load downloadresources for 2017Q2 -->
+        {% include 'website/downloadresource001.html' %}
+        <!--/load downloadresources for 2017Q2 -->
+    {% empty %}
+    {% endfor %}
+    </div>
+    <!--/row 2017Q1-->
+
+    <!--featured-->
+    {% if resource_featured|length > 0 %}
+    <span id="fe1000" class="badge orange">{{ resource_featured|length }} in Featured.</span>
+        &nbsp; <a href="#last7" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> this week <span id="mbadge" class="badge blue">{{ resource_tw|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q4" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q4 <span id="mbadge" class="badge blue">{{ resource_2017Q4|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q3" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q3 <span id="mbadge" class="badge blue">{{ resource_2017Q3|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q2" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q2 <span id="mbadge" class="badge blue">{{ resource_2017Q2|length }}</span> ]</a>
+        &nbsp; <a href="#2017Q1" class"grey-text">[ <i class="fa fa-clock-o" aria-hidden="true"></i> 2017Q1 <span id="mbadge" class="badge blue">{{ resource_2017Q1|length }}</span> ]</a>
+        <br><br>
+    {% endif %}
+    <div class="row">
+    {% for object in resource_featured %}
+        <!--load downloadresources for 2017Q2 -->
+        {% include 'website/downloadresource001.html' %}
+        <!--/load downloadresources for 2017Q2 -->
+    {% empty %}
+    {% endfor %}
+    </div>
+    <!--/featured-->
+    
+<div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+</div>
+<div class="divider"></div>
+{% endif %}
+{% endblock %}
+

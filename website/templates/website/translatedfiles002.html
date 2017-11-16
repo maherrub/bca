@@ -1,0 +1,284 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<head>
+    <style>
+        
+        #txt-normal002 {
+            
+            font-size: 18px;
+            color: rgba(0,0,0,.5);
+            text-align: justify;
+        }
+        
+
+        {% if request|is_mobile %}
+             @media screen and (orientation: landscape) {
+                #txt-normal002 {
+                    font-size: 16px;
+                    color: rgba(0,0,0,.5);
+                    text-align: justify;
+                    padding: 5px 15px 5px 15px;
+                }
+             }
+        {% endif %}
+
+
+            @media screen and (orientation: portrait) {
+                #txt-normal002 {
+                    font-size: 16px;
+                    color: rgba(0,0,0,.5);
+                    text-align: justify;
+                    padding: 5px 15px 5px 15px;
+                }
+            }
+    
+    </style>
+</head>
+
+
+<div class="container-fluid">
+    <div id="txt-normal002" class="col-md-10 offset-md-1">
+    {% if object.translatedtxtfile1 %}
+    <!--translated text file1 list-->
+        {%  if object.translatedtxtfile1|print_file_withlines:0 %}
+        <div class="row">
+            <h5 class="badge red noselect pad5" style:"text-align: right;">{{ object.translatedtxtfile1|print_file_withlines:0 }}</h5><br>
+        </div>
+        <br>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:1 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:1 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:2 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:2 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:3 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:3 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:4 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:4 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:5 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:5 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:6 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:6 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:7 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:7 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:8 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:8 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:9 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:9 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:10 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:10 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:11 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:11 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:12 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:12 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:13 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:13 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:14 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:14 }}</p><br>
+        </div>
+        {% endif %}
+        
+        {%  if object.translatedtxtfile1|print_file_withlines:15 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:15 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:16 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:16 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:17 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:17 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile1|print_file_withlines:18 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile1|print_file_withlines:18 }}</p><br>
+        </div>
+        {% endif %}
+
+    <!--translated text file1 list-->
+    {% endif %}
+
+    {% if object.translatedtxtfile2 %}
+    <!--translated text file2 list-->
+        {%  if object.translatedtxtfile2|print_file_withlines:0 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:0 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:1 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:1 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:2 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:2 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:3 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:3 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:4 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:4 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:5 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:5 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:6 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:6 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:7 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:7 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:8 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:8 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:9 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:9 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:10 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:10 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:11 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:11 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:12 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:12 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:13 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:13 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:14 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:14 }}</p><br>
+        </div>
+        {% endif %}
+        
+        {%  if object.translatedtxtfile2|print_file_withlines:15 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:15 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:16 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:16 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:17 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:17 }}</p><br>
+        </div>
+        {% endif %}
+
+        {%  if object.translatedtxtfile2|print_file_withlines:18 %}
+        <div class="row">
+            <p class="noselect pad5">{{ object.translatedtxtfile2|print_file_withlines:18 }}</p><br>
+        </div>
+        {% endif %}
+
+<!--translated text file2 list-->
+{% endif %}
+    </div>
+</div>

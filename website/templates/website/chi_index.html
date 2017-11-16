@@ -1,0 +1,543 @@
+{% extends 'chinese_base.html' %}
+{% load i18n %}
+{% include static %}
+{% block title %}{% trans "Home" %}{% endblock %}
+
+{% block content %}
+
+<!--all definitions below-->
+
+<!--Main parallax wrapper-->
+<div class="parallax">
+<!--First section-->
+<div id="section-100" class="parallax-section">
+    <!--Parallax content-->
+    <div class="parallax-layer parallax-layer-base">
+        <!--Container to center the content-->
+        <div class="full-bg-img flex-center">
+            {% for hgpi in hgpis %}
+                {% if hgpi.display_position == 'IMAGE1' %}
+            <ul>
+                <li>
+                    <h1 class="h1-responsive wow fadeInDown noselect" data-wow-delay="0.2s">{{ hgpi.hgpi_image_main_text }}</h1>
+                </li>
+                
+                <li>
+                    <p class="wow fadeInDown noselect" data-wow-delay="0.2s">{{ hgpi.hgpi_image_secondary_text }}</p>
+                </li>
+
+                <li>
+                    <a href="{{ hgpi.hgpi_link }}" class="btn btn-outline-white btn-lg wow fadeInLeft" data-wow-delay="0.2s"><i class="fa fa-user left"></i>{{ hgpi.hgpi_link_button_name }}</a>
+                </li>
+            </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <!--/Container to center the content-->
+    </div>
+    <!--/Parallax content-->
+
+    <!--Parallax background picture DO NOT REMOVE! -->
+    <div class="parallax-layer parallax-layer-back-100">
+    </div>
+    <!--/Parallax background-->
+</div>
+<!--/First section-->
+<!--First Section Dummy Content is required for parallax effect do not remove-->
+    <div id="section-2000">
+    </div>
+<!--/First Section Dummy Content-->
+</div>
+<!--/Main parallax wrapper-->
+
+
+<div class="divider"></div>
+
+<!--Second Section Text Section one-->
+
+{% for hgtext in hgtexts %}
+{% if hgtext.display_position_text == 'ROW1' %}
+<div class="container-fluid">
+  <div class="jumbotron text-center z-depth-0 hoverable " style="background-color: white;  margin-left: 0px; margin-right: 0px; overflow: hidden;">
+    <span class="noselect font-vibes-md wow fadeIn" data-wow-delay="0.2s"> {{ hgtext.main_title_text }} </span><br>      
+    <span class="noselect text-center wow fadeIn" data-wow-delay="0.4s"> {{ hgtext.secondary_title_text }} </span><br>
+    <span class="noselect text-center wow fadeIn" data-wow-delay="0.6s">{{ hgtext.short_description_text }} </span><br>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+
+<!--/Second Section Text Section one-->
+
+
+<!--Third Section Cards Row 2-->
+<div class="container-fluid">
+    <div class="row">
+        <!--card-R2C1/3-->
+    {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW2-COL1/3' %}
+        <div class="padt15 col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-r wow fadeInLeft" data-wow-delay="0.4s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h6 class="text-center card-title2">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h6>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        
+        <!--/card-R2C1/3-->
+
+        <!--card-R2C2/3-->
+     {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW2-COL2/3' %}
+        <div class="padt15 col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-r wow fadeInLeft" data-wow-delay="0.3s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h6 class="text-center card-title2">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h6>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R2C2/3-->
+        
+         <!--card-R2C3/3-->
+     {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW2-COL3/3' %}
+        <div class="padt15 col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-r wow fadeInLeft" data-wow-delay="0.2s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h6 class="text-center card-title2">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h6>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R2C3/3-->
+        
+    </div>
+</div>
+<!--Third Section Cards Row 2-->
+
+<div class="divider"></div>
+
+
+<!--Fourth Section Parallax Image 2-->
+<div class="parallax">
+<!--Second section-->
+<div id="section-200" class="parallax-section">
+    <!--Parallax content-->
+    <div class="parallax-layer parallax-layer-base">
+        <!--Container to center the content-->
+        <div class="full-bg-img flex-center">
+            {% for hgpi in hgpis %}
+                {% if hgpi.display_position == 'IMAGE2' %}
+            <ul>
+                <li>
+                    <h1 class="h1-responsive wow fadeInDown noselect" data-wow-delay="0.2s">{{ hgpi.hgpi_image_main_text }}</h1>
+                </li>
+                
+                <li>
+                    <p class="wow fadeInDown noselect" data-wow-delay="0.2s">{{ hgpi.hgpi_image_secondary_text }}</p>
+                </li>
+
+                <li>
+                    <a href="{{ hgpi.hgpi_link }}" class="btn btn-outline-white btn-lg wow fadeInLeft" data-wow-delay="0.2s"><i class="fa fa-user left"></i>{{ hgpi.hgpi_link_button_name }}</a>
+                </li>
+            </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <!--/Container to center the content-->
+    </div>
+    <!--/Parallax content-->
+
+    <!--Parallax background picture DO NOT REMOVE! -->
+    <div class="parallax-layer parallax-layer-back-200">
+    </div>
+    <!--/Parallax background-->
+</div>
+<!--/Second section-->
+<!--Second Section Dummy Content is required for parallax effect do not remove-->
+    <div id="section-2000">
+    </div>
+<!--/Second Section Dummy Content-->
+</div>
+<!--/Main parallax wrapper-->
+<!--Fourth Section Parallax Image 2-->
+
+
+
+
+<div class="divider"></div>
+
+<!--Fifth Section Text Section two-->
+
+{% for hgtext in hgtexts %}
+{% if hgtext.display_position_text == 'ROW3' %}
+<div class="container-fluid">
+  <div class="jumbotron text-center z-depth-0 hoverable " style="background-color: white;  margin-left: 0px; margin-right: 0px; overflow: hidden;">
+    <span class="font-vibes-md wow fadeInUp" data-wow-delay="0.4s">{{ hgtext.main_title_text }}</span><br>      
+    <span class="text-center wow fadeInUp" data-wow-delay="0.3s">{{ hgtext.secondary_title_text }}</span><br>
+    <span class="text-center wow fadeInUp" data-wow-delay="0.2s">{{ hgtext.short_description_text }}</span><br>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<!--/Fifth Section Text Section two-->
+
+<!--Sexth Section Cards-->
+
+<div class="container-fluid" id="services3">
+    <div class="row">
+        <!--card-R4C1/4-->
+    {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW4-COL1/4' %}
+        <div class="padt15 col-lg-3 col-md-3 col-sm-3 col-xs-12 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h5 class="text-center">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h5>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R4C1/4-->
+
+        <!--card-R4C2/4-->
+     {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW4-COL2/4' %}
+        <div class="padt15 col-lg-3 col-md-3 col-sm-3 col-xs-12 mb-r wow fadeInDown" data-wow-delay="0.2s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h5 class="text-center">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h5>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R4C2/4-->
+
+         <!--card-R4C3/4-->
+     {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW4-COL3/4' %}
+        <div class="padt15 col-lg-3 col-md-3 col-sm-3 col-xs-12 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h5 class="text-center">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h5>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R4C3/4-->
+
+        <!--card-R4C4/4-->
+     {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW4-COL4/4' %}
+        <div class="padt15 col-lg-3 col-md-3 col-sm-3 col-xs-12 mb-r wow fadeInDown" data-wow-delay="0.2s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h5 class="text-center">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h5>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R4C4/4-->
+    </div>
+</div>
+<!--/Sexth Section Cards-->
+
+<div class="divider"></div>
+
+<!--Seventh Section Parallax 3-->
+
+<div class="parallax">
+<!--Second section-->
+<div id="section-300" class="parallax-section">
+    <!--Parallax content-->
+    <div class="parallax-layer parallax-layer-base">
+        <!--Container to center the content-->
+        <div class="full-bg-img flex-center">
+            {% for hgpi in hgpis %}
+                {% if hgpi.display_position == 'IMAGE3' %}
+            <ul>
+                <li>
+                    <h1 class="h1-responsive wow fadeInDown noselect" data-wow-delay="0.2s">{{ hgpi.hgpi_image_main_text }}</h1>
+                </li>
+                
+                <li>
+                    <p class="wow fadeInDown noselect" data-wow-delay="0.2s">{{ hgpi.hgpi_image_secondary_text }}</p>
+                </li>
+
+                <li>
+                    <a href="{{ hgpi.hgpi_link }}" class="btn btn-outline-white btn-lg wow fadeInLeft" data-wow-delay="0.2s"><i class="fa fa-user left"></i>{{ hgpi.hgpi_link_button_name }}</a>
+                </li>
+            </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <!--/Container to center the content-->
+    </div>
+    <!--/Parallax content-->
+
+    <!--Parallax background picture DO NOT REMOVE! -->
+    <div class="parallax-layer parallax-layer-back-300">
+    </div>
+    <!--/Parallax background-->
+</div>
+<!--/Second section-->
+<!--Second Section Dummy Content is required for parallax effect do not remove-->
+    <div id="section-2000">
+    </div>
+<!--/Second Section Dummy Content-->
+</div>
+<!--/Main parallax wrapper-->
+
+<!--/Seventh Section Parallax 3-->
+
+
+
+<div class="divider"></div>
+
+<!--Eighth Section Text 3-->
+
+{% for hgtext in hgtexts %}
+{% if hgtext.display_position_text == 'ROW5' %}
+<div class="container-fluid">
+  <div class="jumbotron text-center z-depth-0 hoverable " style="background-color: white;  margin-left: 0px; margin-right: 0px; overflow: hidden;">
+    <span class="font-vibes-md wow fadeInDown" data-wow-delay="0.2s">{{ hgtext.main_title_text }}</span><br>      
+    <span class="text-center wow fadeInDown" data-wow-delay="0.3s">{{ hgtext.secondary_title_text }}</span><br>
+    <span class="text-center wow fadeInDown" data-wow-delay="0.4s">{{ hgtext.short_description_text }}</span><br>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<!--/Eighth Section Text 3-->
+
+
+<!--ninth Section Cards Section 3-->
+
+<div class="container-fluid" id="services5">
+    <div class="row">
+        <!--card-R2C1/3-->
+    {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW6-COL1/3' %}
+        <div class="padt15 col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-r wow fadeInRight" data-wow-delay="0.2s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h5 class="text-center">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h5>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R2C1/3-->
+
+        <!--card-R2C2/3-->
+     {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW6-COL2/3' %}
+        <div class="padt15 col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-r wow fadeInRight" data-wow-delay="0.3s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h5 class="text-center">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h5>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R2C2/3-->
+
+         <!--card-R2C3/3-->
+     {% for hgtopic in hgtopics %}
+        {% if hgtopic.display_position == 'ROW6-COL3/3' %}
+        <div class="padt15 col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-r wow fadeInRight" data-wow-delay="0.4s">
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                     <img src="{{ hgtopic.speaker_image.url }}" class="img-responsive text-center img-fluid" alt="speaker image">
+                     <a href="/{{ hgtopic.id }}/">
+                    <div class="mask waves-effect waves-light"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                <!--Title-->
+                    <h4 class="card-title text-muted">{{ hgtopic.main_title }}</h4><hr>
+                    <h5 class="text-center">{{ hgtopic.day }} | {{ hgtopic.date }} | {{ hgtopic.time }} | {{ hgtopic.venue }} </h5>
+                    <!--Text-->
+                    <p class="card-text card-120">{{ hgtopic.short_description }}</p>
+                    <a href="/{{ hgtopic.id }}/" class="btn btn-block btn-primary">more..</a>
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card-->
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!--/card-R2C3/3-->
+    </div>
+</div>
+<!--/Ninth Section Cards Section 3-->
+
+{% endblock %}

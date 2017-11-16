@@ -1,0 +1,170 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--parallax004 top condition-->
+{% if object.landscape_background and not object.portrait_background %}
+    {% if object.display_position %}
+
+<!--header-->
+<head>
+    <style>
+    /*pc landscape */
+    {% if object.landscape_background %}
+    
+    @media screen and (orientation: landscape) {
+        #par004-image1 {
+        background-image: url("{{ object.landscape_background.url }}");
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background-position: {{ object.focus }};
+        height: 90vh !important;
+        margin-top:3em;
+        margin-bottom:0em;
+        overflow: hidden;
+        }
+
+        #imagemap1-004 {
+            background: transparent;
+            color: transparent; 
+            width: {{ object.map1_box_size|slice:"0:3" }}; 
+            height: {{ object.map1_box_size|slice:"4:7" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map1_coordinate|slice:"0:5" }}; 
+            left: {{ object.map1_coordinate|slice:"6:11" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #imagemap2-004 {
+            background: transparent;
+            color: transparent; 
+            width: {{ object.map2_box_size|slice:"0:3" }}; 
+            height: {{ object.map2_box_size|slice:"4:7" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map2_coordinate|slice:"0:5" }}; 
+            left: {{ object.map2_coordinate|slice:"6:11" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+    }
+
+    {% endif %}
+    /*pc landscape */
+
+
+    /* mobile landscape */
+    {% if object.landscape_background and request|is_mobile %}
+    
+    @media screen and (orientation: landscape) {
+        #par004-image1 {
+        background-image: url("{{ object.landscape_background.url }}");
+        transition: all 0.3s ease;
+        background-position: {{ object.focus }};
+        margin-top:2.892em;
+        margin-bottom:0em;
+        height: 100vh !important;
+        overflow: hidden;
+        }
+
+        #imagemap1-004 {
+            background: transparent;
+            color: transparent; 
+            width: {{ object.map1_box_size|slice:"8:11" }}; 
+            height: {{ object.map1_box_size|slice:"12:15" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map1_coordinate|slice:"13:17" }}; 
+            left: {{ object.map1_coordinate|slice:"18:23" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #imagemap2-004 {
+            background: transparent;
+            color: transparent;
+            width: {{ object.map2_box_size|slice:"8:11" }}; 
+            height: {{ object.map2_box_size|slice:"12:15" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map2_coordinate|slice:"13:17" }}; 
+            left: {{ object.map2_coordinate|slice:"18:23" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+   
+    }
+    {% endif %}
+    /* mobile landscape */
+
+    /* mobile portrait */
+    {% if  object.landscape_background %}
+    @media screen and (orientation: portrait) {
+         #par004-image1 {
+            background-image: url("{{ object.landscape_background.url }}");
+            transition: all 0.3s ease;
+            background-size: contain;
+            background-position: top center;
+            margin-top:2.825em;
+            margin-bottom:2.25em;
+            height: 45vh !important;
+            overflow: hidden;
+
+        }
+
+        #imagemap1-004 {
+            background: transparent;
+            color: transparent; 
+            width: {{ object.map1_box_size|slice:"16:19" }}; 
+            height: {{ object.map1_box_size|slice:"20:23" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map1_coordinate|slice:"24:29" }}; 
+            left: {{ object.map1_coordinate|slice:"30:35" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #imagemap2-004 {
+            background: transparent;
+            color: transparent; 
+            width: {{ object.map2_box_size|slice:"16:19" }}; 
+            height: {{ object.map2_box_size|slice:"20:23" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map2_coordinate|slice:"24:29" }}; 
+            left: {{ object.map2_coordinate|slice:"30:35" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+    }
+    {% endif %}
+
+    </style>
+</head>
+<!--/header-->
+
+    <!--body-->
+    {% if object.display_position %}
+    <!--container-parallax004-->
+    <div class="gap" id="par004-image1" style="background-color:{{ object.html_bgcolorcode }} !important; overflow: hidden;">
+        <!--image-map1 with004-->
+            <a id="imagemap1-004" href="{{ object.map1_link }}"></a>
+        <!--/image-map1 with004-->
+        <!--image-map2 with004-->
+            <a id="imagemap2-004" href="{{ object.map2_link }}"></a>
+        <!--/image-map2 with004-->
+    </div>
+    <!--/container-parallax004-->
+    {% endif %}
+    <!--/body-->
+
+    {% endif %}
+{% endif %}
+<!--/parallax004 top condition-->

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}Support Tickets List{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="container-fluid">
+<h2>Helpdesk Tickets</h2>
+<a href="/helpdesk/ticket_create">Create Ticket</a>
+  <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Category</th>
+        <th>Issue</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Update</th>
+        <th>Support Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ticket in object_list %}
+      <tr>
+        <td>{{ ticket.ticket_number }}</td>
+        <td>{{ ticket.ticket_category }}</td>
+        
+        <td><a href="/helpdesk/{{ ticket.pk }}/ticket_detail">{{ ticket.ticket_issue }}</a></td>
+        <td>{{ ticket.ticket_status }}</td>
+        <td>{{ ticket.ticket_edited_on }}</td>
+        <td> <a class="btn btn-warning btn-small" href="/helpdesk/ticket_update/{{ ticket.pk }}">Update</a></td>
+        <td> <a class="btn btn-warning btn-small" href="/helpdesk/ticket_manager_create/{{ ticket.pk }}">Reply</a> </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+{% endblock %}

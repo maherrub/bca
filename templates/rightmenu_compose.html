@@ -1,0 +1,76 @@
+{% load static %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load website_filters %}
+
+<head>
+    <style>
+        @media screen and (orientation: portrait) {
+            #adjust50 {
+            margin-top: 0% !important;
+            }
+        }
+    </style>
+
+
+</head>
+{% if user.is_authenticated %}
+
+<!-- Central Modal Medium Success -->
+<div class="modal fade right" id="rightmenucompose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-right" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">compose message</p>
+                <div>
+                    <a data-dismiss="modal" aria-label="Close" class="close btn btn-danger btn-sm smooth-scroll">x</a>
+                </div>
+                
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-comment-o fa-4x mb-1 animated rotateIn"></i>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <textarea type="text" id="form8" class="md-textarea mb-0"></textarea>
+                    <label for="form8">Your message</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <table>
+                            {{form|crispy}}
+                            </table>
+                            
+                            <button type="submit" class="btn btn-success btn-sm col-md-5 pull-left">Send</button>
+                            
+                    </form>
+                </div>
+                
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <!--load compose-->
+                
+                <!--load compose-->
+                    
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- Central Modal Medium Success-->
+
+
+
+
+{% endif %}

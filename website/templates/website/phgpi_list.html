@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+
+<!--Permissions control-->
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        {% for phgpi in object_list|slice:"1" %}
+        <h6><span class="badge red">{{ phgpi.functional_group }} <br>Home Group Parallax Image List</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/phgpi_create/{{ phgpi.functional_group }}/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% empty %}
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/phgpi_create/English/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+    <!--Body-->
+    <div class="container-fluid" style="overflow: hidden;">
+        <div class="row">
+            <div class="col-md-12">    
+                <ul class="list-group">
+                <a href="#" class="list-group-item mdb-color darken-3 white-text"><i class="fa fa-picture-o"></i>&nbsp;Parallax Images<span class="counter" style="margin-left:70%;">{{ object_list|length }}</span></a>
+                {% for phgpi in object_list %}
+                <li class="list-group-item justify-content-between">
+                <div class="container">
+                    <div class="row">
+                    
+                    <div class="col-md-1 col-xs-1">
+                        <small><strong>Imag. Files</strong></small>
+                        {% if phgpi.portrait_background %}
+                            <small><strong>Portrait</strong></small><br>
+                            <img src="{{ phgpi.portrait_background.url }}" class="list-img-md img-responsive img-fluid" alt="speaker image">
+                        {% endif %}
+                    
+                        {% if phgpi.landscape_background %}
+                            <small><strong>Landscape</strong></small><br>
+                            <img src="{{ phgpi.landscape_background.url }}" class="list-img-md img-responsive img-fluid" alt="speaker image"><br>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-1 col-xs-1">
+                        <small><strong>Trans. Files</strong></small>
+                                                    
+                        {% if phgpi.translatedtxtfile1 %}
+                            <i class="blue-text fa fa-file-text-o fa-2x"></i>
+                        {% endif %}
+
+                        {% if phgpi.translatedtxtfile2 %}
+                            <i class="blue-text fa fa-file-o fa-2x"></i>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-4 pull-left">
+                        <small><strong>Func.Group:</strong> {{ phgpi.functional_group }}</small><br>
+                        <small><strong>Title:</strong> {{ phgpi.main_text }}</small><br>
+                        <small><strong>Parallax ID:</strong> {{ phgpi.pk }}</small><br>
+                        <small><strong>Layout:</strong> {{ phgpi.layout }}</small><br>
+                        <small><strong>Position:</strong> {{ phgpi.display_position }}</small><br>
+                        {% if phgpi.map1_coordinate %}
+                        <small><strong>Coord1:</strong> {{ phgpi.map1_coordinate }}</small><br>
+                        {% endif %}
+
+                        {% if phgpi.map2_coordinate %}
+                        <small><strong>Coord2:</strong> {{ phgpi.map2_coordinate }}</small><br>
+                        {% endif %}
+
+                        {% if phgpi.page_id %}
+                        <span class="warning-color-dark white-text"><small><strong>Page ID:</strong> {{ phgpi.page_id }}</small></span><br>
+                        {% endif %}
+                        
+                        {% if phgpi.html_bgcolorcode %}
+                            <small><strong>html color:</strong></small>
+                            <small>{{ phgpi.html_bgcolorcode }}</small>
+                            <i style="background-color:{{ phgpi.html_bgcolorcode }};" class="fa fa-television"></i><br>
+                        {% endif %}
+                        <small><strong>Font:&nbsp;</strong></small><span class="{{ phgpi.font_style }}-xs {{ phgpi.font_color }}">{{ phgpi.font_style }}</span><br>
+                        <small><strong>Owner:&nbsp;</strong> {{ phgpi.hgpi_owner }}</small><br>
+                    </div>
+
+                    <div class="col-md-4 pull-left">
+                        <small><strong>Created:</strong> {{ phgpi.edited_on|get_due_date_string }}</small><br>
+                        <small><strong>Updated:</strong> {{ phgpi.updated }}</small><br>
+                        
+                        
+                        {% if phgpi.map1_link %}
+                        <small><strong>Map1 Link:</strong> {{ phgpi.map1_link }}</small><br>
+                        {% endif %}
+                        
+                        
+                        
+                        {% if phgpi.map2_link %}
+                        <small><strong>Map2 Link:</strong> {{ phgpi.map2_link }}</small><br>
+                        {% endif %}
+                        <small><strong>Btn.Name:</strong> {{ phgpi.button_name }}</small><br>
+                        <small><strong>Btn.Link:</strong> {{ phgpi.button_link }}</small><br>
+
+                        
+                        {% if phgpi.is_verified = 0 %}
+                        <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ phgpi.is_verified }}</span></small><br>
+                        {% else %}
+                        <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ phgpi.is_verified }}</span></small><br>
+                        {% endif %}
+                        
+                        {% if phgpi.is_published = 0 %}
+                        <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ phgpi.is_published }}</span></small><br>
+                        <a href="/helpdesk/userticket_create"><i class="fa fa-ticket"></i><span>&nbsp;request to publish</span></a><br>
+                        {% else %}
+                        <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ phgpi.is_published }}</span></small><br>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-1 pull-right">
+                        <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/{{ phgpi.id }}/phgpi_detail">detail</a></h6>
+                    </div>
+
+                    <div class="col-md-1 pull-right">
+                        <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/{{ phgpi.id }}/phgpi_update">update</a></h6>
+                    </div>
+
+                    </div>
+                </div>
+                </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Body-->
+
+    <div class="divider"></div>
+
+    <div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+    </div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}

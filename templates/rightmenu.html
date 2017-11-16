@@ -1,0 +1,112 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load website_filters %}
+
+<head>
+    <style>
+        @media screen and (orientation: portrait) and (max-width: 350px) {
+            #pvt-msngr-btns-hide {
+             display: none;
+             
+            }
+
+            #pvt-btn-padding { margin-left:30%; }
+
+            .fixed-action-btn {
+                z-index: 0 !important;
+                
+            }
+        }
+
+        @media screen and (orientation: landscape) and (max-width: 600px) {
+            
+            #pvt-msngr-btns-hide {
+             display: none;
+             margin-left:40px;
+            }
+            
+            #adjust50 {
+            margin-top: 0% !important;
+            }
+
+            .fixed-action-btn {
+                z-index: 0 !important;
+            }
+        }
+
+
+
+
+    </style>
+
+</head>
+{% if user.is_authenticated %}
+<!-- rightmenumodaltype -->
+<div class="modal fade right" id="rightmenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-right" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header white-text fixed-top" style="background-color: rgb(63, 114, 155);">
+                <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <span class="modal-title w-100 white-text" id="myModalLabel">[ FRANS ] Private Messenger <i class="fa fa-comments-o fa-2x animated rubberBand"></i>{{ messages_inbox_count }} 
+                    <a data-dismiss="modal"><i style="float: right;" class="fa fa-times"></i></a>
+                </span><br>
+                
+                
+            </div>
+            <!--Body-->
+            <div class="panel-body">
+                <div id="pvt-btn-padding" style="padding: 60px 0px 5px 5px;">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-11">
+                            <a href="/messages/outbox/" class="btn btn-yellow btn-sm smooth-scroll"> <span id="pvt-msngr-btns-hide">Sent</span> <i class="fa fa-commenting-o animated rubberBand"></i> </a>
+                            <a href="/messages/inbox/" class="btn btn-light-green btn-sm smooth-scroll"><span id="pvt-msngr-btns-hide">Received</span> <i class="fa fa-commenting-o animated rubberBand"></i> </a>
+                            <a href="/messages/trash/" class="btn btn-orange btn-sm smooth-scroll"><span id="pvt-msngr-btns-hide">Trash</span> <i class="fa fa-trash-o animated rubberBand"></i> </a>
+                        </div>
+                        <div class="col-0"></div>
+                    </div>
+                </div>
+                <ul>
+                    {% for objects in uprofile %}
+                        <li class="list-group-item-sm noselect">
+                            <div class="col-2"></div>
+                            <div class="col-3">
+                                <img src="{{ objects.usercover.url }}" class="rounded-circle list-img-md img-responsive img-fluid" alt="profile image">
+                            </div>
+                            <div class="col-4">
+                                <span>
+                                    <small>&nbsp;{{ objects.firstname }} {{ objects.lastname }}<br>&nbsp;[ {{ objects.expertise }} ]</small><br>
+                                    <small>&nbsp;{{ objects.sunday_service|lower }} service </small><br>
+                                </span>
+                            </div>
+                            <div class="col-1">
+                                <a href="/messages/compose/{{ objects.user }}/"><i class="fa fa-comment-o fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-2"></div>
+                        
+                        </li>
+                        
+                    {% empty %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+               
+                
+                
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- rightmenumodaltype -->
+<!--load social topmenu-->
+    {% include 'rightmenu_compose.html' %}
+<!--load social topmenu-->
+{% endif %}

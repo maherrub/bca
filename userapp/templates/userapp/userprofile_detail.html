@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}preview of {{ object }}{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+
+<!--Container1-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6 offset-md-3">
+                <h4 class="font-pompiere-sm black-text text-center">Profile preview</h4>
+            </div>
+
+            <div class="col-md-6 offset-md-3 mb-r wow slideInRight" data-wow-delay="0.2s">
+                <a href="/apps_list/" class="pull-right btn-floating btn-small btn-info"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Container1-->
+
+<!--Container2-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <!--Card1-->
+            <div class="card testimonial-card mb-r wow slideInLeft" data-wow-delay="0.2s">
+                <!--Bacground color-->
+                <div class="card-up #01579b light-blue darken-4">
+                </div>
+
+                <!--Avatar-->
+                <div class="avatar">
+                  <img src="{{object.usercover.url }}" class="rounded-circle img-responsive img-fluid" alt="">
+                </div>
+
+                <div class="card-block">
+                <!--Name-->
+                <h4 class="card-title black-text">{{ object.firstname }} {{object.lastname}}</h4><br>
+                  <small>
+                    <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{ object.usermobile }}</i>
+                    <i class="fa fa-envelope" aria-hidden="true">&nbsp;{{ user.email }}</i>
+                  </small>
+                <br>
+                <hr>
+                <!--Quotation-->
+                <i class="fa fa-address-card-o" aria-hidden="true">&nbsp;{{ object.address_line1 }},&nbsp; {{ object.address_line2 }},&nbsp; {{ object.city_or_town }}, &nbsp; {{ object.country }}&nbsp;-&nbsp;{{ object.zip_or_postal_code }}</i>        
+              </div>
+            </div>
+            <!--/.Card1-->
+        </div>
+    </div> 
+    <!--/row-->   
+</div>
+<!--/container2-->
+
+<!--Container3-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <!--Card2-->
+            <div class="card testimonial-card mb-r wow slideInRight" data-wow-delay="0.2s">
+            
+            </div>
+        </div>
+    </div>
+</div>
+<!--Container3-->
+{% endblock %}
+
+
+{% comment %}
+
+
+
+{% endcomment%}

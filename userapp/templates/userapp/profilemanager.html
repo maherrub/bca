@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% block title %}{% trans "Profile Manager's' Console" %}{% endblock %}
+
+<div class="divider"></div>
+
+<h5 class="text-center text-muted">Profile Manager's' Console</h5>
+
+
+{% for pm in pms %}
+    {% if user.username == pm.pm_manager_name and pm.pm_functional_group == 'English' %}
+
+<div class="container">
+<div class="row">
+<!--English Ministry-->        
+            <!--Panel 1-->
+           <div class="col-md wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header primary-color-dark white-text">
+                    <h1 class="h4-responsive text-center">Profile Manager's User List</h1>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">English</h4>
+                    <a href="/up/pmlv/English" class="btn primary-color-dark btn-block">Go</a>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 1-->
+<!--English Ministry-->
+</div>
+</div>
+
+{% elif user.username == pm.pm_manager_name and pm.pm_functional_group == 'Chinese' %}
+
+<!--Chinese Ministry-->
+<div class="container">
+    <div class="row">
+
+            <!--Panel 2-->
+            <div class="col-md wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card">
+                <div class="card-header danger-color-dark white-text">
+                    <h1 class="h4-responsive text-center">Profile Manager's User List</h1>
+                </div>
+                <div class="card">
+                    <h4 class="text-center text-muted">Chinese</h4>
+                    <a href="/up/pmlv/Chinese/" class="btn btn-danger btn-block">Go</a>
+                </div>
+            </div>
+            </div>
+            <!--/.Panel 2-->
+    </div>
+</div>
+
+
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

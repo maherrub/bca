@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load user_agents %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<!--load main page -->
+{% include 'website/producerpage_detail001.html' %}
+<!--/load main page -->
+
+<!--attach and load parallaxes if page id is found-->
+{% include 'website/producerpage_detail0011.html' %}
+<!--/attach and load parallaxes if page id is found-->
+
+<!--attach and load text sections if page id is found-->
+{% include 'website/producerpage_detail0012.html' %}
+<!--/attach and load text sections if page id is found-->
+
+<!--attach and load topic as link, text and topic sections if page id is found-->
+{% include 'website/producerpage_detail0013.html' %}
+<!--/attach and load topic as link, text and topic sections if page id is found-->
+
+
+<!--load team section-->
+{% include 'website/producerpage_detail002.html' %}
+<!--/load team section-->
+
+<!--load extend sections-->
+{% include 'website/producerpage_detail003.html' %}
+<!--/load extend sections-->
+
+
+<div class="container">
+    <div class="divider"></div>
+    <div class="divider"></div>
+    <div class="div">
+        {% if object.left_btnname or object.right_btnname %}
+            <div class="text-center excerpt wow fadeIn" data-wow-delay="0.4s">
+                <a href="{{ object.left_btnlink }}" class="col-md-3 btn btn-outline-primary btn-rounded waves-effect">{{ object.left_btnname }}</a>
+                <a href="{{ object.right_btnlink }}" class="col-md-3 btn btn-outline-primary btn-rounded waves-effect">{{ object.right_btnname }}</a>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <small class="red-text">below item(s) will not be published</small><br>
+    <small class="amber-text">your image mapping properties will not show correctly in this section, your admin will take care of it before publishing your pages. In your request ticket, kindly request your administrator to fine tune the image mapping properties.</small><br>
+    <div class="col-md-12">
+        <a href="/producer/" class="col-md-2 btn btn-primary pull-left">Producer</a>
+    </div>
+</div>
+
+
+
+
+{% endif %}
+{% endblock %}

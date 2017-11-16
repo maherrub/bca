@@ -1,0 +1,104 @@
+{% extends "django_messages/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% block content %}
+
+<head>
+    <link href="{% static 'css/socialmedia.css' %}" rel="stylesheet">
+    <style>
+        /* hiding long texts and show only the icons for small devices */ 
+        @media screen and (max-width: 480px) {
+        label {
+            font-size: 0px;
+            padding: 0px !important;
+        }}
+    </style>
+</head>
+
+
+<div class="divider"></div>
+<div class="divider"></div>
+<!--main container-->
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-3 col-sm-0"></div>
+        <div class="col-md-6 col-sm-12">
+            <!--Panel 1-->
+            <div class="tab-pane fade in show active" id="panel11" role="tabpanel">
+                <br>
+                
+			        <div class="share">
+                        <div class="panel panel-default">
+                                
+                                <!--Panel1 inline header-->
+                                <div class="panel-heading"><i class="fa fa-commenting-o animated rubberBand"></i> Private Message</div>
+                                <!--/Panel1 inline header-->
+                                
+                                <!--Panel 1 post text area-->
+                                <div class="panel-body">
+                                    <div class="social-text-body">
+                                        <form class="share-box" action="" method="post">
+                                            {% csrf_token %}
+                                            <table>
+                                            {{ form.as_table }}
+                                            </table>
+                                    </div>
+                                </div>
+                                <!--/Panel 1 post text area-->
+                                
+                                <!--Panel 1 footer-->
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <div class="form-group" style="padding: 5px;">
+                                                <input class="pull-right btn-social btn-sm" style="background-color:rgba(14, 61, 103, 0.78) !important;" type="submit" value="{% trans "send" %} &raquo;"/>
+                                        </form>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/Panel 1 footer-->
+                        </div>
+                    </div>
+                
+            </div>
+            <!--/.Panel 1-->
+        <div class="col-md-3 col-sm-0"></div>
+    </div>
+</div>
+<!--/main container-->
+<div class="divider"></div>
+<div class="divider"></div>
+{% endblock %}
+
+
+
+{% comment %}
+<!--This is a original script-->
+<!--
+<h6>{% trans "Compose Message"%}</h6>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-3 col-sm-0"></div>
+        <div class="col-md-6 col-sm-12">
+            <div class="text-center">
+                    <i class="fa fa-comment-o fa-4x mb-1 animated rotateIn"></i>
+            </div>
+            <form action="" method="post">
+            {% csrf_token %}
+            <table>
+            {{ form.as_table }}
+            </table>
+            <input class="btn btn-secondary btn-sm black-text" style="background-color:rgba(14, 61, 103, 0.78) !important;" type="submit" value="{% trans "Send" %} &raquo;"/>
+            </form>
+        </div>
+        <div class="col-md-3 col-sm-0"></div>
+    </div>
+</div>
+-->
+<!--/This is a original script-->
+{% endcomment %}
+

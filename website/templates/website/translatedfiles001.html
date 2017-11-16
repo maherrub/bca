@@ -1,0 +1,77 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+
+<head>
+    <style>
+        
+        #txt-normal {
+            
+            background-color: rgba(242, 242, 242, 0.1);
+            font-size: 20px;
+            font-weight: 100;
+            text-shadow: 1px 1px 1px #aaa; 
+            color: rgba(0,0,0,.5);
+            text-align: justify;
+        }
+        
+
+        {% if request|is_mobile %}
+             @media screen and (orientation: landscape) {
+                #txt-normal {
+                    
+                    background-color: rgba(242, 242, 242, 0.0);
+                    font-size: 18px;
+                    font-weight: 100;
+                    text-shadow: 1px 1px 1px #aaa; 
+                    color: rgba(0,0,0,.5);
+                    text-align: justify;
+                    padding: 5px 10px 5px 5px;
+                }
+             }
+        {% endif %}
+
+
+            @media screen and (orientation: portrait) {
+                #txt-normal {
+                    
+                    background-color: rgba(242, 242, 242, 0.1);
+                    border-left: 5px double #3F729B;
+                    font-size: 16px;
+                    font-weight: 100;
+                    text-shadow: 1px 1px 1px #aaa; 
+                    color: rgba(0,0,0,.5);
+                    text-align: justify;
+                    padding: 5px 10px 5px 5px;
+                }
+            }
+    
+    </style>
+</head>
+
+{% if object.translatedtxtfile1 %}
+<!--translated txt file1 paragraph-->
+<div class="container-fluid">
+    <div class="col-md-10 offset-md-1">
+        <div class="row">
+            <div id="txt-normal" class="noselect pad5">{{ object.translatedtxtfile1|print_file_content }}</div>
+        </div>
+    </div>    
+</div>
+<!--/translated txt file1 paragraph-->
+{% endif %}
+
+{% if object.translatedtxtfile2 %}
+<!--translated txt file2 paragraph-->
+<div class="container-fluid">
+    <div class="col-md-10 offset-md-1">
+        <div class="row">
+            <div id="txt-normal" class="noselect pad5">{{ object.translatedtxtfile2|print_file_content }}</div>
+        </div>
+    </div>    
+</div>
+<!--/translated txt file2 paragraph-->
+{% endif %}

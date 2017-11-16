@@ -1,0 +1,127 @@
+body{
+  padding-left:25px;
+  padding-right:25px;
+}
+
+
+/* JS VERSION */
+
+.slidebar-left{
+  height:100%;
+  width:5px;
+  background-image: -webkit-linear-gradient(left, black 0%, black 100%);
+  color:white;
+  -webkit-transition:background-image .2s, width .25s, box-shadow .2s;
+  text-align:right;
+  position:fixed;
+  left:0px;
+  z-index:2;
+  top:0px;
+}
+
+
+.slidebar-right{
+  height:100%;
+  width:5px;
+  background-image: -webkit-linear-gradient(left, black 0%, black 100%);
+  color:white;
+  -webkit-transition:background-image .2s, width .25s, box-shadow .2s;
+  text-align:right;
+  position:fixed;
+  right:0px;
+  z-index:2;
+  top:0px;
+}
+
+.lt{
+  position:relative;
+  -webkit-transition: -webkit-transform .2s; color .2s, padding .2s;
+  width:12px;
+  float:right;
+  padding-right:5px;
+  height:100%;
+}
+
+.ltr{
+  position:relative;
+  -webkit-transition: -webkit-transform .2s; color .2s, padding .2s;
+  width:12px;
+  float:left;
+  padding-right:5px;
+  height:100%;
+}
+
+
+
+
+.lt > span{
+  position:relative;
+  top: 50%;
+}
+
+.ltr > span{
+  position:relative;
+  top: 50%;
+}
+
+
+.slidebarOpen{
+width:500px;
+  background-image: -webkit-linear-gradient(left, #242424 0%, black 100%);
+  box-shadow:inset 40px 0 30px -30px rgba(250, 250, 250, 0.02), 6px 0px 15px -3px rgba(40, 40, 40, .7), 0px 1px 2px black, inset -30px 0 30px -10px rgba(250, 250, 250, 0.18);
+}
+
+.slidebarOpenl{
+width:300px;
+  background-image: -webkit-linear-gradient(left, #3F729B 0%, #3F729B 100%);
+  box-shadow:inset 40px 0 30px -30px rgba(250, 250, 250, 0.02), 6px 0px 15px -3px rgba(40, 40, 40, .7), 0px 1px 2px black, inset -30px 0 30px -10px rgba(250, 250, 250, 0.18);
+}
+
+.slidebarOpenr{
+width:300px;
+  background-image: -webkit-linear-gradient(left, #3F729B 0%, #3F729B 100%);
+  box-shadow:inset 40px 0 30px -30px rgba(250, 250, 250, 0.02), 6px 0px 15px -3px rgba(40, 40, 40, .7), 0px 1px 2px black, inset -30px 0 30px -10px rgba(250, 250, 250, 0.18);
+}
+
+.slidebarOpen > .lt{
+  transform: rotate(180deg);
+ -webkit-transform: rotate(180deg);
+  padding-right:2px;
+  padding-left:2px;
+}
+
+.slidebarOpenl > .lt{
+  transform: rotate(180deg);
+ -webkit-transform: rotate(180deg);
+  padding-right:2px;
+  padding-left:2px;
+}
+
+.slidebarOpenr > .lt{
+  transform: rotate(180deg);
+ -webkit-transform: rotate(180deg);
+  padding-right:2px;
+  padding-left:2px;
+}
+
+.fourth{
+  width:23%;
+  float:left;
+  margin-top:15px;
+}
+
+.row{
+  width:100%;
+  height:100px;
+  display:none;
+}
+
+.row-vis{
+  visibility:visible;
+}
+
+.red{
+  visibility:visible;
+  background-color:red;
+}
+

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+{% block content %}
+
+{% if object.layout == 'LAON' %}
+        <!--load landscape image1 only available-->
+        {% include 'website/parallax001.html' %}
+        <!--/load landscape image1 only available-->
+
+    {% elif object.layout == 'LAPO' %}
+        <!--load landscape and portrait images1 available-->
+        {% include 'website/parallax002.html' %}
+        <!--/load landscape and portrait images1 available-->
+
+    {% elif object.layout == 'NOIM' %}
+        <!--load no landscape and no portrait images1 available-->
+        {% include 'website/parallax003.html' %}
+        <!--/load no landscape and no portrait images1 available-->
+
+    {% elif object.layout == 'LAONim' %}
+        <!--load landscape with image1 map004 link-->
+        {% include 'website/parallax004.html' %}
+        <!--/load landscape with image1 map004 link-->
+
+    {% elif object.layout == 'LAONimt' %}
+        <!--load landscape with image1 map005 with tool tip-->
+        {% include 'website/parallax005.html' %}
+        <!--/load landscape with image1 map005 with tool tip-->
+
+    {% elif object.layout == 'LAONimtl' %}
+        <!--load landscape with image1 map006 with tool tip and link-->
+        {% include 'website/parallax006.html' %}
+        <!--/load landscape with image1 map006 with tool tip and link-->
+
+    {% elif object.layout == 'LAONmtb' %}
+        <!--load landscape with image1 map007 with moveable textbox-->
+        {% include 'website/parallax007.html' %}
+        <!--/load landscape with image1 map007 with moveable textbox-->
+    
+    {% elif object.layout == 'LAONmtbl' %}
+        <!--load landscape with image1 map008 with moveable textbox with link-->
+        {% include 'website/parallax008.html' %}
+        <!--/load landscape with image1 map008 with moveable textbox with link-->
+    {% endif %}
+
+
+<p class="red-text">This is your preview page therefore your mapping on image2 and 3 will be out of range. Please scroll down to view the approx position. Please take your Admin support for mapping layouts. </p>
+
+
+<!--Common back button-->
+<div class="container">
+    <div="row">
+        <a href="/producer/" class="btn btn-primary col-md-2 pull-right">Back</a>
+    </div>
+</div>
+<div class="divider"></div>
+<!--/Common back button-->
+
+{% endblock %}

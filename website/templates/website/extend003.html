@@ -1,0 +1,41 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+
+
+{% if eo.layout == 'text-left-picture-right' %}
+
+<!--loading publicpage layout3-->
+<div class="container-fluid">
+    
+    <div class="divider"></div>
+    <div class="divider"></div>
+    <!--Layout text-left-picture-right-->
+        <div class="row">
+        
+        <!--First column-->
+        <div class="col-md-7 mb-r wow fadeInLeft" data-wow-delay="0.3s" style="padding: 0px 30px;">
+            <a href="/{{ eo.pk }}/producerpageextend_update" class="red-text">&nbsp;edit</a>
+            <!--Excerpt-->
+            <h3 class=""><i class="fa fa-television"></i>{{ eo.main_title }}</h3>
+            <h5 class="{{ eo.high_title_color }}" >{{ eo.high_title }}</h5>
+            <p><lead>{{ eo.content }}</lead></p>
+        </div>
+        <!--/First column-->
+
+        <!--Second column-->
+        <div class="col-md-5 mb-r wow fadeInRight" data-wow-delay="0.3s">
+            <!--Featured image-->
+            
+            <div class="view overlay hm-black-slight z-depth-2 hoverable" style="max-height: 400px;">
+                {% if eo.extendmedia and eo.display_section %}
+                <img class="img-fluid" src="{{ eo.extendmedia.url }}">
+                {% endif %}
+                    <a>
+                        <div class="mask"></div>
+                    </a>
+            </div>
+        </div>
+        <!--/Second column-->
+{% endif %}

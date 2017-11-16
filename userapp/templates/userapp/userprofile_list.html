@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+<!--checks if user is loggedin-->
+{% if user.is_authenticated %}
+
+<head>
+    <style>
+    body {
+        font-family: "Lato", sans-serif;
+         background: #E9EAED;
+    }
+
+    /* Style the tab */
+    div.tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #3F729B;
+    }
+
+    /* Style the buttons inside the tab */
+    div.tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+        color: white;
+    }
+
+    /* Change background color of buttons on hover */
+    div.tab button:hover {
+        background-color: rgba(204, 204, 204, 0.30);
+    }
+
+    /* Create an active/current tablink class */
+    div.tab button.active {
+        background-color: rgba(204, 204, 204, 0.11);
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /*
+        border: 1px solid #ccc;
+        */
+        border-top: none;
+        -webkit-animation: fadeEffect 2s;
+        animation: fadeEffect 2s; /* Fading effect takes 1 second */
+        }
+
+        @-webkit-keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+
+        }
+    </style>
+    
+    <script>
+        function openApp(evt, appName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(appName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        }
+    </script>
+    <script>
+        window.onload = function () {
+                startTab();
+        };
+
+        function startTab() {
+        document.getElementById("defaultOpen").click();
+        }
+    </script>
+</head>
+
+<div class="divider"></div>
+<!--load social topmenu-->
+    {% include 'topmenu.html' %}
+<!--load social topmenu-->
+
+
+<!--UserTabs-->
+
+<div class="tab">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+            <button class="tablinks" onclick="openApp(event, 'Socialize')">Socialize</button>
+            <button class="tablinks" onclick="openApp(event, 'Quiz')">Quiz</button>
+            <button class="tablinks" onclick="openApp(event, 'Poll')">Poll</button>
+            <button class="tablinks" onclick="openApp(event, 'Profile')" id="defaultOpen">Profile</button>
+            <button class="tablinks" onclick="openApp(event, 'Friends')">Friends</button>
+            <button class="tablinks" onclick="openApp(event, 'Groups')">Groups</button>
+        </div>
+    </div>
+</div>
+
+<div id="Socialize" class="tabcontent">
+    <h3>Coming soon..</h3>
+    
+    {% comment %}
+    <!--load socialize sections-->
+    {% include 'socialmedia.html' %}
+    <!--/load socialize sections-->
+    {% endcomment %}
+</div>
+
+<div id="Quiz" class="tabcontent">
+    <h3>Coming soon..</h3>
+
+    {% comment %}
+    <!--load socialize sections-->
+    {% include 'quizmedia.html' %}
+    <!--/load socialize sections-->
+    {% endcomment %} 
+</div>
+
+<div id="Poll" class="tabcontent">
+  <h3>Coming soon..</h3>
+
+  {% comment %}
+  <!--load socialize sections-->
+  {% include 'pollmedia.html' %}
+  <!--/load socialize sections-->
+  {% endcomment %}
+</div>
+
+<div id="Profile" class="tabcontent">
+  <!--load socialize sections-->
+  {% include 'userapp\userprofile001.html' %}
+  <!--/load socialize sections-->
+</div>
+
+<div id="Friends" class="tabcontent">
+  <!--load social registered users-->
+  {% include 'userapp\socialmediauser_list.html' %}
+  <!--/load social registered users-->
+</div>
+<!--/UserTabs-->
+
+<div id="Groups" class="tabcontent">
+  <h3>Groups from Facilities</h3>
+  <p>You will be able to add a group here</p>
+</div>
+<!--/UserTabs-->
+{% else %}
+
+<div class="divider"></div>
+<h1 class="badge orange">Please login to use this application!</h1>
+<div class="divider"></div>
+<div class="divider"></div>
+{% endif %}
+<!--/checks if user is loggedin-->
+
+{% endblock %}
+
+
+{% comment %}
+
+<!-- original link
+  <tr><td>{% if perms.todo.view_todo %}<a href="{{todo.get_absolute_url}}">{{todo}}</a>{% else %}{{todo}}{% endif %}</td>
+  <td>{% if perms.todo.change_todo %}<a href="{% url 'todo_update' todo.pk %}">Update</a>{% endif %} | {% if perms.todo.delete_todo %}<a href="{% url 'todo_delete' todo.pk %}">Delete</a>{% endif %}</td></tr>
+
+<tr>
+                            <td>{{ up.user.username }}</td>
+                           {% if perms.todo.view_todo %}
+                            <td><a href="up_detail/{{ up.id }}"> {{ todo.title }}</a></td>
+                            {% else %}
+                            <td>{{ todo.title }}</td>
+                            {% endif %}
+                            {% if perms.todo.change_todo %}
+                            <td><a class="btn btn-xs btn-warning" href="todo{{ todo.id }}/update">Change</a></td>
+                            {% endif %}
+                            {% if perms.todo.delete_todo %}
+                            <td><a class="btn btn-xs btn-danger" href="todo{{ todo.id }}/delete">Delete</a></td>
+                            {% endif %}
+
+                          </tr>
+
+
+<div class="divider"></div>
+-->
+
+{% endcomment%}

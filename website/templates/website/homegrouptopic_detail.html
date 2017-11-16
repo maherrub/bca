@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+{% block content %}
+
+{% if object.youtubeid and not object.cover_image or object.cover_image %}
+    <!--load video page -->
+        {% include 'website/youtubevideo.html' %}
+    <!--/load video page -->
+{% endif %}
+
+{% if object.cover_image and not object.youtubeid  %}
+<!--cover image-->
+<div class="view overlay hm-white-slight">
+    <img src="{{ object.cover_image.url }}" class="img-responsive text-center img-fluid" width="100%" height="100%" alt="speaker image">
+    <a><div class="mask waves-effect waves-light"></div></a>
+</div>
+<!--/cover image-->
+{% endif %}
+
+{% if object.card_type == "Topic" %}
+<!--container1-->
+<div class="container" style="overflow:hidden;">
+<div class="row">
+    <div class="padt15 col-md-2">
+        <div class="view overlay hm-white-slight">
+            <img src="{{ object.speaker_image.url }}" class="list-img-md img-responsive img-fluid" alt="speaker image">
+            <a onclick="history.go(-1);" href"">
+                <div class="mask waves-effect waves-light"></div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="padt15 col-md-10">
+        <span class="badge blue">{{ object.main_title }}</span><br>
+        <span class="badge blue">{{ object.day }} {{ object.date }} {{ object.time }} {{ object.venue }} </span>
+        <hr>
+    </div>
+</div>
+<!--/row1-->
+</div>
+<!--/container1-->
+
+<!--container2-->
+<div class="container" style="overflow:hidden;">
+<div class="row">
+    <div class="col-md-8 offset-md-2">            
+        <p>{{ object.short_description }}</p><br>
+        <p>{{ object.long_description }}</p><br>
+    </div>
+
+    <div class="col-md-10 offset-md-1">
+        {% if object.translatedtxtfile1 or object.translatedtxtfile2 %}
+            <!--load translated files -->
+                {% include 'website/translatedfiles.html' %}
+            <!--/load translated files -->
+        {% endif %}
+    </div>
+</div>
+</div>
+<!--/container2-->
+
+{% elif object.card_type == "Link" %}
+
+<!--container3-->
+<div class="container" style="overflow:hidden;">
+    <div class="divider"></div>
+    <div class="divider"></div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <a href="{{ object.link_url }}">
+            <img src="{{ object.speaker_image.url }}" class="img-responsive img-fluid view overlay hm-black-slight hoverable" alt="speaker image"><br>
+            </a>
+        </div>
+        <div class="col-md-4 offset-md-4">
+            <span class="badge teal center-text noselect">Linked to: {{ object.link_url }}</span>
+        </div>
+    </div>
+</div>
+<!--container3-->
+{% else %}
+{% endif %}
+
+
+
+
+<!--container4-->
+<div class="container" style="overflow:hidden;">
+<div class="row">
+    <div class="col-md-10 col-sm-10 ">
+    </div>
+    
+    <div class="col-md-2 col-sm-2">
+        <a onclick="history.go(-1);" class="btn btn-primary pull-right">back</a>
+    </div>
+</div>
+<!--/container4-->
+
+{% endblock %}
+

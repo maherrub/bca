@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+ 
+<!--Permissions control-->
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        {% for producerpage in object_list|slice:"1" %}
+        <h6><span class="badge red">{{ producerpage.functional_group }}<br>Producer Pages List</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/producerpage_create/{{ producerpage.functional_group }}/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% empty %}
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/producerpage_create/English/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+<!--Body-->
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+        <div class="col-md-12">    
+            <ul class="list-group">
+            <a href="#" class="list-group-item warning-color-dark white-text"><i class="fa fa-file"></i>&nbsp;Pages<span class="counter" style="margin-left:70%;">{{ object_list|length }}</span></a>
+            {% for ppl in object_list %}
+            <li class="list-group-item justify-content-between">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-1 pull-left noselect">
+                            
+                            {% if ppl.youtubeid %}
+                                <small><strong>Youtube</strong></small><br>
+                                <iframe width="75" height="50"
+                                    src="https://www.youtube.com/embed/{{ ppl.youtubeid }}">
+                                </iframe><br>
+                            {% endif %}
+
+                            {% if ppl.covermedia %}
+                                <small><strong>Cover</strong></small><br>
+                                <img src="{{ ppl.covermedia.url }}" class="list-img-md img-responsive img-fluid" alt="cover"><br>
+                            {% endif %}
+                            
+                            {% if ppl.translatedtxtfile1 or ppl.translatedtxtfile2 %}
+                            <small><strong>Trans. Files</strong></small>
+                            {% endif %}
+                            
+                            {% if ppl.translatedtxtfile1 %}
+                                <i class="blue-text fa fa-file-text-o fa-2x"></i>
+                            {% endif %}
+
+                            {% if ppl.translatedtxtfile2 %}
+                                <i class="blue-text fa fa-file-o fa-2x"></i>
+                            {% endif %}
+
+                            
+                        </div>
+
+                        <div class="col-md-3 pull-left">
+                            <small><strong>Func. Group:</strong> {{ ppl.functional_group }}</small><br>
+                            <small><strong>Menu Position:</strong> {{ ppl.menu_position }}</small><br>
+                            <small><strong>Menu Name:</strong> {{ ppl.menu_name }}</small><br>
+                            <small><strong>Page Id:</strong> {{ ppl.pk }}</small><br>
+                            <small><strong>Owner:</strong> {{ ppl.owner }}</small><br>
+                        </div>
+
+                        <div class="col-md-4 pull-left">
+                            <small><strong>Title:</strong> {{ ppl.main_title }}</small><br>
+                            <small><strong>High title:</strong> {{ ppl.high_title }}</small><br>
+                            <small><strong>Created:</strong> {{ ppl.edited_on|get_due_date_string }}</small><br>
+                            <small><strong>Updated:</strong> {{ ppl.updated }}</small><br>                            
+                            {% if ppl.is_verified = 0 %}
+                            <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ ppl.is_verified }}</span></small><br>
+                            {% else %}
+                            <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ ppl.is_verified }}</span></small><br>
+                            {% endif %}
+                            {% if ppl.is_published = 0 %}
+                            <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ ppl.is_published }}</span></small>
+                            <br>
+                            <a href="/helpdesk/userticket_create"><i class="fa fa-ticket"></i><span>&nbsp;request to publish</span></a>
+                            {% else %}
+                            <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ ppl.is_published }}</span></small>
+                            {% endif %}
+                            
+                        </div>
+                        <div class="col-md-1 pull-right">
+                            <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/{{ ppl.pk }}/producerpage_detail">detail</a></h6>
+                            <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/{{ ppl.pk }}/producerpage_update">update</a></h6>
+                        </div>
+
+                        <div class="col-md-1 pull-right">
+                            <h6 class="btn btn-success btn-sm btn-rounded" style="float:right;"><a href="/producerpageteam_create/{{ ppl.pk }}/">+team</a></h6>
+                            <h6 class="btn btn-lime btn-sm btn-rounded" style="float:right;"><a href="/{{ ppl.pk }}/producerpageteam_list">#team</a></h6>
+                        </div>
+                        
+                        <div class="col-md-1 pull-right">
+                            
+                        </div>
+
+                        <div class="col-md-1 pull-right">
+                            <h6 class="btn btn-indigo btn-sm btn-rounded" style="float:right;"><a href="/producerpageextend_create/{{ ppl.pk }}/">+extend</a></h6>
+                            <h6 class="btn btn-mdb btn-sm btn-rounded" style="float:right;"><a href="/{{ ppl.pk }}/producerpageextend_list">#extend</a></h6>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+    
+<div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}
+

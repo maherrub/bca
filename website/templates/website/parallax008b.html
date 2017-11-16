@@ -1,0 +1,224 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--parallax008b top condition-->
+{% if object.landscape_background and not object.portrait_background %}
+    {% if object.display_position %}
+
+<head>
+    <style>
+
+        
+        /*pc landscape */
+        {% if object.landscape_background %}
+        
+        @media screen and (orientation: landscape) {
+            #par008b-image1 {
+            background-image: url("{{ object.landscape_background.url }}");
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-position: {{ object.focus }};
+            height: 90vh !important;
+            margin-top:-1.15em;
+            margin-bottom:0.8em;
+            overflow: hidden;
+            }
+
+            #imagemap1-008b {
+                background: rgba(91, 93, 100, 0.79);
+                color: #2b0b00;
+                width: {{ object.map1_box_size|slice:"0:3" }}; 
+                height: {{ object.map1_box_size|slice:"4:7" }}; 
+                border: 0; 
+                position: absolute; 
+                top: {{ object.map1_coordinate|slice:"0:5" }}; 
+                left: {{ object.map1_coordinate|slice:"6:11" }};
+                z-index: 1;
+                padding: 1px;
+                overflow: hidden;
+            }
+
+            #imagemap2-008b {
+                background: rgba(91, 93, 100, 0.79);
+                color: #2b0b00;
+                width: {{ object.map2_box_size|slice:"0:3" }}; 
+                height: {{ object.map2_box_size|slice:"4:7" }}; 
+                border: 0; 
+                position: absolute; 
+                top: {{ object.map2_coordinate|slice:"0:5" }}; 
+                left: {{ object.map2_coordinate|slice:"6:11" }};
+                z-index: 1;
+                padding: 1px;
+                overflow: hidden;
+            }
+
+        }
+
+        {% endif %}
+        /*pc landscape */
+
+
+        /* mobile landscape */
+        {% if object.landscape_background and request|is_mobile %}
+        
+        @media screen and (orientation: landscape) {
+            #par008b-image1 {
+                background-image: url("{{ object.landscape_background.url }}");
+                transition: all 0.3s ease;
+                background-position: {{ object.focus }};
+                margin-top: -1.15em;
+                margin-bottom: 0.75em;
+                height: 100vh !important;
+                overflow: hidden;
+            }
+
+            #imagemap1-008b {
+                background: rgba(91, 93, 100, 0.79);
+                color: #2b0b00; 
+                width: {{ object.map1_box_size|slice:"8:11" }}; 
+                height: {{ object.map1_box_size|slice:"12:15" }}; 
+                border: 0; 
+                position: absolute; 
+                top: {{ object.map1_coordinate|slice:"13:17" }}; 
+                left: {{ object.map1_coordinate|slice:"18:23" }};
+                z-index: 1;
+                overflow: hidden;
+            }
+
+            #imagemap2-008b {
+                background: rgba(91, 93, 100, 0.79);
+                color: #2b0b00; 
+                width: {{ object.map2_box_size|slice:"8:11" }}; 
+                height: {{ object.map2_box_size|slice:"12:15" }}; 
+                border: 0; 
+                position: absolute; 
+                top: {{ object.map2_coordinate|slice:"13:17" }}; 
+                left: {{ object.map2_coordinate|slice:"18:23" }};
+                z-index: 1;
+                overflow: hidden;
+            }
+
+            
+        }
+        {% endif %}
+        /* mobile landscape */
+
+        /* mobile portrait */
+        {% if  object.landscape_background %}
+        @media screen and (orientation: portrait) {
+            #par008b-image1 {
+                background-image: url("{{ object.landscape_background.url }}");
+                transition: all 0.3s ease;
+                background-size: contain;
+                background-position: top center;
+                margin-top: -.45em;
+                margin-bottom: -.10em;
+                height: 45vh !important;
+                overflow: hidden;
+
+            }
+
+            #imagemap1-008b {
+                background: rgba(91, 93, 100, 0.79);
+                color: #2b0b00; 
+                width: {{ object.map1_box_size|slice:"16:19" }}; 
+                height: {{ object.map1_box_size|slice:"20:23" }}; 
+                border: 0; 
+                position: absolute; 
+                top: {{ object.map1_coordinate|slice:"24:29" }}; 
+                left: {{ object.map1_coordinate|slice:"30:35" }};
+                z-index: 1;
+                overflow: hidden;
+            }
+
+            #imagemap2-008b {
+                background: rgba(91, 93, 100, 0.79);
+                color: #2b0b00; 
+                width: {{ object.map2_box_size|slice:"16:19" }}; 
+                height: {{ object.map2_box_size|slice:"20:23" }}; 
+                border: 0; 
+                position: absolute; 
+                top: {{ object.map2_coordinate|slice:"24:29" }}; 
+                left: {{ object.map2_coordinate|slice:"30:35" }};
+                z-index: 1;
+                overflow: hidden;
+            }
+        }
+        {% endif %}
+
+        #imagemap1-008b:hover {
+            background-color: rgba(158, 158, 158, 0.85);
+            color:#130606;
+            transition: all 0.4s ease-in-out;
+            text-align: justify;
+            padding: 5px;
+            border-radius: 5px;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+        #imagemap2-008b:hover {
+            background-color: rgba(158, 158, 158, 0.85);
+            color:#130606;
+            transition: all 0.4s ease-in-out;
+            text-align: justify;
+            padding: 5px;
+            border-radius: 5px;
+            word-wrap: break-word;
+            overflow: hidden;
+
+        }
+
+        a:link { text-decoration: none; }
+    </style>
+</head>
+<!--/header-->
+
+<!--body-->
+
+    {% if object.display_position %}
+    <!--container-parallax008b-->
+    <div class="gap" id="par008b-image1" style="background-color:{{ object.html_bgcolorcode }} !important; overflow: hidden;">
+        
+        {% if object.map1_tooltip or object.map2_tooltip  %}
+            <!--image1-map1 with008b-->
+                <a href="{{ object.map1_link }}" id="imagemap1-008b">
+                    <span>{{ object.map1_tooltip }}</span>
+                </a>
+            <!--/image1-map1 with008b-->
+        
+            <!--image1-map2 with008b-->
+                <a href="{{ object.map2_link }}" id="imagemap2-008b">
+                    <span>{{ object.map2_tooltip }}</span>
+                </a>
+            <!--/image1-map2 with008b-->
+        {% endif %}
+
+        {% if object.translatedtxtfile1 and not object.map1_tooltip %}
+            <!--image1-map1 with008b translated file1-->
+                <a href="{{ object.map1_link }}" id="imagemap1-008b">
+                    <span>{{ object.translatedtxtfile1|print_file_withlines:0 }}</span>
+                </a>
+            <!--/image1-map1 with008b translated file1-->
+        {% endif %}
+
+        {% if object.translatedtxtfile2 and not object.map2_tooltip %}
+            <!--image1-map1 with008b translated file2-->
+                <a href="{{ object.map2_link }}" id="imagemap2-008b">
+                    <span>{{ object.translatedtxtfile2|print_file_withlines:0 }}</span>
+                </a>
+            <!--/image1-map1 with008b translated file2-->
+        {% endif %}
+    </div>
+    <!--/container-parallax008b-->
+    {% endif %}
+
+<!--/body-->
+
+
+    {% endif %}
+{% endif %}
+<!--/parallax008b top condition-->

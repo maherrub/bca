@@ -1,0 +1,47 @@
+{% load static %}
+{% load i18n %}
+
+<!-- bottommenumodaltype -->
+<div class="modal fade bottom" id="bottommenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-bottom" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h6 class="modal-title w-100" id="myModalLabel"><small>system message:</small></h6>
+                
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <!--Success messages-->
+                {% for message in messages %}
+                
+                <ul class="list-group primary-color">
+                    <li>
+                    <span class="white-text text-center">
+                        <div class="alert {{ message.tags }} alert-dismissible toastr.info" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                                {{ message }}    
+                            </div>
+                    </span>
+                    </li>
+                </ul>
+                
+                {% endfor %}
+                <!--/Success messages-->
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <a href="\" class="btn btn-danger btn-sm smooth-scroll">Home</a>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- rightmenumodaltype -->

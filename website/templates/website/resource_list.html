@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+ 
+<!--Permissions control-->
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        {% for object in object_list|slice:"1" %}
+        <h6><span class="badge red">{{ object.functional_group }}<br>Resource List</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/resource_create/{{ object.functional_group }}/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% empty %}
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a href="/resource_create/English/" class="btn-floating btn-small red"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+<!--Body-->
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+        <div class="col-md-12">    
+            <ul class="list-group">
+            <a href="#" class="list-group-item blue-grey white-text"><i class="fa fa-file"></i>&nbsp;Resources<span class="counter" style="margin-left:70%;">{{ object_list|length }}</span></a>
+            {% for object in object_list %}
+            <li class="list-group-item justify-content-between">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-1 pull-left noselect">
+                            
+                            
+                            {% if object.cover %}
+                                <small><strong>Cover</strong></small><br>
+                                <img src="{{ object.cover.url }}" class="list-img-md img-responsive img-fluid" alt="cover"><br>
+                            {% endif %}
+                            
+                            
+                            
+                        </div>
+
+                        <div class="col-md-3 pull-left">
+                            <small><strong>Func. Group:</strong> {{ object.functional_group }}</small><br>
+                            <small><strong>Resource Id:</strong> {{ object.pk }}</small><br>
+                            <small><strong>Owner:</strong> {{ object.owner }}</small><br>
+                        </div>
+
+                        <div class="col-md-4 pull-left">
+                            <small><strong>Title:</strong> {{ object.title }}</small><br>
+                           
+                          
+                            <small><strong>Created:</strong> {{ object.created|get_due_date_string }}</small><br>
+                            <small><strong>Updated:</strong> {{ object.updated }}</small><br>                            
+                          
+                            {% if object.is_verified = 0 %}
+                            <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ object.is_verified }}</span></small><br>
+                            {% else %}
+                            <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ object.is_verified }}</span></small><br>
+                            {% endif %}
+                            {% if object.is_published = 0 %}
+                            <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ object.is_published }}</span></small>
+                            <br>
+                            <a href="/helpdesk/userticket_create"><i class="fa fa-ticket"></i><span>&nbsp;request to publish</span></a>
+                            {% else %}
+                            <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ object.is_published }}</span></small>
+                            {% endif %}
+                            
+                        </div>
+                        <div class="col-md-1 pull-right">
+                            <h6 class="btn btn-info btn-sm btn-rounded" style="float:right;"><a href="/{{ object.pk }}/resource_detail">detail</a></h6>
+                            <h6 class="btn btn-warning btn-sm btn-rounded" style="float:right;"><a href="/{{ object.pk }}/resource_update">update</a></h6>
+                        </div>
+
+                        <div class="col-md-1 pull-right">
+                            <h6 class="btn btn-success btn-sm btn-rounded" style="float:right;"><a href="/resourceitem_create/{{ object.pk }}/">+item</a></h6>
+                            <h6 class="btn btn-lime btn-sm btn-rounded" style="float:right;"><a href="/{{ object.pk }}/resourceitem_list">#item</a></h6>
+                        </div>
+                        
+                        <div class="col-md-1 pull-right">
+                            
+                        </div>
+
+                        
+                        
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+    
+<div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+</div>
+<div class="divider"></div>
+
+{% endblock %}
+

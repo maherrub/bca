@@ -1,0 +1,48 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Register for an account" %}{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-block wow fadeInDown" data-wow-delay="0.3s">
+                    <!--Header-->
+                    <div class="form-header blue-gradient z-depth-2 view overlay hm-white-slight">
+                        <h5><i class="fa fa-pencil-square-o"></i>&nbsp; {% trans 'Registration Form' %}</h5>
+                        <div class="mask waves-effect waves-light"></div>
+                    </div>
+                    <!--Header-->
+
+                    <!--Body-->
+                    <form method="post" action="">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <input class='btn btn-deep-purple btn-block' type="submit" value="{% trans 'Submit' %}" />
+                    </form>
+                   <!--Body-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
+
+``form``
+    The registration form. This will be an instance of some subclass
+    of ``django.forms.Form``; consult `Django's forms documentation
+    <http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+    information on how to display this in a template.
+{% endcomment %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load parler_tags %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+<div class="container-fluid">
+<div class="row">
+     <p>user name: {{ uname.username }} | {{ uname.email }} </p>
+        {% for ticket in tickets %}
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h4>{% block title %}Ticket View{% endblock %}</h4>
+            <p> {{ ticket.ticket_number }} - 
+                {{ ticket.ticket_category }} - 
+                {{ ticket.ticket_issue }} -
+                {{ ticket.ticket_priority }} -
+                {{ ticket.ticket_status }} -
+                {{ ticket.ticket_description }} -
+                {{ ticket.ticket_owner}}
+            </p>
+            <h4>Reply for this ticket</h4>
+            {% for reply in replies %}
+
+            <p>
+                {{ reply.ticket_manager_ticket }} - 
+                {{ reply.ticket_manager_category }} -
+                {{ reply.ticket_manager_reply }} -
+                {{ reply.ticket_manager_name }} -
+                {{ reply.ticket_manager_edited_on }}
+            </p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+</div>
+</div>
+
+
+{% endblock %}

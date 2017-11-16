@@ -1,0 +1,221 @@
+{% load static %}
+{% load staticfiles %}
+{% load i18n %}
+{% load user_agents %}
+{% load website_filters %}
+
+<!--parallax005c top condition-->
+{% if object.landscape_background and not object.portrait_background %}
+    {% if object.display_position %}
+<!--header-->
+<head>
+    <style>
+    /*pc landscape */
+    {% if object.landscape_background %}
+    
+    @media screen and (orientation: landscape) {
+        #par005c-image1 {
+            background-image: url("{{ object.landscape_background.url }}");
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-position: {{ object.focus }};
+            height: 90vh !important;
+            margin-top:-0.80em;
+            margin-bottom:-3.75em;
+            overflow: hidden;
+        }
+
+        #imagemap1-005c {
+            background: transparent;
+            color: transparent;
+            width: {{ object.map1_box_size|slice:"0:3" }}; 
+            height: {{ object.map1_box_size|slice:"4:7" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map1_coordinate|slice:"0:5" }}; 
+            left: {{ object.map1_coordinate|slice:"6:11" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #imagemap2-005c {
+            background: transparent;
+            color: transparent;
+            width: {{ object.map2_box_size|slice:"0:3" }}; 
+            height: {{ object.map2_box_size|slice:"4:7" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map2_coordinate|slice:"0:5" }}; 
+            left: {{ object.map2_coordinate|slice:"6:11" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+    }
+
+    {% endif %}
+    /*pc landscape */
+
+
+    /* mobile landscape */
+    {% if object.landscape_background and request|is_mobile %}
+    
+    @media screen and (orientation: landscape) {
+        #par005c-image1 {
+            background-image: url("{{ object.landscape_background.url }}");
+            transition: all 0.3s ease;
+            background-position: {{ object.focus }};
+            margin-top: -0.75em;
+            margin-bottom: -3.75em;
+            height: 100vh !important;
+            overflow: hidden;
+        }
+
+        #imagemap1-005c {
+            background: transparent;
+            color: transparent;
+            width: {{ object.map1_box_size|slice:"8:11" }}; 
+            height: {{ object.map1_box_size|slice:"12:15" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map1_coordinate|slice:"13:17" }}; 
+            left: {{ object.map1_coordinate|slice:"18:23" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #imagemap2-005c {
+            background: transparent;
+            color: transparent;
+            width: {{ object.map2_box_size|slice:"8:11" }}; 
+            height: {{ object.map2_box_size|slice:"12:15" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map2_coordinate|slice:"13:17" }}; 
+            left: {{ object.map2_coordinate|slice:"18:23" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+    }
+    {% endif %}
+    /* mobile landscape */
+
+    /* mobile portrait */
+    {% if  object.landscape_background %}
+    @media screen and (orientation: portrait) {
+         #par005c-image1 {
+            background-image: url("{{ object.landscape_background.url }}");
+            transition: all 0.3s ease;
+            background-size: contain;
+            background-position: top center;
+            margin-top: -.45em;
+            margin-bottom: -0.28em;
+            height: 45vh !important;
+            overflow: hidden;
+
+        }
+
+        #imagemap1-005c {
+            background: transparent;
+            color: transparent;
+            width: {{ object.map1_box_size|slice:"16:19" }}; 
+            height: {{ object.map1_box_size|slice:"20:23" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map1_coordinate|slice:"24:29" }}; 
+            left: {{ object.map1_coordinate|slice:"30:35" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #imagemap2-005c {
+            background: transparent;
+            color: transparent;
+            width: {{ object.map2_box_size|slice:"16:19" }}; 
+            height: {{ object.map2_box_size|slice:"20:23" }}; 
+            border: 0; 
+            position: absolute; 
+            top: {{ object.map2_coordinate|slice:"24:29" }}; 
+            left: {{ object.map2_coordinate|slice:"30:35" }};
+            z-index: 1;
+            overflow: hidden;
+        }
+    }
+    {% endif %}
+
+    #imagemap1-005c:hover {
+        background-color: rgba(158, 158, 158, 0.85);
+        color:#130606;
+        transition: all 0.4s ease-in-out;
+        text-align: justify;
+        padding: 5px;
+        border-radius: 5px;
+        word-wrap: break-word;
+        overflow: hidden;
+    }
+
+    #imagemap2-005c:hover {
+        background-color: rgba(158, 158, 158, 0.85);
+        color:#130606;
+        transition: all 0.4s ease-in-out;
+        text-align: justify;
+        padding: 5px;
+        border-radius: 5px;
+        word-wrap: break-word;
+        overflow: hidden;
+    }
+
+    a:link { text-decoration: none; }
+    </style>
+</head>
+<!--/header-->
+
+    <!--body-->
+    {% if object.display_position %}
+    <!--container-parallax005c-->
+    <div class="gap" id="par005c-image1" style="background-color:{{ object.html_bgcolorcode }} !important; overflow: hidden;">
+    
+   
+        {% if object.map1_tooltip or object.map2_tooltip  %}
+                <!--image1-map1 with005c-->
+                    <span id="imagemap1-005c">
+                        <span class="noselect">{{ object.map1_tooltip }}</span>
+                    </span>
+                <!--/image1-map1 with005c-->
+            
+                <!--image1-map2 with005c-->
+                    <span id="imagemap2-005c">
+                        <span class="noselect">{{ object.map2_tooltip }}</span>
+                    </span>
+                <!--/image1-map2 with005c-->
+            {% endif %}
+
+            {% if object.translatedtxtfile1 and not object.map1_tooltip %}
+                <!--image1-map1 with005c translated file1-->
+                    <span id="imagemap1-005c">
+                        <span class="noselect">{{ object.translatedtxtfile1|print_file_withlines:0 }}</span>
+                    </span>
+                <!--/image1-map1 with005c translated file1-->
+            {% endif %}
+
+            {% if object.translatedtxtfile2 and not object.map2_tooltip %}
+                <!--image1-map1 with005c translated file2-->
+                    <span id="imagemap2-005c">
+                        <span class="noselect">{{ object.translatedtxtfile2|print_file_withlines:0 }}</span>
+                    </span>
+                <!--/image1-map1 with005c translated file2-->
+            {% endif %} 
+    
+    </div>
+    <!--/container-parallax005c-->
+    {% endif %}
+    <!--/body-->
+
+
+
+    {% endif %}
+{% endif %}
+<!--/parallax005c top condition-->
+
+

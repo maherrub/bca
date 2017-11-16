@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load website_filters %}
+
+
+{% block content %}
+<div class="divider"></div>
+<div class="divider"></div>
+<!--Permissions control-->
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-11 col-xs-8 pull-left">
+        <h6><span class="badge red">Page&nbsp; {{ object.pk }}&nbsp; Team Name Detail</span></h6>
+        </div>
+        <div class="col-md-2 col-xs-2 pull-right mb-r wow slideInRight" data-wow-delay="0.2s">
+            <a onclick="history.go(-1);" class="btn-floating btn-small red"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+            <a href="/producer/" class="btn-floating btn-small red"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    </div>
+
+
+
+<div class="container-fluid">
+     <!--First row-->
+    <div class="row">
+        <div class="col-md-12 wow text-center fadeIn" data-wow-delay="0.2s">
+            <p><strong>Team Name:</strong>&nbsp;{{ object.team_name }}</p>
+            
+            {% if object.translatedtxtfile2 %}
+            
+            <!--Translated file2-->
+            <div class="noselect pad5">{{ object.translatedtxtfile2|print_file_content }}</div>
+            <!--Translated file2-->
+            
+            {% endif %}
+
+        </div>
+        
+    </div>
+    <!--/First row-->
+    
+</div>
+
+
+{% endblock %}

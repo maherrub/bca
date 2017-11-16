@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load website_filters %}
+
+{% block title %}Producer Community Contents{% endblock %}
+
+{% block content %}
+<div class="divider"></div>
+<br>
+    <!--Body-->
+    <div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            
+        <a href="/producercommunity/" class="list-group-item active">
+            <i class="fa fa-users fa-1x" aria-hidden="true"></i>
+            &nbsp;Producer Community Topics
+        </a>
+        <!--Search form -->
+        <form method='GET' action='' class="form-inline waves-effect waves-light">
+            <input type='text' name='q' class="text-center blue-text" placeholder='Search a topic' value='{{ request.GET.q }}'/>
+	        <input type='submit' value='Search' style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
+        </form>
+        <!--/Search form -->
+        <span class="counter" style="margin-left:80%; margin-top:15px;">{{ object_list|length }}</span>
+        
+        {% for pcla in object_list %}
+        
+        <li class="list-group-item justify-content-between">
+        <div class="container">
+        <div class="row">
+            
+            <div class="col-md-3 pull-left blue lighten-3">
+                
+                <small><strong>Producer:</strong> {{ pcla.content_owner }}</small><br>
+                <small><strong>Topic id:</strong> {{ pcla.id }}</small><br>
+                <small><strong>Page id:</strong> {{ pcla.page_id }}</small><br>
+                <small><strong>Created:</strong> {{ pcla.edited_on|get_due_date_string }}</small><br>
+                <small><strong>Updated:</strong> {{ pcla.updated }}</small><br>
+                <small><strong>Fun.Group:</strong> {{ pcla.functional_group }}</small><br>
+                <small><strong>Position:</strong>{{ pcla.display_position }}</small><br>
+                <small><strong>Layout:</strong>{{ pcla.layout }}</small><br>
+                {% if pcla.is_published = 0 %}
+                    <small><strong>Published?</strong><span class="counter red" style="margin-left:5%;">{{ pcla.is_published }}</span></small><br>
+                {% else %}
+                    <small><strong>Published?</strong><span class="counter green" style="margin-left:5%;">{{ pcla.is_published }}</span></small><br>
+                {% endif %}
+                {% if pcla.is_verified = 0 %}
+                    <small><strong>Verified?</strong><span class="counter red" style="margin-left:5%;">{{ pcla.is_verified }}</span></small><br>
+                {% else %}
+                    <small><strong>Verified?</strong><span class="counter green" style="margin-left:5%;">{{ pcla.is_verified }}</span></small><br>
+                {% endif %}
+            </div>
+
+            <div class="col-md-2 col-xs-2 blue lighten-4">
+                
+                {% if pcla.youtubeid %}
+                    <iframe width="75" height="50"
+                        src="https://www.youtube.com/embed/{{ pcla.youtubeid }}">
+                    </iframe><br>
+                    <small><strong>Youtube</strong></small><br>
+                {% endif %}
+
+                {% if pcla.speaker_image %}
+                <img src="{{ pcla.speaker_image.url }}" class="img-thumbnail list-img-md img-responsive img-fluid" alt="speaker_image">
+                <small><strong>speaker</strong></small><br>
+                {% endif %}
+                
+                {% if pcla.cover_image %}
+                <img src="{{ pcla.cover_image.url }}" class="img-thumbnail list-img-md img-responsive img-fluid" alt="cover_image">
+                <small><strong>cover</strong></small><br>
+                {% endif %}
+                <small><strong>Card Type:</strong> {{ pcla.card_type }}</small><br>
+                
+            </div>
+            
+            <div class="col-md-7 pull-left blue lighten-5 hoverable">
+                <small><strong>Title:</strong> {{ pcla.main_title }}</small><br>
+                <small><strong>Sec. Title:</strong> {{ pcla.secondary_title }}</small><br>
+                <small><strong>St. Desc:</strong> {{ pcla.short_description }}</small><br>
+                <small><strong>Ln. Desc:</strong> {{ pcla.long_description }}</small><br>
+                <small><strong>Link:</strong> {{ pcla.link_url }}</small><br>
+                {% if pcla.translatedtxtfile1 %}
+                <p class="noselect"><small><strong>TransFile1:</strong> {{ pcla.translatedtxtfile1|print_file_content }}</small></p>
+                {% endif %}
+
+                {% if pcla.translatedtxtfile2 %}
+                <p class="noselect"><small><strong>TransFile2:</strong> {{ pcla.translatedtxtfile2|print_file_content }}</small></p>
+                {% endif %}
+            </div>
+                        
+        </div>
+        </div>
+        </li>
+        
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+    </div>
+    <!--/Body-->
+
+    <div class="divider"></div>
+
+<div class="pull-right">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+            </li>
+        {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+        {% if page_obj.has_next %}
+            <li>
+                <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+            </li>
+        {% endif %}
+        </ul>
+        {% else %}
+            <p class="deep-orange-text text-center">end of list</p>
+        {% endif %}
+</div>
+
+<div class="divider"></div>
+
+
+
+<div class="divider"></div>
+
+{% endblock %}
