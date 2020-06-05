@@ -4,7 +4,7 @@ django-storages==1.6.5
 certifi==2017.11.5
 chardet==3.0.4
 codegen==1.0
-Django==1.8
+Django==1.11.29
 django-crispy-forms==1.7.0
 django-embed-video==1.1.2
 django-messages==0.5.3
