@@ -23,7 +23,7 @@ Pillow==4.3.0
 Pygments==2.2.0
 pyserial==3.4
 python-memcached==1.58
-PyYAML==3.12
+PyYAML==5.4
 requests==2.18.4
 six==1.11.0
 ua-parser==0.7.3
